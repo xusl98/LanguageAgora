@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <script src="../jquery/jQuery-3.4.1.js"></script>
+    <script src="../bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../js/signUp.js"></script>
+    <link rel="stylesheet" href="../bootstrap-4.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/signUp.css">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <img src="../resources/logoLetNegra.png" class="brand_logo" alt="Logo">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center form_container">
+                    <form>
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" id="user" name="user" pattern="[^\s]+" required
+                                class="form-control input_user myInput" value="" placeholder="Usuario">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="email" id="email" name="email" pattern="[^\s]+" required
+                                class="form-control input_user myInput" value="" placeholder="Email">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" id="password" name="password" pattern="[^\s]+" required
+                                class="form-control input_pass myInput" value="" placeholder="Contraseña">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" id="password2" name="password2" pattern="[^\s]+" required
+                                class="form-control input_pass myInput" value="" placeholder="Repetir Contraseña">
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <input type="submit" disabled="true" id="submit" name="button" class="btn login_btn" value="Registrarse">
+                            <!-- <button type="button" name="button" class="btn login_btn">Iniciar Sesión</button> -->
+                        </div>
+                    </form>
+                </div>
+
+                <div class="mt-4">
+                    <div class="d-flex justify-content-center links">
+                        ¿Ya tienes una cuenta? <a href="login.html" class="ml-2">Iniciar Sesión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="nameToast" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+        <div class="toast-header toast-error-header">
+            <strong class="mr-auto">Error</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" style="color: white;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div id="toastText" class="toast-body toast-error-body">
+            El nombre insertadoya está siendo utilizado.
+        </div>
+    </div>
+</body>
+
+</html>
