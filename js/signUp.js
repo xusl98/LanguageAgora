@@ -3,7 +3,9 @@ isValid = false;
 passwordValid = false;
 nameValid = false;
 emailValid = false;
+var code = 0;
 
+//Creación del evento inputChange que se emitirá al perder el foco de un input
 inputChangeEvent = 1;
 inputChangeEvent = new Event("inputChange", { bubbles: true });
 
@@ -36,6 +38,31 @@ $(document).ready(function () {
     });
     $('#user').focus(function () {
         $(this).css('background-color', 'white');
+    });
+
+    $('#form').submit(function () {
+        $('#spanEmail').text($('#email').val());
+
+        code = Math.floor(Math.random() * (99999 - 0) + 0);
+        var body = "Este es el código que tendrás que introducir para confirmar el registro de la cuenta: " + code;
+        Email.send({
+            Host: "smtp.gmail.com",
+            Username: "languageagora@gmail.com",//correo origen
+            Password: "agldaw214",//contraseña
+            To: $('#email').val(),//correo destino
+            From: "languageagora@gmail.com",//correo origen
+            Subject: "Código LanguageAgora",//asunto
+            Body: body,//cuerpo
+        });
+        return false;
+    });
+
+    $('#codeBtn').click(function () {
+        if ($('#code').val() == code){
+            alert('REGISTRADO');
+            //TODO AÑADIR EL USUARIO A LA BASE DE DATOS
+            //TODO REDIRIGIR A INICIO DE SESIÓN 
+        }
     });
 
 });

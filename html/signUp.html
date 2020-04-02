@@ -4,6 +4,7 @@
     <script src="../jquery/jQuery-3.4.1.js"></script>
     <script src="../bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
     <script src="../js/signUp.js"></script>
+    <script src="../js/smtp.js"></script>
     <link rel="stylesheet" href="../bootstrap-4.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/signUp.css">
     <meta charset="UTF-8">
@@ -19,7 +20,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center form_container">
-                    <form>
+                    <form id="form">
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -49,12 +50,13 @@
                                 class="form-control input_pass myInput" value="" placeholder="Repetir Contraseña">
                         </div>
                         <div class="d-flex justify-content-center mt-3 login_container">
-                            <input type="submit" disabled="true" id="submit" name="button" class="btn login_btn" value="Registrarse">
+                            <input type="submit" disabled="true" id="submit" name="button" class="btn login_btn"
+                                value="Registrarse" data-toggle="modal" data-target="#exampleModal">
+
                             <!-- <button type="button" name="button" class="btn login_btn">Iniciar Sesión</button> -->
                         </div>
                     </form>
                 </div>
-
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
                         ¿Ya tienes una cuenta? <a href="login.html" class="ml-2">Iniciar Sesión</a>
@@ -74,6 +76,32 @@
             El nombre insertadoya está siendo utilizado.
         </div>
     </div>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmar registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Se ha enviado un código al correo: "<span id="spanEmail"></span>" 
+                    <label for="code">Introduce el código recibido</label>
+                    <input type="text" id="code" name="code">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="codeBtn">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
+
 
 </html>
