@@ -3,8 +3,10 @@
 <head>
     <script src="../jquery/jQuery-3.4.1.js"></script>
     <script src="../bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
     <link rel="stylesheet" href="../bootstrap-4.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/index.css">
+    
     <meta charset="UTF-8">
 </head>
 
@@ -19,18 +21,18 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center form_container">
-                    <form>
+                    <form id="form">
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" name="user" pattern="[^\s]+" required class="form-control input_user" value="" placeholder="Usuario">
+                            <input type="text" id="user" name="user" pattern="[^\s]+" required class="form-control input_user" value="" placeholder="Usuario">
                         </div>
                         <div class="input-group mb-2">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" name="password" pattern="[^\s]+" required class="form-control input_pass" value=""
+                            <input type="password" id="password" name="password" pattern="[^\s]+" required class="form-control input_pass" value=""
                                 placeholder="Contraseña">
                         </div>
                         <div class="form-group">
@@ -40,7 +42,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center mt-3 login_container">
-                            <input type="submit" name="button" class="btn login_btn" value="Iniciar Sesión">
+                            <input id="submit" type="submit" name="button" class="btn login_btn" value="Iniciar Sesión">
                             <!-- <button type="button" name="button" class="btn login_btn">Iniciar Sesión</button> -->
                         </div>
                     </form>
@@ -55,6 +57,18 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- TOAST -->
+    <div id="nameToast" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+        <div class="toast-header toast-error-header">
+            <strong class="mr-auto">Error</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" style="color: white;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div id="toastText" class="toast-body toast-error-body">
+            La combinación de usuario y contraseña no es correcta.
         </div>
     </div>
 </body>
