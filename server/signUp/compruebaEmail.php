@@ -1,14 +1,15 @@
 <?php
 // Conectando, seleccionando la base de datos
-$mysqli = new mysqli('127.0.0.1', 'aaaaa', 'aaaaa', 'superhero');
+$mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', 'agora');
 $mysqli->set_charset("utf8");
-$cons="SELECT codigo,superheroe,identidad_secreta,super_poder,alineacion,fecha_aparicion,victorias,derrotas, descgen as genero FROM superheroes inner join genero on superheroes.genero=genero.id ";
+$email = $_POST['email'];
+$cons="SELECT * FROM user where email = '$email'";
 
 
-if(isset($_GET['orden']))
-{    
-    $cons= $cons." order by ".$_GET['orden'];    
-}
+// if(isset($_POST['name']))
+// {    
+//     $cons= $cons." ".$_POST['name'] . "'";    
+// }
 
 $res = $mysqli->query($cons);
 if( mysqli_num_rows($res) > 0 ){

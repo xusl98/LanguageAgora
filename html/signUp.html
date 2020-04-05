@@ -23,28 +23,28 @@
                     <form id="form">
                         <div class="input-group mb-3">
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span id="validUser" class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" id="user" name="user" pattern="[^\s]+" required
                                 class="form-control input_user myInput" value="" placeholder="Usuario">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span id="validEmail" class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="email" id="email" name="email" pattern="[^\s]+" required
                                 class="form-control input_user myInput" value="" placeholder="Email">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <span id="validPass" class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" id="password" name="password" pattern="[^\s]+" required
                                 class="form-control input_pass myInput" value="" placeholder="Contraseña">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <span id="validPass2" class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" id="password2" name="password2" pattern="[^\s]+" required
                                 class="form-control input_pass myInput" value="" placeholder="Repetir Contraseña">
@@ -52,14 +52,12 @@
                         <div class="d-flex justify-content-center mt-3 login_container">
                             <input type="submit" disabled="true" id="submit" name="button" class="btn login_btn"
                                 value="Registrarse" data-toggle="modal" data-target="#exampleModal">
-
-                            <!-- <button type="button" name="button" class="btn login_btn">Iniciar Sesión</button> -->
                         </div>
                     </form>
                 </div>
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
-                        ¿Ya tienes una cuenta? <a href="login.html" class="ml-2">Iniciar Sesión</a>
+                        ¿Ya tienes una cuenta? <a href="index.html" class="ml-2">Iniciar Sesión</a>
                     </div>
                 </div>
             </div>
@@ -83,7 +81,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmar registro</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Validar correo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

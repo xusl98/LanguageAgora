@@ -96,3 +96,7 @@
     .toast-error-body{
         background-color: #b96c63;
     }
+
+    .validatorValid{
+        background: green !important;
+    }
