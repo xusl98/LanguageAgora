@@ -21,7 +21,7 @@ function peticionCorrecta() {
         // console.log(this.responseText);
         var respuesta = JSON.parse(this.responseText);
         if (respuesta.length > 0) {
-            alert('SESIÓN INICIADA')
+            window.location.href = 'home.html';
         } else {
             $('#nameToast').toast({
                 animation: true,

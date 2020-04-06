@@ -1,6 +1,6 @@
 <?php
 // Conectando, seleccionando la base de datos
-$mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', 'agora');
+$mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
 $email = $_POST['email'];
 $cons="SELECT * FROM user where email = '$email'";
