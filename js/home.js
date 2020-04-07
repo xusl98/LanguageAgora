@@ -1,11 +1,22 @@
+//TODO FUNCIONALIDAD MODO OSCURO
+
+var sesionIniciada = false;
 $(document).ready(function () {
     url = "http://localhost/LanguageAgora/server/home/obtenerIdiomas.php"
-        // console.log(param)
-        var miXHR = new XMLHttpRequest();
-        miXHR.onreadystatechange = peticionCorrecta;
-        miXHR.open("GET", url);
-        miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        miXHR.send(null);
+    // console.log(param)
+    var miXHR = new XMLHttpRequest();
+    miXHR.onreadystatechange = peticionCorrecta;
+    miXHR.open("GET", url);
+    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    miXHR.send(null);
+
+    //Si tiene sesión iniciada
+    if (sessionStorage.getItem('user') != null) {
+        sesionIniciada = true;
+    }
+
+    cambioSesion();
+
 });
 
 function peticionCorrecta() {
@@ -16,14 +27,73 @@ function peticionCorrecta() {
             console.log(idiomas)
             var dropMenu = '';
             var lista = '';
-            for (let idioma of idiomas){
+            for (let idioma of idiomas) {
                 dropMenu += '<a class="dropdown-item" href="#">' + idioma.name + '</a>';
                 lista += '<a href="#" class="list-group-item list-group-item-action">' + idioma.name + '</a>';
                 $('#dropdown').html(dropMenu);
                 $('#lista').html(lista);
             }
         } else {
-           alert('Fallo en el servidor');
+            alert('Fallo en el servidor');
+        }
+
+    }
+}
+
+function cambioSesion() {
+    var perfilDropdown = '';
+    if (!sesionIniciada) {
+        perfilDropdown = '<a class="dropdown-item" href="#" data-toggle="modal" data-target="#inicioModal">Iniciar Sesión</a>';
+        perfilDropdown += '<a class="dropdown-item" href="signUp.html">Registrarse</a>';
+
+        //Al pulsar incicio de sesión
+        $('#btnInicio').click(function () {
+            url = "http://localhost/LanguageAgora/server/index/comprobarInicio.php"
+            var name = $('#user').val();
+            var pass = $('#password').val();
+            var param = 'name=' + name + '&pass=' + pass;
+            // console.log(param)
+            var miXHR = new XMLHttpRequest();
+            miXHR.onreadystatechange = inicioSesionCorrecto;
+            miXHR.open("POST", url);
+            miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            miXHR.send(param);
+            return false;
+        });
+
+    } else {
+        //TODO editar perfil
+        perfilDropdown = '<a class="dropdown-item" href="#">Editar Perfil</a>';
+        perfilDropdown += '<span style="cursor: pointer;" class="dropdown-item" id="cerrarSesion" href="#">Cerrar Sesión</span>';
+    }
+    $('#perfilDropdown').html(perfilDropdown);
+
+    $('#cerrarSesion').click(function () {
+        sessionStorage.setItem('user', null);
+        sesionIniciada = false;
+        cambioSesion();
+        //TODO TOAST sesión cerrada
+        return false;
+    });
+}
+
+function inicioSesionCorrecto() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        // console.log(this.responseText);
+        var respuesta = JSON.parse(this.responseText);
+        if (respuesta.length > 0) {
+            sessionStorage.setItem('user', respuesta[0].userId);
+            sesionIniciada = true;
+            cambioSesion();
+            $('#inicioModal').modal('hide');
+            //TODO TOAST sesión iniciada
+        } else {
+            $('#nameToast').toast({
+                animation: true,
+                autohide: true,
+                delay: 3000
+            });
+            $('#nameToast').toast('show');
         }
 
     }

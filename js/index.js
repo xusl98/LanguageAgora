@@ -21,6 +21,7 @@ function peticionCorrecta() {
         // console.log(this.responseText);
         var respuesta = JSON.parse(this.responseText);
         if (respuesta.length > 0) {
+            sessionStorage.setItem('user', respuesta[0].userId);
             window.location.href = 'home.html';
         } else {
             $('#nameToast').toast({
