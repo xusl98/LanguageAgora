@@ -6,7 +6,7 @@ var sesionIniciada = false;
 var num = 10;
 
 $(document).ready(function () {
-    url = "http://localhost/LanguageAgora/server/home/obtenerIdiomas.php"
+    url = path + "LanguageAgora/server/home/obtenerIdiomas.php"
     // console.log(param)
     var miXHR = new XMLHttpRequest();
     miXHR.onreadystatechange = peticionCorrecta;
@@ -37,7 +37,7 @@ $(document).ready(function () {
 });
 
 function obtenerPreguntas() {
-    url = "http://localhost/LanguageAgora/server/language/obtenerPreguntas.php"
+    url = path + "LanguageAgora/server/language/obtenerPreguntas.php"
     var miXHR = new XMLHttpRequest();
     var param = 'lang=' + languageId + '&num=' + num;
     miXHR.onreadystatechange = peticionPreguntasCorrecta;
@@ -92,7 +92,7 @@ function cambioSesion() {
 
         //Al pulsar incicio de sesión
         $('#btnInicio').click(function () {
-            url = "http://localhost/LanguageAgora/server/index/comprobarInicio.php"
+            url = path + "LanguageAgora/server/index/comprobarInicio.php"
             var name = $('#user').val();
             var pass = $('#password').val();
             var param = 'name=' + name + '&pass=' + pass;

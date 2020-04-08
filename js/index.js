@@ -1,8 +1,9 @@
 //TODO para cargar la página de inicio (spinner que aparezca al dar click a iniciar sesión hasta que termine de procesarse la petición)
 //TODO hacer olvidaste la contraseña
 $(document).ready(function () {
+    console.log(path)
     $('#form').submit(function () {
-        url = "http://localhost/LanguageAgora/server/index/comprobarInicio.php"
+        url = path + "LanguageAgora/server/index/comprobarInicio.php"
         var name = $('#user').val();
         var pass = $('#password').val();
         var param = 'name=' + name + '&pass=' + pass;
