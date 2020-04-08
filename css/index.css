@@ -85,7 +85,7 @@
     }
     #nametoast{
         position: absolute;
-        top: 0;
+        top: 4%;
         right: 0;
     }
     .toast-error-header{

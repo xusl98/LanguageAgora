@@ -28,8 +28,8 @@ function peticionCorrecta() {
             var dropMenu = '';
             var lista = '';
             for (let idioma of idiomas) {
-                dropMenu += '<a class="dropdown-item" href="#">' + idioma.name + '</a>';
-                lista += '<a href="#" class="list-group-item list-group-item-action">' + idioma.name + '</a>';
+                dropMenu += '<a class="dropdown-item" href="language.html?lang=' + idioma.languageId + '&name=' + idioma.name + '">' + idioma.name + '</a>';
+                lista += '<a href="language.html?lang=' + idioma.languageId + '&name=' + idioma.name + '" class="list-group-item list-group-item-action">' + idioma.name + '</a>';
                 $('#dropdown').html(dropMenu);
                 $('#lista').html(lista);
             }
@@ -72,7 +72,14 @@ function cambioSesion() {
         sessionStorage.setItem('user', null);
         sesionIniciada = false;
         cambioSesion();
-        //TODO TOAST sesión cerrada
+        $('#toastTitle').text('Cierre de sesión.');
+        $('#toastText').text('Sesión cerrada satisfactoriamente.');
+        $('#nameToast').toast({
+            animation: true,
+            autohide: true,
+            delay: 3000
+        });
+        $('#nameToast').toast('show');
         return false;
     });
 }
@@ -86,7 +93,14 @@ function inicioSesionCorrecto() {
             sesionIniciada = true;
             cambioSesion();
             $('#inicioModal').modal('hide');
-            //TODO TOAST sesión iniciada
+            $('#toastTitle').text('Inicio de sesión.');
+            $('#toastText').text('Sesión iniciada satisfactoriamente.');
+            $('#nameToast').toast({
+                animation: true,
+                autohide: true,
+                delay: 3000
+            });
+            $('#nameToast').toast('show');
         } else {
             $('#nameToast').toast({
                 animation: true,
