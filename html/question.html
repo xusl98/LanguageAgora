@@ -7,9 +7,10 @@
     <script src="../js/question.js"></script>
     <!-- EL JS DE CADA PAGINA -->
     <script src="../js/plantilla.js"></script>
-    <script src="../js/common.js"></script> 
+    <script src="../js/common.js"></script>
     <link rel="stylesheet" href="../bootstrap-4.4.1-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/plantilla.css">
+    <link rel="stylesheet" href="../css/question.css">
 
     <meta charset="UTF-8">
 </head>
@@ -56,7 +57,27 @@
             <div class="col-md-6">
                 <div>
                     <!-- CONTENIDO -->
-                    
+                    <div class="card text-center">
+                        <div class="card-header align-left">
+                            <a style="color: black;" href="#" id="idioma">Language</a>
+                        </div>
+                        <div class="card-body">
+                            <h5 id="titulo" class="card-title align-left">Título</h5>
+                            <p id="texto" class="card-text align-left">With supporting text below as a natural lead-in to
+                                additional content.
+                            </p>
+                            <div class="row">
+                                <div class="col-md-10">&nbsp;</div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary">Responder</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <!-- //TODO enlace al usuario -->
+                            <div><span id="fecha" style="margin-right: 5%;">00/00/0000</span><a style="color: #6c757d; margin-left: 5%;" href="#" id="user">usuario</a></div>
+                        </div>
+                    </div>
                     <!-- CONTENIDO -->
                 </div>
             </div>
@@ -77,18 +98,18 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group row">
-                          <label for="user" class="col-md-2 col-form-label">Usuario</label>
-                          <div class="col-md-10">
-                            <input type="text" class="form-control" id="user">
-                          </div>
+                            <label for="user" class="col-md-2 col-form-label">Usuario</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="user">
+                            </div>
                         </div>
                         <div class="form-group row">
-                          <label for="password" class="col-md-2 col-form-label">Contraseña</label>
-                          <div class="col-md-10">
-                            <input type="password" class="form-control" id="password">
-                          </div>
+                            <label for="password" class="col-md-2 col-form-label">Contraseña</label>
+                            <div class="col-md-10">
+                                <input type="password" class="form-control" id="password">
+                            </div>
                         </div>
-                      </form>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

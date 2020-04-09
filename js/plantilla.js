@@ -1,5 +1,5 @@
 //TODO FUNCIONALIDAD MODO OSCURO
-
+// Este js contiene la funcionalidad de la barra de navegación que será común en muchas pantallas
 var sesionIniciada = false;
 $(document).ready(function () {
     url = path + "LanguageAgora/server/home/obtenerIdiomas.php"
@@ -92,12 +92,12 @@ function inicioSesionCorrecto() {
             $('#inicioModal').modal('hide');
             $('#toastTitle').text('Inicio de sesión.');
             $('#toastText').text('Sesión iniciada satisfactoriamente.');
-        $('#nameToast').toast({
-            animation: true,
-            autohide: true,
-            delay: 3000
-        });
-        $('#nameToast').toast('show');
+            $('#nameToast').toast({
+                animation: true,
+                autohide: true,
+                delay: 3000
+            });
+            $('#nameToast').toast('show');
         } else {
             $('#nameToast').toast({
                 animation: true,
