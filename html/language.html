@@ -4,7 +4,7 @@
     <script src="../jquery/jQuery-3.4.1.js"></script>
     <script src="../bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
     <script src="../js/language.js"></script>
-    <script src="../js/common.js"></script> 
+    <script src="../js/common.js"></script>
     <link rel="stylesheet" href="../bootstrap-4.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/language.css">
 
@@ -17,22 +17,22 @@
             <div class="col-md-5">
                 <a class="navbar-brand" href="home.html">LanguageAgora</a>
             </div>
-            <div class=" dropdown col-md-5">
+            <div class=" dropdown col-md-4">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Idioma
                 </a>
                 <div id="dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
             </div>
-            <div class="col-md-2 row">
-                <div class="dropdown">
+            <div class="col-md-3 row">
+                <div class="dropdown col-md-6">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Perfil
                     </a>
                     <div id="perfilDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
                 </div>
-                <div class=" dropdown">
+                <div class="dropdown col-md-6">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Configuración
@@ -54,6 +54,11 @@
                 <div>
                     <!-- CONTENIDO -->
                     <h1 id="titulo"></h1>
+                    <div class="row">
+                        <div class="col-9">&nbsp;</div>
+                        <div class="col-3"><button type="button" id="btnPregunta" class="btn btn-primary">Realizar una
+                                Pregunta</button></div>
+                    </div>
                     <!-- LISTA PREGUNTAS -->
                     <div id="lista" class="list-group"></div>
                     <!-- LISTA PREGUNTAS -->
