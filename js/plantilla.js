@@ -11,10 +11,10 @@ $(document).ready(function () {
     miXHR.send(null);
 
     //Si tiene sesión iniciada
-    if (sessionStorage.getItem('user') != null) {
+    if (parseInt(sessionStorage.getItem('user'))) {
         sesionIniciada = true;
     }
-
+    console.log(sesionIniciada)
     cambioSesion();
 
 });
@@ -50,6 +50,7 @@ function cambioSesion() {
             var pass = $('#password').val();
             var param = 'name=' + name + '&pass=' + pass;
             // console.log(param)
+            console.log(name + ' ' + pass )
             var miXHR = new XMLHttpRequest();
             miXHR.onreadystatechange = inicioSesionCorrecto;
             miXHR.open("POST", url);
@@ -67,6 +68,7 @@ function cambioSesion() {
 
     $('#cerrarSesion').click(function () {
         sessionStorage.setItem('user', null);
+        console.log(sessionStorage.getItem('user'))
         sesionIniciada = false;
         cambioSesion();
         $('#toastTitle').text('Cierre de sesión.');
@@ -87,6 +89,7 @@ function inicioSesionCorrecto() {
         var respuesta = JSON.parse(this.responseText);
         if (respuesta.length > 0) {
             sessionStorage.setItem('user', respuesta[0].userId);
+            console.log(sessionStorage.getItem('user'))
             sesionIniciada = true;
             cambioSesion();
             $('#inicioModal').modal('hide');
@@ -99,6 +102,7 @@ function inicioSesionCorrecto() {
             });
             $('#nameToast').toast('show');
         } else {
+            $('#toastText').text('Error.');
             $('#nameToast').toast({
                 animation: true,
                 autohide: true,

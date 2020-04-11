@@ -10,7 +10,7 @@ $(document).ready(function () {
     miXHR.send(null);
 
     //Si tiene sesión iniciada
-    if (sessionStorage.getItem('user') != null) {
+    if (parseInt(sessionStorage.getItem('user'))) {
         sesionIniciada = true;
     }
 
