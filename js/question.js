@@ -110,11 +110,14 @@ function peticionRespuestasCorrecta() {
                         partnerBtn.addClass('btn-secondary');
                         $(this).removeClass('btn-secondary');
                         $(this).addClass('btn-warning');
-                        //TODO Modificar el atributo upvoted y cambiar valor del score de la respuesta
+                        // Modificar el atributo upvoted y cambiar valor del score de la respuesta
+                        borrarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('partnerBtn').split('-')[0]);
+                        insertarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
                     } else {
                         $(this).removeClass('btn-secondary');
                         $(this).addClass('btn-warning');
-                        //TODO Insertar el voto en la base de datos y cambiar valor del score de la respuesta
+                        // Insertar el voto en la base de datos y cambiar valor del score de la respuesta
+                        insertarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
                     }
                 }
 
@@ -180,6 +183,29 @@ function peticionBorrarVotadoCorrecta() {
             $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) - 1);
         } else if (vote.includes('down')){
             $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) + 1);
+
+        }
+    }
+}
+
+function insertarVoto(userId, answerId, voteType) {
+    url = path + "LanguageAgora/server/question/insertarVoto.php"
+    var miXHR = new XMLHttpRequest();
+    var param = 'answer=' + answerId + '&user=' + sessionStorage.getItem('user') + '&vote=' + voteType;
+    miXHR.onreadystatechange = peticionInsertarVotadoCorrecta;
+    miXHR.open("POST", url);
+    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    miXHR.send(param);
+}
+function peticionInsertarVotadoCorrecta() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        console.log(this.responseText)
+        var answerId = this.responseText.split('-')[0];
+        var vote = this.responseText.split('-')[1];
+        if (vote.includes('up')){
+            $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) + 1);
+        } else if (vote.includes('down')){
+            $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) - 1);
 
         }
     }
