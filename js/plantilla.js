@@ -1,6 +1,8 @@
 //TODO FUNCIONALIDAD MODO OSCURO
 // Este js contiene la funcionalidad de la barra de navegación que será común en muchas pantallas
 var sesionIniciada = false;
+var eventoSesionCerrada = new Event("sesionCerrada", { bubbles: true });
+var eventoSesionIniciada = new Event("sesionIniciada", { bubbles: true });
 $(document).ready(function () {
     url = path + "LanguageAgora/server/home/obtenerIdiomas.php"
     // console.log(param)
@@ -40,7 +42,7 @@ function peticionCorrecta() {
 function cambioSesion() {
     var perfilDropdown = '';
     if (!sesionIniciada) {
-        perfilDropdown = '<a class="dropdown-item" href="#" data-toggle="modal" data-target="#inicioModal">Iniciar Sesión</a>';
+        perfilDropdown = '<a id="inicioSesion" class="dropdown-item" href="#" data-toggle="modal" data-target="#inicioModal">Iniciar Sesión</a>';
         perfilDropdown += '<a class="dropdown-item" href="signUp.html">Registrarse</a>';
 
         //Al pulsar incicio de sesión
@@ -70,6 +72,7 @@ function cambioSesion() {
         sessionStorage.setItem('user', null);
         console.log(sessionStorage.getItem('user'))
         sesionIniciada = false;
+        document.dispatchEvent(eventoSesionCerrada);
         cambioSesion();
         $('#toastTitle').text('Cierre de sesión.');
         $('#toastText').text('Sesión cerrada satisfactoriamente.');
@@ -91,6 +94,7 @@ function inicioSesionCorrecto() {
             sessionStorage.setItem('user', respuesta[0].userId);
             console.log(sessionStorage.getItem('user'))
             sesionIniciada = true;
+            document.dispatchEvent(eventoSesionIniciada);
             cambioSesion();
             $('#inicioModal').modal('hide');
             $('#toastTitle').text('Inicio de sesión.');

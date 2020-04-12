@@ -5,17 +5,10 @@ $(document).ready(function () {
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
     questionId = urlParams.get('question');
-    language = urlParams.get('lang');
-    languageId = urlParams.get('langId');
+    var language = urlParams.get('lang');
+    var languageId = urlParams.get('langId');
 
-    //obtener todos los datos de la pregunta
-    url = path + "LanguageAgora/server/question/obtenerPregunta.php"
-    var miXHR = new XMLHttpRequest();
-    var param = 'question=' + questionId;
-    miXHR.onreadystatechange = peticionPreguntasCorrecta;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
+    cargarPregunta(questionId);
 
     $('#idioma').text(language);
     $("#idioma").attr("href", 'language.html?lang=' + languageId + '&name=' + language);
@@ -23,10 +16,30 @@ $(document).ready(function () {
 
     cargarRespuestas(questionId);
 
-    
-
 
 });
+
+$(document).on('sesionCerrada', function () {
+    sesionCambiada();
+});
+$(document).on('sesionIniciada', function () {
+    sesionCambiada();
+});
+
+function sesionCambiada(){
+    cargarPregunta(questionId);
+    cargarRespuestas(questionId);
+}
+
+function cargarPregunta(questionId){
+    url = path + "LanguageAgora/server/question/obtenerPregunta.php"
+    var miXHR = new XMLHttpRequest();
+    var param = 'question=' + questionId;
+    miXHR.onreadystatechange = peticionPreguntasCorrecta;
+    miXHR.open("POST", url);
+    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    miXHR.send(param);
+}
 
 function cargarRespuestas(questionId){
     url = path + "LanguageAgora/server/question/obtenerRespuestas.php"
@@ -98,7 +111,7 @@ function peticionRespuestasCorrecta() {
                     $(this).removeClass('btn-warning');
                     $(this).addClass('btn-secondary');
                     // Borrar el voto de la base de datos y cambiar valor del score de la respuesta
-                    borrarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
+                        borrarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
 
                 } else {
                     var partnerBtn = $(this).attr('partnerBtn');
@@ -114,10 +127,14 @@ function peticionRespuestasCorrecta() {
                         borrarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('partnerBtn').split('-')[0]);
                         insertarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
                     } else {
+                        if (sesionIniciada){
                         $(this).removeClass('btn-secondary');
                         $(this).addClass('btn-warning');
                         // Insertar el voto en la base de datos y cambiar valor del score de la respuesta
-                        insertarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
+                            insertarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
+                        } else {
+                            $('#inicioSesion').click();
+                        }
                     }
                 }
 
