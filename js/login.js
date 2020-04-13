@@ -3,7 +3,7 @@
 $(document).ready(function () {
     console.log(path)
     $('#form').submit(function () {
-        url = path + "LanguageAgora/server/index/comprobarInicio.php"
+        url = path + "server/index/comprobarInicio.php"
         var name = $('#user').val();
         var pass = $('#password').val();
         var param = 'name=' + name + '&pass=' + pass;

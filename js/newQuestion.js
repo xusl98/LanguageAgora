@@ -19,7 +19,7 @@ $(document).ready(function () {
         console.log(sessionStorage.getItem('user'))
         console.log(languageId)
 
-        url = path + "LanguageAgora/server/newQuestion/insertarPregunta.php"
+        url = path + "server/newQuestion/insertarPregunta.php"
         var miXHR = new XMLHttpRequest();
         var param = 'title=' + $('#questionTitle').val() + '&text=' + $('#questionBody').val() + '&user=' + sessionStorage.getItem('user') + '&date=' + (new Date().toLocaleDateString('fr-CA')) + '&lang=' + languageId;
         miXHR.onreadystatechange = peticionInsertarQuestionCorrecta;

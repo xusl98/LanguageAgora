@@ -51,7 +51,7 @@ function sesionCambiada() {
 }
 
 function obtenerPreguntas() {
-    url = path + "LanguageAgora/server/language/obtenerPreguntas.php"
+    url = path + "server/language/obtenerPreguntas.php"
     var miXHR = new XMLHttpRequest();
     var param = 'lang=' + languageId + '&num=' + num;
     miXHR.onreadystatechange = peticionPreguntasCorrecta;

@@ -33,7 +33,7 @@ function sesionCambiada() {
 }
 
 function cargarPregunta(questionId) {
-    url = path + "LanguageAgora/server/question/obtenerPregunta.php"
+    url = path + "server/question/obtenerPregunta.php"
     var miXHR = new XMLHttpRequest();
     var param = 'question=' + questionId;
     miXHR.onreadystatechange = peticionPreguntasCorrecta;
@@ -43,7 +43,7 @@ function cargarPregunta(questionId) {
 }
 
 function cargarRespuestas(questionId) {
-    url = path + "LanguageAgora/server/question/obtenerRespuestas.php"
+    url = path + "server/question/obtenerRespuestas.php"
     var miXHR = new XMLHttpRequest();
     var param = 'question=' + questionId;
     miXHR.onreadystatechange = peticionRespuestasCorrecta;
@@ -165,7 +165,7 @@ function peticionRespuestasCorrecta() {
 }
 
 function comprobarVotado(answerId) {
-    url = path + "LanguageAgora/server/question/comprobarVotado.php"
+    url = path + "server/question/comprobarVotado.php"
     var miXHR = new XMLHttpRequest();
     console.log(sessionStorage.getItem('user'))
     console.log(answerId)
@@ -197,7 +197,7 @@ function peticioncomprobarVotadoCorrecta() {
 
 
 function borrarVoto(userId, answerId, voteType) {
-    url = path + "LanguageAgora/server/question/borrarVoto.php"
+    url = path + "server/question/borrarVoto.php"
     var miXHR = new XMLHttpRequest();
     var param = 'answer=' + answerId + '&user=' + sessionStorage.getItem('user') + '&vote=' + voteType;
     miXHR.onreadystatechange = peticionBorrarVotadoCorrecta;
@@ -220,7 +220,7 @@ function peticionBorrarVotadoCorrecta() {
 }
 
 function insertarVoto(userId, answerId, voteType) {
-    url = path + "LanguageAgora/server/question/insertarVoto.php"
+    url = path + "server/question/insertarVoto.php"
     var miXHR = new XMLHttpRequest();
     var param = 'answer=' + answerId + '&user=' + sessionStorage.getItem('user') + '&vote=' + voteType;
     miXHR.onreadystatechange = peticionInsertarVotadoCorrecta;

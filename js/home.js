@@ -1,7 +1,7 @@
 //TODO FUNCIONALIDAD MODO OSCURO
 var sesionIniciada = false;
 $(document).ready(function () {
-    url = path + "LanguageAgora/server/home/obtenerIdiomas.php"
+    url = path + "server/home/obtenerIdiomas.php"
     // console.log(param)
     var miXHR = new XMLHttpRequest();
     miXHR.onreadystatechange = peticionCorrecta;
@@ -47,7 +47,7 @@ function cambioSesion() {
 
         //Al pulsar incicio de sesión
         $('#btnInicio').click(function () {
-            url = path + "LanguageAgora/server/index/comprobarInicio.php"
+            url = path + "server/index/comprobarInicio.php"
             var name = $('#user').val();
             var pass = $('#password').val();
             var param = 'name=' + name + '&pass=' + pass;

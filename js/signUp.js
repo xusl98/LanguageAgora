@@ -85,7 +85,7 @@ $(document).on('inputChange', function () {
 
 
 function compruebaNombre(user) {
-    url = path + "LanguageAgora/server/signUp/compruebaNombre.php"
+    url = path + "server/signUp/compruebaNombre.php"
     var name = user.value;
 
     var param = 'name=' + name;
@@ -187,7 +187,7 @@ function comprobarEmail(email) {
     if (validarEmail(email.value)) {
 
 
-        url = path + "LanguageAgora/server/signUp/compruebaEmail.php"
+        url = path + "server/signUp/compruebaEmail.php"
 
         var param = 'email=' + email.value;
         var miXHR = new XMLHttpRequest();
@@ -236,7 +236,7 @@ function peticionEmailCorrecta() {
 
 
 function insertaUsuario(user, pass, email) {
-    url = path + "LanguageAgora/server/signUp/registraUsuario.php"
+    url = path + "server/signUp/registraUsuario.php"
 
     var param = 'name=' + user + '&pass=' + pass + '&email=' + email;
 
