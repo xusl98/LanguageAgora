@@ -27,8 +27,8 @@ function peticionCorrecta() {
             var dropMenu = '';
             var lista = '';
             for (let idioma of idiomas) {
-                dropMenu += '<a class="dropdown-item" href="language.html?lang=' + idioma.languageId + '&name=' + idioma.name + '">' + idioma.name + '</a>';
-                lista += '<a href="language.html?lang=' + idioma.languageId + '&name=' + idioma.name + '" class="list-group-item list-group-item-action">' + idioma.name + '</a>';
+                dropMenu += '<a class="dropdown-item" href="./html/language.html?lang=' + idioma.languageId + '&name=' + idioma.name + '">' + idioma.name + '</a>';
+                lista += '<a href="./html/language.html?lang=' + idioma.languageId + '&name=' + idioma.name + '" class="list-group-item list-group-item-action">' + idioma.name + '</a>';
                 $('#dropdown').html(dropMenu);
                 $('#lista').html(lista);
             }
@@ -43,7 +43,7 @@ function cambioSesion() {
     var perfilDropdown = '';
     if (!sesionIniciada) {
         perfilDropdown = '<a class="dropdown-item" href="#" data-toggle="modal" data-target="#inicioModal">Iniciar Sesión</a>';
-        perfilDropdown += '<a class="dropdown-item" href="signUp.html">Registrarse</a>';
+        perfilDropdown += '<a class="dropdown-item" href="./html/signUp.html">Registrarse</a>';
 
         //Al pulsar incicio de sesión
         $('#btnInicio').click(function () {

@@ -1,3 +1,4 @@
+//TODO hacer funcionalidad de editar pregunta y eliminar
 var questionId;
 $(document).ready(function () {
 
