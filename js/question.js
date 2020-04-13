@@ -26,12 +26,12 @@ $(document).on('sesionIniciada', function () {
     sesionCambiada();
 });
 
-function sesionCambiada(){
+function sesionCambiada() {
     cargarPregunta(questionId);
     cargarRespuestas(questionId);
 }
 
-function cargarPregunta(questionId){
+function cargarPregunta(questionId) {
     url = path + "LanguageAgora/server/question/obtenerPregunta.php"
     var miXHR = new XMLHttpRequest();
     var param = 'question=' + questionId;
@@ -41,7 +41,7 @@ function cargarPregunta(questionId){
     miXHR.send(param);
 }
 
-function cargarRespuestas(questionId){
+function cargarRespuestas(questionId) {
     url = path + "LanguageAgora/server/question/obtenerRespuestas.php"
     var miXHR = new XMLHttpRequest();
     var param = 'question=' + questionId;
@@ -64,6 +64,11 @@ function peticionPreguntasCorrecta() {
             $('#pregUser').text(preguntas[0].name);
 
 
+            if (sessionStorage.getItem('user') != preguntas[0].userId) {
+                $('#editQuestion').css('visibility', 'hidden');
+                $('#deleteQuestion').css('visibility', 'hidden');
+            }
+
         } else {
             console.log('No hay preguntas')
         }
@@ -82,7 +87,7 @@ function peticionRespuestasCorrecta() {
                     '<p  class="card-text align-left">' + respuesta.text +
                     '</p>' +
                     '<div class="row">' +
-                    '<div class="col-md-8">&nbsp;</div>' +
+                    '<div class="col-md-8" style="text-align:left;"><a id="editAnswer-' + respuesta.answerId + '" style="color: gray;" href="#">Editar</a>&nbsp;<a id="deleteAnswer-' + respuesta.answerId + '" style="color: gray;" href="#">Eliminar</a></div>' +
                     '<div class="col-md-4">' +
                     '<button id="down-' + respuesta.answerId + '" partnerBtn="up-' + respuesta.answerId + '" type="button" class="btn btn-secondary btn-vote"><i class="fa fa-arrow-down"></i></button>' +
                     '<span id="score-' + respuesta.answerId + '">' + respuesta.score + '</span>' +
@@ -91,7 +96,7 @@ function peticionRespuestasCorrecta() {
                     '</div>' +
                     '</div>' +
                     '<div class="card-footer text-muted">' +
-                    '<div><span  style="margin-right: 5%;">' + respuesta.date + '</span><a' +
+                    '<div><span  style="margin-right: 5%;">' + respuesta.date + '</span><a ' +
                     'style="color: #6c757d; margin-left: 5%;" href="#" >' + respuesta.name + '</a></div>' +
                     '</div>' +
                     '</div>';
@@ -103,6 +108,14 @@ function peticionRespuestasCorrecta() {
             }
             $('#respuestas').html(html);
 
+            for (respuesta of respuestas) {
+                if (sessionStorage.getItem('user') != respuesta.userId) {
+                    console.log(respuesta.answerId)
+                    $('#editAnswer-' + respuesta.answerId).css('visibility', 'hidden');
+                    $('#deleteAnswer-' + respuesta.answerId).css('visibility', 'hidden');
+                }
+            }
+
 
             $('.btn-vote').click(function () {
                 console.log($(this))
@@ -111,7 +124,7 @@ function peticionRespuestasCorrecta() {
                     $(this).removeClass('btn-warning');
                     $(this).addClass('btn-secondary');
                     // Borrar el voto de la base de datos y cambiar valor del score de la respuesta
-                        borrarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
+                    borrarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
 
                 } else {
                     var partnerBtn = $(this).attr('partnerBtn');
@@ -127,10 +140,10 @@ function peticionRespuestasCorrecta() {
                         borrarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('partnerBtn').split('-')[0]);
                         insertarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
                     } else {
-                        if (sesionIniciada){
-                        $(this).removeClass('btn-secondary');
-                        $(this).addClass('btn-warning');
-                        // Insertar el voto en la base de datos y cambiar valor del score de la respuesta
+                        if (sesionIniciada) {
+                            $(this).removeClass('btn-secondary');
+                            $(this).addClass('btn-warning');
+                            // Insertar el voto en la base de datos y cambiar valor del score de la respuesta
                             insertarVoto(sessionStorage.getItem('user'), $(this).attr('id').split('-')[1], $(this).attr('id').split('-')[0]);
                         } else {
                             $('#inicioSesion').click();
@@ -196,9 +209,9 @@ function peticionBorrarVotadoCorrecta() {
         console.log(this.responseText)
         var answerId = this.responseText.split('-')[0];
         var vote = this.responseText.split('-')[1];
-        if (vote.includes('up')){
+        if (vote.includes('up')) {
             $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) - 1);
-        } else if (vote.includes('down')){
+        } else if (vote.includes('down')) {
             $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) + 1);
 
         }
@@ -219,9 +232,9 @@ function peticionInsertarVotadoCorrecta() {
         console.log(this.responseText)
         var answerId = this.responseText.split('-')[0];
         var vote = this.responseText.split('-')[1];
-        if (vote.includes('up')){
+        if (vote.includes('up')) {
             $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) + 1);
-        } else if (vote.includes('down')){
+        } else if (vote.includes('down')) {
             $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) - 1);
 
         }
