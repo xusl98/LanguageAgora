@@ -1,6 +1,9 @@
 nav{
     background-color: #013652 !important;
 }
+body{
+    background-color: #EAEAEA !important;
+}
 
 a{
     color: white;

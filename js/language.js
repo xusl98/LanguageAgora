@@ -5,6 +5,7 @@ var languageName;
 var num = 10;
 
 $(document).ready(function () {
+    
 
 
     //id y nombre del idioma de la url
@@ -20,7 +21,34 @@ $(document).ready(function () {
         obtenerPreguntas();
     });
 
+    if (sessionStorage.getItem('user') != null){
+        sesionIniciada = true;
+    }
+
+
+    sesionCambiada();
+    $('#newQuestionAnchor').attr('href', 'newQuestion.html?lang=' + languageId + '&name=' + languageName);
+
 });
+
+$(document).on('sesionCerrada', function () {
+    sesionCambiada();
+});
+$(document).on('sesionIniciada', function () {
+    sesionCambiada();
+});
+
+function sesionCambiada() {
+    console.log(sesionIniciada)
+    
+    if (sesionIniciada == true) {
+        $('#newQuestionAnchor').css('display', 'block');
+        $('#newQuestionAnchor2').css('display', 'none');
+    } else {
+        $('#newQuestionAnchor2').css('display', 'block');
+        $('#newQuestionAnchor').css('display', 'none');
+    }
+}
 
 function obtenerPreguntas() {
     url = path + "LanguageAgora/server/language/obtenerPreguntas.php"
