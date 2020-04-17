@@ -1,5 +1,8 @@
 //TODO FUNCIONALIDAD MODO OSCURO
+
 var sesionIniciada = false;
+var eventoSesionCerrada = new Event("sesionCerrada", { bubbles: true });
+var eventoSesionIniciada = new Event("sesionIniciada", { bubbles: true });
 $(document).ready(function () {
     url = path + "server/home/obtenerIdiomas.php"
     // console.log(param)
@@ -13,7 +16,7 @@ $(document).ready(function () {
     if (parseInt(sessionStorage.getItem('user'))) {
         sesionIniciada = true;
     }
-
+    console.log(sesionIniciada)
     cambioSesion();
 
 });
@@ -70,6 +73,7 @@ function cambioSesion() {
     $('#cerrarSesion').click(function () {
         sessionStorage.setItem('user', null);
         sesionIniciada = false;
+        document.dispatchEvent(eventoSesionCerrada);
         cambioSesion();
         $('#toastTitle').text('Cierre de sesión.');
         $('#toastText').text('Sesión cerrada satisfactoriamente.');
@@ -90,6 +94,7 @@ function inicioSesionCorrecto() {
         if (respuesta.length > 0) {
             sessionStorage.setItem('user', respuesta[0].userId);
             sesionIniciada = true;
+            document.dispatchEvent(eventoSesionIniciada);
             cambioSesion();
             $('#inicioModal').modal('hide');
             $('#toastTitle').text('Inicio de sesión.');

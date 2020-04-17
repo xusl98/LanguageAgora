@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="../css/plantilla.css">
     <link rel="stylesheet" href="../css/question.css">
     <link href="../fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../resources/favicon.ico">
+    <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
 </head>
 
@@ -68,7 +71,7 @@
                                 additional content.
                             </p>
                             <div class="row">
-                                <div class="col-md-8" style="text-align: left;"><a id="editQuestion" style="color: gray;" href="#">Editar</a>&nbsp;<a id="deleteQuestion" style="color: gray;" href="#">Eliminar</a></div>
+                                <div class="col-md-8" style="text-align: left;"><a id="editQuestion" style="color: gray;" href="#">Editar</a>&nbsp;<a id="deleteQuestion" style="color: gray;" href="#" data-toggle="modal" data-target="#elimModal">Eliminar</a></div>
                                 <div class="col-md-4">
                                     <button class="btn btn-primary">Responder</button>
                                 </div>
@@ -155,6 +158,27 @@
         </div>
         <div id="toastText" class="toast-body toast-error-body">
             La combinación de usuario y contraseña no es correcta.
+        </div>
+    </div>
+    <!-- MODAL CONFIRMAR BORRADO -->
+    <div class="modal fade" id="elimModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Pregunta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>¿Seguro que quieres eliminar esta pregunta?</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>

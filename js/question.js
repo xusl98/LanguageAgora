@@ -1,13 +1,15 @@
 //TODO hacer funcionalidad de editar pregunta y eliminar
 var questionId;
+var languageId;
+var language;
 $(document).ready(function () {
 
     //coger de la url elid de la pregunta 
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
     questionId = urlParams.get('question');
-    var language = urlParams.get('lang');
-    var languageId = urlParams.get('langId');
+    language = urlParams.get('lang');
+    languageId = urlParams.get('langId');
 
     cargarPregunta(questionId);
 
@@ -17,8 +19,24 @@ $(document).ready(function () {
 
     cargarRespuestas(questionId);
 
+    $('#btnEliminar').click(function () {
+        url = path + "server/question/borrarPregunta.php"
+        var miXHR = new XMLHttpRequest();
+        var param = 'question=' + questionId;
+        miXHR.onreadystatechange = peticionEliminarPregCorrecta;
+        miXHR.open("POST", url);
+        miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        miXHR.send(param);
+    });
+
 
 });
+
+function peticionEliminarPregCorrecta() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        window.location.href = './language.html?lang=' + languageId + '&name=' + language;
+    }
+}
 
 $(document).on('sesionCerrada', function () {
     sesionCambiada();
@@ -57,7 +75,7 @@ function peticionPreguntasCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
         var preguntas = JSON.parse(this.responseText);
         if (preguntas.length > 0) {
-            //idiomas el dropdown y la lista de idiomas
+
             console.log(preguntas)
             $('#titulo').text(preguntas[0].title);
             $('#texto').text(preguntas[0].text);
@@ -68,6 +86,9 @@ function peticionPreguntasCorrecta() {
             if (sessionStorage.getItem('user') != preguntas[0].userId) {
                 $('#editQuestion').css('visibility', 'hidden');
                 $('#deleteQuestion').css('visibility', 'hidden');
+            } else {
+                $('#editQuestion').css('visibility', 'visible');
+                $('#deleteQuestion').css('visibility', 'visible');
             }
 
         } else {
