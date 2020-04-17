@@ -5,12 +5,13 @@ $mysqli->set_charset("utf8");
 $name = $_POST['name'];
 $pass = $_POST['pass'];
 $email = $_POST['email'];
+$date = $_POST['date'];
 
 echo "asdas";
 echo $name;
 echo "asdas";
 
-$cons="INSERT INTO user (name, pass, email) VALUES ('$name', SHA1('$pass'), '$email')";
+$cons="INSERT INTO user (name, pass, email, fechaRegistro) VALUES ('$name', SHA1('$pass'), '$email', '$date')";
 
 
 // if(isset($_POST['name']))

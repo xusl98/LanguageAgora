@@ -22,6 +22,7 @@ function peticionCorrecta() {
         // console.log(this.responseText);
         var respuesta = JSON.parse(this.responseText);
         if (respuesta.length > 0) {
+            alert(respuesta[0].userId)
             sessionStorage.setItem('user', respuesta[0].userId);
             window.location.href = '../index.html';
         } else {

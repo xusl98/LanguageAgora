@@ -63,7 +63,7 @@ $(document).ready(function () {
     $('#codeBtn').click(function () {
         if ($('#code').val() == code) {
             insertaUsuario($('#user').val(), $('#password').val(), $('#email').val());
-            window.location.href = 'index.html';
+            window.location.href = '../index.html';
         }
     });
 
@@ -238,7 +238,7 @@ function peticionEmailCorrecta() {
 function insertaUsuario(user, pass, email) {
     url = path + "server/signUp/registraUsuario.php"
 
-    var param = 'name=' + user + '&pass=' + pass + '&email=' + email;
+    var param = 'name=' + user + '&pass=' + pass + '&email=' + email + '&date=' + (new Date().toLocaleDateString('fr-CA'));
 
     var miXHR = new XMLHttpRequest();
     miXHR.onreadystatechange = insercionCorrecta;

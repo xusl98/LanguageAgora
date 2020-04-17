@@ -15,13 +15,12 @@ $(document).ready(function () {
     //Si es una nueva pregunta
     if (questionId < 0) {
         $('#btnAceptar').click(function () {
-
             console.log($('#questionTitle').val())
             console.log($('#questionBody').val())
             console.log(new Date())
             console.log(sessionStorage.getItem('user'))
             console.log(languageId)
-
+            
             url = path + "server/newQuestion/insertarPregunta.php"
             var miXHR = new XMLHttpRequest();
             var param = 'title=' + $('#questionTitle').val() + '&text=' + $('#questionBody').val() + '&user=' + sessionStorage.getItem('user') + '&date=' + (new Date().toLocaleDateString('fr-CA')) + '&lang=' + languageId;
@@ -60,7 +59,7 @@ function peticionPreguntasCorrecta() {
         }
 
         $('#btnAceptar').click(function () {
-            
+
             console.log($('#questionTitle').val())
             console.log($('#questionBody').val())
             console.log(new Date())
