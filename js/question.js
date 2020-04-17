@@ -19,6 +19,8 @@ $(document).ready(function () {
 
     cargarRespuestas(questionId);
 
+    $('#editQuestion').attr('href', 'newQuestion.html?lang=' + languageId + '&name=' + language + '&question=' + questionId);
+
     $('#btnEliminar').click(function () {
         url = path + "server/question/borrarPregunta.php"
         var miXHR = new XMLHttpRequest();

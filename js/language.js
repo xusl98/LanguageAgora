@@ -27,7 +27,7 @@ $(document).ready(function () {
 
 
     sesionCambiada();
-    $('#newQuestionAnchor').attr('href', 'newQuestion.html?lang=' + languageId + '&name=' + languageName);
+    $('#newQuestionAnchor').attr('href', 'newQuestion.html?lang=' + languageId + '&name=' + languageName + '&question=-1');
 
 });
 
