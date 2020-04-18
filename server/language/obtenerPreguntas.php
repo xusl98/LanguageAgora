@@ -4,8 +4,9 @@ $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
 $id = $_POST['lang'];
 $numero = $_POST['num'];
+$filter = $_POST['filter'];
 
-$cons="SELECT questionID, title, text, date, user.name from question, user, language where user.userId = question.userId and language.languageId = $id and language.languageID = question.languageId order by date desc LIMIT $numero";
+$cons="SELECT questionID, title, text, date, user.name from question, user, language where user.userId = question.userId and language.languageId = $id and language.languageID = question.languageId and (text LIKE '%$filter%' or title LIKE '%$filter%') order by date desc LIMIT $numero";
 
 
 

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../bootstrap-4.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/plantilla.css">
     <link rel="stylesheet" href="../css/language.css">
+    <link href="../fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet">
 
     <link rel="shortcut icon" type="image/x-icon" href="../resources/favicon.ico">
     <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
@@ -59,14 +60,25 @@
                 <div>
                     <!-- CONTENIDO -->
                     <h1 id="titulo"></h1>
+                    <div class="input-group">
+                        <input id="searchInput" value="" type="text" class="form-control" placeholder="Busca una pregunta...">
+                        <div class="input-group-append">
+                            <button id="searchBtn" type="button" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div id="chip" class="chip">
+                        <span id="chipText"></span>
+                        <span class="closebtn" id="closeChip">&times;</span>
+                      </div>
                     <div class="row">
                         <div class="col-9">&nbsp;</div>
                         <div class="col-3">
-                            <a id="newQuestionAnchor" href="#"  class="btn btn-primary">Realizar una
+                            <a id="newQuestionAnchor" href="#" class="btn btn-primary">Realizar una
                                 Pregunta</a>
-                            <a id="newQuestionAnchor2" style="display: none;" data-toggle="modal" data-target="#exampleModal"  class="btn btn-primary">Realizar una
+                            <a id="newQuestionAnchor2" style="display: none;" data-toggle="modal"
+                                data-target="#exampleModal" class="btn btn-primary">Realizar una
                                 Pregunta</a>
-                            </div>
+                        </div>
                     </div>
                     <!-- LISTA PREGUNTAS -->
                     <div id="lista" class="list-group"></div>

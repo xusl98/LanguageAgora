@@ -5,9 +5,9 @@ var languageName;
 var num = 10;
 
 $(document).ready(function () {
-    
 
 
+    $('#searchInput').val('');
     //id y nombre del idioma de la url
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
@@ -16,12 +16,8 @@ $(document).ready(function () {
     $('#titulo').text(languageName);
     obtenerPreguntas()
 
-    $('#btnVerMas').click(function () {
-        num += 10;
-        obtenerPreguntas();
-    });
 
-    if (sessionStorage.getItem('user') != null){
+    if (sessionStorage.getItem('user') != null) {
         sesionIniciada = true;
     }
 
@@ -29,6 +25,21 @@ $(document).ready(function () {
     sesionCambiada();
     $('#newQuestionAnchor').attr('href', 'newQuestion.html?lang=' + languageId + '&name=' + languageName + '&question=-1');
 
+
+    $('#btnVerMas').click(function () {
+        num += 10;
+        obtenerPreguntas();
+    });
+
+    $('#searchBtn').click(function () {
+        num = 10;
+        obtenerPreguntas();
+    });
+    $('#closeChip').click(function () {
+        $('#newQuestionAnchor2').css('display', 'none');
+        $('#searchInput').val('');
+        obtenerPreguntas();
+    });
 });
 
 $(document).on('sesionCerrada', function () {
@@ -40,7 +51,7 @@ $(document).on('sesionIniciada', function () {
 
 function sesionCambiada() {
     console.log(sesionIniciada)
-    
+
     if (sesionIniciada == true) {
         $('#newQuestionAnchor').css('display', 'block');
         $('#newQuestionAnchor2').css('display', 'none');
@@ -51,9 +62,17 @@ function sesionCambiada() {
 }
 
 function obtenerPreguntas() {
+    var filter = $('#searchInput').val();
+    if (filter == '') {
+        $('#chip').css('visibility', 'hidden');
+    } else {
+        $('#chip').css('visibility', 'visible');
+        $('#chipText').text(filter);
+    }
+    console.log('-' + filter + '-')
     url = path + "server/language/obtenerPreguntas.php"
     var miXHR = new XMLHttpRequest();
-    var param = 'lang=' + languageId + '&num=' + num;
+    var param = 'lang=' + languageId + '&num=' + num + '&filter=' + filter;
     miXHR.onreadystatechange = peticionPreguntasCorrecta;
     miXHR.open("POST", url);
     miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -70,7 +89,7 @@ function peticionPreguntasCorrecta() {
             for (let pregunta of preguntas) {
                 var texto = pregunta.text.substring(0, 50) + '...';
                 //TODO abrir pagina de question al pulsar
-                lista += '<a href="question.html?question=' + pregunta.questionID + '&lang=' + languageName + '&langId='+languageId+'" class="list-group-item list-group-item-action"><div><div class="row"><u class="col-10">' + pregunta.title + '</u><span class="col-2">' + pregunta.date + '</span></div><div>' + texto + '</div><div class="row"><span class="col-10">&nbsp;</span><span>' + pregunta.name + '</span></div></div></a>';
+                lista += '<a href="question.html?question=' + pregunta.questionID + '&lang=' + languageName + '&langId=' + languageId + '" class="list-group-item list-group-item-action"><div><div class="row"><u class="col-10">' + pregunta.title + '</u><span class="col-2">' + pregunta.date + '</span></div><div>' + texto + '</div><div class="row"><span class="col-10">&nbsp;</span><span>' + pregunta.name + '</span></div></div></a>';
             }
             $('#lista').html(lista);
             console.log(lista)
