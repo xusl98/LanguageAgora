@@ -72,8 +72,8 @@
                             </p>
                             <div class="row">
                                 <div class="col-md-8" style="text-align: left;"><a id="editQuestion" style="color: gray;" href="#">Editar</a>&nbsp;<a id="deleteQuestion" style="color: gray;" href="#" data-toggle="modal" data-target="#elimModal">Eliminar</a></div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary">Responder</button>
+                                <div id="contResp" class="col-md-4">
+                                    <button id="btnResponder" class="btn btn-primary">Responder</button>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +83,20 @@
                                     style="color: #6c757d; margin-left: 5%;" href="#" id="pregUser">usuario</a></div>
                         </div>
                     </div>
+                    <!-- PARA NUEVA O EDITAR RESPUESTA -->
+                    <div id="nuevaRespuesta" class="card container-fluid">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Respuesta</label>
+                                <textarea class="form-control" id="answerBody" rows="5"></textarea>
+                            </div>
+                            <div style="text-align: right;">
+                                <button id="btnCancelarRespuesta" class="btn btn-primary">Cancelar</button>
+                                <button id="btnAceptarRespuesta" class="btn btn-primary">Aceptar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PARA NUEVA O EDITAR RESPUESTA -->
                     <div id="respuestas">
 
                     </div>
@@ -177,6 +191,27 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL CONFIRMAR BORRADO RESPUESTA -->
+    <div class="modal fade" id="elimModalResp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Respuesta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>¿Seguro que quieres eliminar esta respuesta?</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" answer="" id="btnEliminarResp">Eliminar</button>
                 </div>
             </div>
         </div>

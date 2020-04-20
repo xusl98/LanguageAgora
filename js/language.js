@@ -88,7 +88,6 @@ function peticionPreguntasCorrecta() {
             var lista = '';
             for (let pregunta of preguntas) {
                 var texto = pregunta.text.substring(0, 50) + '...';
-                //TODO abrir pagina de question al pulsar
                 lista += '<a href="question.html?question=' + pregunta.questionID + '&lang=' + languageName + '&langId=' + languageId + '" class="list-group-item list-group-item-action"><div><div class="row"><u class="col-10">' + pregunta.title + '</u><span class="col-2">' + pregunta.date + '</span></div><div>' + texto + '</div><div class="row"><span class="col-10">&nbsp;</span><span>' + pregunta.name + '</span></div></div></a>';
             }
             $('#lista').html(lista);

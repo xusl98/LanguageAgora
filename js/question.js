@@ -30,15 +30,64 @@ $(document).ready(function () {
         miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         miXHR.send(param);
     });
+    $('#btnEliminarResp').click(function () {
+        var answer = $(this).attr('answer');
+        url = path + "server/question/borrarRespuesta.php"
+        var miXHR = new XMLHttpRequest();
+        console.log(answer)
+        var param = 'answer=' + answer;
+        miXHR.onreadystatechange = peticionEliminarRespCorrecta;
+        miXHR.open("POST", url);
+        miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        miXHR.send(param);
+    });
 
+
+
+    //Para que no aparezca al iniciar la página
+    $('#nuevaRespuesta').css('display', 'none');
+
+
+
+    $('#btnCancelarRespuesta').click(function () {
+        $('#nuevaRespuesta').css('display', 'none');
+    });
+
+    $('#btnAceptarRespuesta').click(function () {
+        var answer = $('#nuevaRespuesta').attr('new');
+        console.log($(this))
+        if ($('#nuevaRespuesta').attr('new') == -1) {
+            //  Guardar respuesta y cargarRespuestas()
+            var text = $('#answerBody').val();
+            url = path + "server/question/insertaRespuesta.php"
+            var miXHR = new XMLHttpRequest();
+            var param = 'question=' + questionId + '&text=' + text + '&user=' + sessionStorage.getItem('user') + '&date=' + (new Date().toLocaleDateString('fr-CA'));
+            console.log(param)
+            miXHR.onreadystatechange = peticionInsertaRespCorrecta;
+            miXHR.open("POST", url);
+            miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            miXHR.send(param);
+        } else {
+            //  Update respuesta y cargarRespuestas()
+            var text = $('#answerBody').val();
+            url = path + "server/question/actualizaRespuesta.php"
+            var miXHR = new XMLHttpRequest();
+            var param = 'answer=' + answer + '&text=' + text;
+            console.log(param)
+            miXHR.onreadystatechange = peticionEditaRespCorrecta;
+            miXHR.open("POST", url);
+            miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            miXHR.send(param);
+        }
+
+
+
+        $('#nuevaRespuesta').css('display', 'none');
+    });
 
 });
 
-function peticionEliminarPregCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        window.location.href = './language.html?lang=' + languageId + '&name=' + language;
-    }
-}
+
 
 $(document).on('sesionCerrada', function () {
     sesionCambiada();
@@ -73,6 +122,116 @@ function cargarRespuestas(questionId) {
 
 }
 
+
+
+function comprobarVotado(answerId) {
+    url = path + "server/question/comprobarVotado.php"
+    var miXHR = new XMLHttpRequest();
+    console.log(sessionStorage.getItem('user'))
+    console.log(answerId)
+    var param = 'answer=' + answerId + '&user=' + sessionStorage.getItem('user');
+    miXHR.onreadystatechange = peticioncomprobarVotadoCorrecta;
+    miXHR.open("POST", url);
+    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    miXHR.send(param);
+}
+
+
+
+
+function borrarVoto(userId, answerId, voteType) {
+    url = path + "server/question/borrarVoto.php"
+    var miXHR = new XMLHttpRequest();
+    var param = 'answer=' + answerId + '&user=' + sessionStorage.getItem('user') + '&vote=' + voteType;
+    miXHR.onreadystatechange = peticionBorrarVotadoCorrecta;
+    miXHR.open("POST", url);
+    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    miXHR.send(param);
+}
+
+
+function insertarVoto(userId, answerId, voteType) {
+    url = path + "server/question/insertarVoto.php"
+    var miXHR = new XMLHttpRequest();
+    var param = 'answer=' + answerId + '&user=' + sessionStorage.getItem('user') + '&vote=' + voteType;
+    miXHR.onreadystatechange = peticionInsertarVotadoCorrecta;
+    miXHR.open("POST", url);
+    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    miXHR.send(param);
+}
+function peticionInsertarVotadoCorrecta() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        console.log(this.responseText)
+        var answerId = this.responseText.split('-')[0];
+        var vote = this.responseText.split('-')[1];
+        if (vote.includes('up')) {
+            $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) + 1);
+        } else if (vote.includes('down')) {
+            $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) - 1);
+
+        }
+    }
+}
+function peticionBorrarVotadoCorrecta() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        console.log(this.responseText)
+        var answerId = this.responseText.split('-')[0];
+        var vote = this.responseText.split('-')[1];
+        if (vote.includes('up')) {
+            $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) - 1);
+        } else if (vote.includes('down')) {
+            $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) + 1);
+
+        }
+    }
+}
+function peticionInsertaRespCorrecta() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        console.log(this.responseText)
+        console.log('respuesta añadida')
+        cargarRespuestas(questionId);
+    }
+}
+function peticionEditaRespCorrecta() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        console.log(this.responseText)
+        console.log('respuesta editada')
+        cargarRespuestas(questionId);
+    }
+}
+
+function peticionEliminarPregCorrecta() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        window.location.href = './language.html?lang=' + languageId + '&name=' + language;
+    }
+}
+
+function peticionEliminarRespCorrecta() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        cargarRespuestas(questionId);
+        $('#elimModalResp').modal('hide');
+    }
+}
+
+function peticioncomprobarVotadoCorrecta() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        var votaciones = JSON.parse(this.responseText);
+        if (votaciones.length > 0) {
+            console.log(votaciones)
+            if (votaciones[0].upvoted == 1) {
+                $('#up-' + votaciones[0].answerId).attr('class', 'btn btn-warning');
+            } else if (votaciones[0].upvoted == 0) {
+                $('#down-' + votaciones[0].answerId).attr('class', 'btn btn-warning');
+            }
+
+
+        } else {
+            // console.log('No hay votaciones')
+        }
+
+    }
+}
+
 function peticionPreguntasCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
         var preguntas = JSON.parse(this.responseText);
@@ -97,6 +256,17 @@ function peticionPreguntasCorrecta() {
             console.log('No hay preguntas')
         }
 
+        if (sesionIniciada == true) {
+            $('#contResp').html('<button id="btnResponder" class="btn btn-primary">Responder</button>');
+            $('#btnResponder').click(function () {
+                $('#nuevaRespuesta').css('display', 'block');
+                $('#answerBody').val('');
+                $('#nuevaRespuesta').attr('new', '-1');
+            });
+        } else {
+            $('#contResp').html('<button id="btnResponder" class="btn btn-primary" data-toggle="modal" data-target="#inicioModal">Responder</button>');
+        }
+
     }
 }
 function peticionRespuestasCorrecta() {
@@ -108,10 +278,10 @@ function peticionRespuestasCorrecta() {
             for (let respuesta of respuestas) {
                 html += '<div class="card text-center">' +
                     '<div class="card-body container-fluid" style="margin-top: 3%;">' +
-                    '<p  class="card-text align-left">' + respuesta.text +
+                    '<p id="text-' + respuesta.answerId + '"  class="card-text align-left">' + respuesta.text +
                     '</p>' +
                     '<div class="row">' +
-                    '<div class="col-md-8" style="text-align:left;"><a id="editAnswer-' + respuesta.answerId + '" style="color: gray;" href="#">Editar</a>&nbsp;<a id="deleteAnswer-' + respuesta.answerId + '" style="color: gray;" href="#">Eliminar</a></div>' +
+                    '<div class="col-md-8" style="text-align:left;"><a id="editAnswer-' + respuesta.answerId + '" class="editAnswer" style="color: gray;" href="#">Editar</a>&nbsp;<a  data-toggle="modal" data-target="#elimModalResp" id="deleteAnswer-' + respuesta.answerId + '" class="deleteAnswer" style="color: gray;" href="#">Eliminar</a></div>' +
                     '<div class="col-md-4">' +
                     '<button id="down-' + respuesta.answerId + '" partnerBtn="up-' + respuesta.answerId + '" type="button" class="btn btn-secondary btn-vote"><i class="fa fa-arrow-down"></i></button>' +
                     '<span id="score-' + respuesta.answerId + '">' + respuesta.score + '</span>' +
@@ -131,6 +301,19 @@ function peticionRespuestasCorrecta() {
                 }
             }
             $('#respuestas').html(html);
+
+            $('.deleteAnswer').click(function () {
+                var id = $(this).attr('id').split('-')[1];
+                $('#btnEliminarResp').attr('answer', id);
+            });
+
+            $('.editAnswer').click(function () {
+                var id = $(this).attr('id').split('-')[1];
+                $('#nuevaRespuesta').css('display', 'block');
+                var texto = $('#text-' + id).text();
+                $('#answerBody').val(texto);
+                $('#nuevaRespuesta').attr('new', id);
+            });
 
             for (respuesta of respuestas) {
                 if (sessionStorage.getItem('user') != respuesta.userId) {
@@ -184,83 +367,5 @@ function peticionRespuestasCorrecta() {
             console.log('No hay preguntas')
         }
 
-    }
-}
-
-function comprobarVotado(answerId) {
-    url = path + "server/question/comprobarVotado.php"
-    var miXHR = new XMLHttpRequest();
-    console.log(sessionStorage.getItem('user'))
-    console.log(answerId)
-    var param = 'answer=' + answerId + '&user=' + sessionStorage.getItem('user');
-    miXHR.onreadystatechange = peticioncomprobarVotadoCorrecta;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
-}
-
-function peticioncomprobarVotadoCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        var votaciones = JSON.parse(this.responseText);
-        if (votaciones.length > 0) {
-            console.log(votaciones)
-            if (votaciones[0].upvoted == 1) {
-                $('#up-' + votaciones[0].answerId).attr('class', 'btn btn-warning');
-            } else if (votaciones[0].upvoted == 0) {
-                $('#down-' + votaciones[0].answerId).attr('class', 'btn btn-warning');
-            }
-
-
-        } else {
-            // console.log('No hay votaciones')
-        }
-
-    }
-}
-
-
-function borrarVoto(userId, answerId, voteType) {
-    url = path + "server/question/borrarVoto.php"
-    var miXHR = new XMLHttpRequest();
-    var param = 'answer=' + answerId + '&user=' + sessionStorage.getItem('user') + '&vote=' + voteType;
-    miXHR.onreadystatechange = peticionBorrarVotadoCorrecta;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
-}
-function peticionBorrarVotadoCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        console.log(this.responseText)
-        var answerId = this.responseText.split('-')[0];
-        var vote = this.responseText.split('-')[1];
-        if (vote.includes('up')) {
-            $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) - 1);
-        } else if (vote.includes('down')) {
-            $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) + 1);
-
-        }
-    }
-}
-
-function insertarVoto(userId, answerId, voteType) {
-    url = path + "server/question/insertarVoto.php"
-    var miXHR = new XMLHttpRequest();
-    var param = 'answer=' + answerId + '&user=' + sessionStorage.getItem('user') + '&vote=' + voteType;
-    miXHR.onreadystatechange = peticionInsertarVotadoCorrecta;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
-}
-function peticionInsertarVotadoCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        console.log(this.responseText)
-        var answerId = this.responseText.split('-')[0];
-        var vote = this.responseText.split('-')[1];
-        if (vote.includes('up')) {
-            $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) + 1);
-        } else if (vote.includes('down')) {
-            $('#score-' + answerId).text(parseInt($('#score-' + answerId).text()) - 1);
-
-        }
     }
 }
