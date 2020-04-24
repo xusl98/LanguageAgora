@@ -34,3 +34,8 @@ a{
     background-color: #53BD5E;
 }
 
+.list-group-item-action:hover {
+    background-color: #1A5F83;
+    color: white;
+}
+

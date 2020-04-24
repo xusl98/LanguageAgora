@@ -34,3 +34,8 @@ a{
 body{
     background-color: #EAEAEA !important;
 }
+
+.list-group-item-action:hover {
+    background-color: #1A5F83;
+    color: white;
+}
