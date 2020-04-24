@@ -61,19 +61,33 @@
             <div class="col-md-6">
                 <div>
                     <!-- CONTENIDO -->
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row">
                             <h1 id="userTitle" class="col-md-9">Nombre de usuario</h1>
                             <button class="btn btn-primary" class="col-md-3">Modificar Perfil</button>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
-                                <canvas id="doughnut-chart-questions"></canvas>
+                            <div class="col-md-6">
+                                <h5>Últimas Preguntas</h5>
+                                <div id="listaPreguntas" class="list-group">
+                                    <div class="list-group-item list-group-item-action"><span>Idioma</span><a href="#"
+                                            class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-4">&nbsp;</div>
-                            <div class="col-md-4">
-                                <canvas id="doughnut-chart-answers"></canvas>
+                            <div class="col-md-6">
+                                <h5>Últimas Respuestas</h5>
+                                <div id="listaRespuestas" class="list-group">
+                                    <div class="list-group-item list-group-item-action"><span>Idioma</span><a href="#"
+                                        class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                                </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <canvas class="canvas" id="doughnut-chart-questions"></canvas>
+                            <canvas class="canvas" id="doughnut-chart-answers"></canvas>
+
                         </div>
                     </div>
                     <!-- CONTENIDO -->
