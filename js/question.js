@@ -242,6 +242,7 @@ function peticionPreguntasCorrecta() {
             $('#texto').text(preguntas[0].text);
             $('#fecha').text(preguntas[0].date);
             $('#pregUser').text(preguntas[0].name);
+            $('#pregUser').attr('href', 'profile.html?user=' + preguntas[0].userId);
 
 
             if (sessionStorage.getItem('user') != preguntas[0].userId) {
@@ -291,7 +292,7 @@ function peticionRespuestasCorrecta() {
                     '</div>' +
                     '<div class="card-footer text-muted">' +
                     '<div><span  style="margin-right: 5%;">' + respuesta.date + '</span><a ' +
-                    'style="color: #6c757d; margin-left: 5%;" href="#" >' + respuesta.name + '</a></div>' +
+                    'style="color: #6c757d; margin-left: 5%;" href="profile.html?user=' + respuesta.userId + '" >' + respuesta.name + '</a></div>' +
                     '</div>' +
                     '</div>';
                 console.log(sesionIniciada)

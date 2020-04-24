@@ -4,7 +4,7 @@ $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
 $id = $_POST['question'];
 
-$cons="SELECT questionID, title, text, date, user.name, question.userId from question, user where question.userId = user.userId and question.questionId = $id";
+$cons="SELECT questionID, title, text, date, user.name, user.userId, question.userId from question, user where question.userId = user.userId and question.questionId = $id";
 
 
 
