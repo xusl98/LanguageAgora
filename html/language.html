@@ -55,27 +55,49 @@
             </div>
         </nav>
         <div class="row">
-            <div class="col-md-3">&nbsp;</div>
-            <div class="col-md-6">
+            <div class="col-md-3" style="margin-top: 4%;">
+                <div style="margin: 0 0% 0 10%;">
+                    <!-- //TODO hacer que cargue de la base de datos una lista con los usuarios con más preguntas -->
+                    <h5>Usuarios con más preguntas de <span class="idioma"></span></h5>
+                    <ul id="listaUsuariosPreguntas" class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <a href="#">Crime and Punishment</a>
+                          <span class="badge badge-primary badge-pill">10</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#">Crime and Punishment</a>
+                          <span class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">  
+                            <a href="#">Crime and Punishment</a>
+                          <span class="badge badge-danger badge-pill">5</span>
+                        </li>
+                      </ul>
+                </div>
+            </div>
+            <div class="col-md-6" style="margin-top: 2%;"> 
                 <div>
                     <!-- CONTENIDO -->
                     <h1 id="titulo"></h1>
                     <div class="input-group">
-                        <input id="searchInput" value="" type="text" class="form-control" placeholder="Busca una pregunta...">
+                        <input id="searchInput" value="" type="text" class="form-control"
+                            placeholder="Busca una pregunta...">
                         <div class="input-group-append">
-                            <button id="searchBtn" type="button" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+                            <button id="searchBtn" type="button" class="btn btn-outline-secondary"><i
+                                    class="fas fa-search"></i></button>
                         </div>
                     </div>
                     <div id="chip" class="chip">
                         <span id="chipText"></span>
                         <span class="closebtn" id="closeChip">&times;</span>
-                      </div>
+                    </div>
                     <div class="row">
                         <div class="col-9">&nbsp;</div>
                         <div class="col-3">
                             <a id="newQuestionAnchor" href="#" class="btn btn-primary">Realizar una
                                 Pregunta</a>
-                            <a id="newQuestionAnchor2" style="display: none;" data-toggle="modal" data-target="#inicioModal" class="btn btn-primary">Realizar una
+                            <a id="newQuestionAnchor2" style="display: none;" data-toggle="modal"
+                                data-target="#inicioModal" class="btn btn-primary">Realizar una
                                 Pregunta</a>
                         </div>
                     </div>
@@ -88,7 +110,26 @@
                     <!-- CONTENIDO -->
                 </div>
             </div>
-            <div class="col-md-3">&nbsp;</div>
+            <div class="col-md-3" style="margin-top: 4%;">
+                <div style="margin: 0 10% 0 0%;">
+                    <!-- //TODO hacer que cargue de la base de datos una lista con los usuarios con más respuestas  -->
+                    <h5>Usuarios con más respuestas de <span class="idioma"></span></h5>
+                    <ul id="listaUsuariosRespuestas" class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#">Crime and Punishment</a>
+                            <span class="badge badge-primary badge-pill">10</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                              <a href="#">Crime and Punishment</a>
+                            <span class="badge badge-primary badge-pill">14</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">  
+                              <a href="#">Crime and Punishment</a>
+                            <span class="badge badge-danger badge-pill">5</span>
+                          </li>
+                      </ul>
+                </div>
+            </div>
         </div>
     </div>
     <!-- MODAL Iniciar sesión -->
