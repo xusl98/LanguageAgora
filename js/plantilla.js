@@ -62,7 +62,6 @@ function cambioSesion() {
         });
 
     } else {
-        //TODO editar perfil
         perfilDropdown = '<a class="dropdown-item" href="profile.html?user=' + sessionStorage.getItem('user') + '">Editar Perfil</a>';
         perfilDropdown += '<span style="cursor: pointer;" class="dropdown-item" id="cerrarSesion" href="#">Cerrar Sesión</span>';
     }

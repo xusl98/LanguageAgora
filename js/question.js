@@ -1,4 +1,3 @@
-//TODO hacer funcionalidad de editar pregunta y eliminar
 var questionId;
 var languageId;
 var language;

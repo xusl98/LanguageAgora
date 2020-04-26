@@ -157,7 +157,7 @@ function peticionRespuestasCorrecta() {
     console.log(respuestas)
     var html = "";
     for (respuesta of respuestas){
-      html += '<div class="list-group-item "><a style="color: black" href="language.html?lang=' + pregunta.languageId +'&name=' + pregunta.name +'">' + respuesta.name + '</a><a href="question.html?question=' + respuesta.questionId + '&lang=' + respuesta.name + '&langId=' + respuesta.languageId + '" class="list-group-item list-group-item-action">' + respuesta.text + '</a></div>';
+      html += '<div class="list-group-item "><a style="color: black" href="language.html?lang=' + pregunta.languageId +'&name=' + pregunta.name +'">' + respuesta.name + '</a><a href="question.html?question=' + respuesta.questionId + '&lang=' + respuesta.name + '&langId=' + respuesta.languageId + '" class="list-group-item list-group-item-action">' + respuesta.text.substring(0, 30) + '...</a></div>';
     }
     console.log(html)
     $('#listaRespuestas').html(html);
