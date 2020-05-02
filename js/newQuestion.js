@@ -80,12 +80,12 @@ function peticionPreguntasCorrecta() {
 function peticionActualizarQuestionCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
         console.log(this.responseText)
-        window.location.href = 'question.html?question=' + questionId + '&lang=' + languageName + '&langId=' + languageId;
+        window.location.href = 'index.php?option=question&question=' + questionId + '&lang=' + languageName + '&langId=' + languageId;
     }
 }
 function peticionInsertarQuestionCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
         console.log(this.responseText)
-        window.location.href = 'language.html?lang=' + languageId + '&name=' + languageName;
+        window.location.href = 'index.php?option=language&lang=' + languageId + '&name=' + languageName;
     }
 }

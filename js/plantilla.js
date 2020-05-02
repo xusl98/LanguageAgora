@@ -29,8 +29,8 @@ function peticionCorrecta() {
             console.log(idiomas)
             var dropMenu = '';
             for (let idioma of idiomas) {
-                dropMenu += '<a class="dropdown-item" href="language.html?lang=' + idioma.languageId + '&name=' + idioma.name + '">' + idioma.name + '</a>';
-                $('#dropdown').html(dropMenu);
+                dropMenu += '<a class="dropdown-item" href="index.php?option=language&lang=' + idioma.languageId + '&name=' + idioma.name + '">' + idioma.name + '</a>';
+                // $('#dropdown').html(dropMenu);
             }
         } else {
             alert('Fallo en el servidor');
@@ -43,13 +43,13 @@ function cambioSesion() {
     var perfilDropdown = '';
     if (!sesionIniciada) {
         perfilDropdown = '<a id="inicioSesion" class="dropdown-item" href="#" data-toggle="modal" data-target="#inicioModal">Iniciar Sesión</a>';
-        perfilDropdown += '<a class="dropdown-item" href="signUp.html">Registrarse</a>';
+        perfilDropdown += '<a class="dropdown-item" href="index.php?option=signUp">Registrarse</a>';
 
         //Al pulsar incicio de sesión
         $('#btnInicio').click(function () {
             url = path + "server/index/comprobarInicio.php"
-            var name = $('#user').val();
-            var pass = $('#password').val();
+            var name = $('#userNav').val();
+            var pass = $('#passwordNav').val();
             var param = 'name=' + name + '&pass=' + pass;
             // console.log(param)
             console.log(name + ' ' + pass )
@@ -62,7 +62,7 @@ function cambioSesion() {
         });
 
     } else {
-        perfilDropdown = '<a class="dropdown-item" href="profile.html?user=' + sessionStorage.getItem('user') + '">Editar Perfil</a>';
+        perfilDropdown = '<a class="dropdown-item" href="index.php?option=profile&user=' + sessionStorage.getItem('user') + '">Editar Perfil</a>';
         perfilDropdown += '<span style="cursor: pointer;" class="dropdown-item" id="cerrarSesion" href="#">Cerrar Sesión</span>';
     }
     $('#perfilDropdown').html(perfilDropdown);

@@ -30,10 +30,10 @@ function peticionCorrecta() {
             var dropMenu = '';
             var lista = '';
             for (let idioma of idiomas) {
-                dropMenu += '<a class="dropdown-item" href="./html/language.html?lang=' + idioma.languageId + '&name=' + idioma.name + '">' + idioma.name + '</a>';
-                lista += '<a href="./html/language.html?lang=' + idioma.languageId + '&name=' + idioma.name + '" class="list-group-item list-group-item-action">' + idioma.name + '</a>';
-                $('#dropdown').html(dropMenu);
-                $('#lista').html(lista);
+                dropMenu += '<a class="dropdown-item" href="index.php?option=language&lang=' + idioma.languageId + '&name=' + idioma.name + '">' + idioma.name + '</a>';
+                lista += '<a href="index.php?option=language&lang=' + idioma.languageId + '&name=' + idioma.name + '" class="list-group-item list-group-item-action">' + idioma.name + '</a>';
+                // $('#dropdown').html(dropMenu);
+                // $('#lista').html(lista);
             }
         } else {
             alert('Fallo en el servidor');
@@ -46,13 +46,13 @@ function cambioSesion() {
     var perfilDropdown = '';
     if (!sesionIniciada) {
         perfilDropdown = '<a class="dropdown-item" href="#" data-toggle="modal" data-target="#inicioModal">Iniciar Sesión</a>';
-        perfilDropdown += '<a class="dropdown-item" href="./html/signUp.html">Registrarse</a>';
+        perfilDropdown += '<a class="dropdown-item" href="index.php?option=signUp">Registrarse</a>';
 
         //Al pulsar incicio de sesión
         $('#btnInicio').click(function () {
             url = path + "server/index/comprobarInicio.php"
-            var name = $('#user').val();
-            var pass = $('#password').val();
+            var name = $('#userNav').val();
+            var pass = $('#passwordNav').val();
             var param = 'name=' + name + '&pass=' + pass;
             // console.log(param)
             var miXHR = new XMLHttpRequest();
@@ -64,7 +64,7 @@ function cambioSesion() {
         });
 
     } else {
-        perfilDropdown = '<a class="dropdown-item" href="./html/profile.html?user=' + sessionStorage.getItem('user') + '">Editar Perfil</a>';
+        perfilDropdown = '<a class="dropdown-item" href="index.php?option=profile&user=' + sessionStorage.getItem('user') + '">Editar Perfil</a>';
         perfilDropdown += '<span style="cursor: pointer;" class="dropdown-item" id="cerrarSesion" href="#">Cerrar Sesión</span>';
     }
     $('#perfilDropdown').html(perfilDropdown);

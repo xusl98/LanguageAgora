@@ -13,12 +13,12 @@ $(document).ready(function () {
     cargarPregunta(questionId);
 
     $('#idioma').text(language);
-    $("#idioma").attr("href", 'language.html?lang=' + languageId + '&name=' + language);
+    $("#idioma").attr("href", 'index.php?option=language&lang=' + languageId + '&name=' + language);
 
 
     cargarRespuestas(questionId);
 
-    $('#editQuestion').attr('href', 'newQuestion.html?lang=' + languageId + '&name=' + language + '&question=' + questionId);
+    $('#editQuestion').attr('href', 'index.php?option=newQuestion&lang=' + languageId + '&name=' + language + '&question=' + questionId);
 
     $('#btnEliminar').click(function () {
         url = path + "server/question/borrarPregunta.php"
@@ -201,7 +201,7 @@ function peticionEditaRespCorrecta() {
 
 function peticionEliminarPregCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
-        window.location.href = './language.html?lang=' + languageId + '&name=' + language;
+        window.location.href = 'index.php?option=language&lang=' + languageId + '&name=' + language;
     }
 }
 
@@ -241,7 +241,7 @@ function peticionPreguntasCorrecta() {
             $('#texto').text(preguntas[0].text);
             $('#fecha').text(preguntas[0].date);
             $('#pregUser').text(preguntas[0].name);
-            $('#pregUser').attr('href', 'profile.html?user=' + preguntas[0].userId);
+            $('#pregUser').attr('href', 'index.php?option=profile&user=' + preguntas[0].userId);
 
 
             if (sessionStorage.getItem('user') != preguntas[0].userId) {
@@ -277,7 +277,7 @@ function peticionRespuestasCorrecta() {
             var html = '';
             for (let respuesta of respuestas) {
                 html += '<div class="card text-center">' +
-                    '<div class="card-body container-fluid" style="margin-top: 3%;">' +
+                    '<div class="card-body container-fluid textoIzquierda" style="margin-top: 3%;">' +
                     '<p id="text-' + respuesta.answerId + '"  class="card-text align-left">' + respuesta.text +
                     '</p>' +
                     '<div class="row">' +
@@ -291,7 +291,7 @@ function peticionRespuestasCorrecta() {
                     '</div>' +
                     '<div class="card-footer text-muted">' +
                     '<div><span  style="margin-right: 5%;">' + respuesta.date + '</span><a ' +
-                    'style="color: #6c757d; margin-left: 5%;" href="profile.html?user=' + respuesta.userId + '" >' + respuesta.name + '</a></div>' +
+                    'style="color: #6c757d; margin-left: 5%;" href="index.php?option=profile&user=' + respuesta.userId + '" >' + respuesta.name + '</a></div>' +
                     '</div>' +
                     '</div>';
                 console.log(sesionIniciada)

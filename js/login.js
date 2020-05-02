@@ -2,14 +2,14 @@
 //TODO hacer olvidaste la contraseña
 $(document).ready(function () {
     console.log(path)
-    $('#form').submit(function () {
+    $('#formLogin').submit(function () {
         url = path + "server/index/comprobarInicio.php"
         var name = $('#user').val();
         var pass = $('#password').val();
         var param = 'name=' + name + '&pass=' + pass;
         // console.log(param)
         var miXHR = new XMLHttpRequest();
-        miXHR.onreadystatechange = peticionCorrecta;
+        miXHR.onreadystatechange = peticionLoginCorrecta;
         miXHR.open("POST", url);
         miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         miXHR.send(param);
@@ -17,14 +17,13 @@ $(document).ready(function () {
     });
 });
 
-function peticionCorrecta() {
+function peticionLoginCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
         // console.log(this.responseText);
         var respuesta = JSON.parse(this.responseText);
         if (respuesta.length > 0) {
-            alert(respuesta[0].userId)
             sessionStorage.setItem('user', respuesta[0].userId);
-            window.location.href = '../index.html';
+            window.location.href = 'index.php';
         } else {
             $('#nameToast').toast({
                 animation: true,

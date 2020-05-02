@@ -4,7 +4,7 @@ $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
 $id = $_POST['question'];
 
-$cons="SELECT answerId, answer.text, score, name, answer.date, answer.userId, user.userId from answer, user, question where answer.questionId = $id and  user.userId = answer.userId group by answerId order by score";
+$cons="SELECT answerId, answer.text, score, name, answer.date, answer.userId, user.userId from answer, user, question where answer.questionId = $id and  user.userId = answer.userId group by answerId order by score desc";
 
 
 

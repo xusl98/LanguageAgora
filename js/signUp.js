@@ -43,9 +43,9 @@ $(document).ready(function () {
         $(this).css('background-color', 'white');
     });
 
-    $('#form').submit(function () {
+    $('#submit').click(function (e) {
+        $('#loginModal').modal('show');
         $('#spanEmail').text($('#email').val());
-
         code = Math.floor(Math.random() * (99999 - 0) + 0);
         var body = "Este es el código que tendrás que introducir para confirmar el registro de la cuenta: " + code;
         Email.send({
@@ -63,7 +63,7 @@ $(document).ready(function () {
     $('#codeBtn').click(function () {
         if ($('#code').val() == code) {
             insertaUsuario($('#user').val(), $('#password').val(), $('#email').val());
-            window.location.href = '../index.html';
+            window.location.href = 'index.php?option=login';
         }
     });
 
@@ -76,7 +76,7 @@ $(document).on('inputChange', function () {
     console.log(passwordValid);
     console.log(nameValid);
     console.log(emailValid);
-    $('input[type=submit]')[0].disabled = isValid && passwordValid && nameValid && emailValid ? false : true;
+    $('#submit')[0].disabled = isValid && passwordValid && nameValid && emailValid ? false : true;
 });
 
 

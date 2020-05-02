@@ -146,7 +146,7 @@ function peticionPreguntasCorrecta() {
     console.log(preguntas)
     var html = "";
     for (pregunta of preguntas){
-      html += '<div class="list-group-item "><a style="color:black" href="language.html?lang=' + pregunta.languageId +'&name=' + pregunta.name +'">' + pregunta.name + '</a><a href="question.html?question=' + pregunta.questionID + '&lang=' + pregunta.name + '&langId=' + pregunta.languageId + '" class="list-group-item list-group-item-action">' + pregunta.title + '</a></div>';
+      html += '<div class="list-group-item "><a style="color:black" href="index.php?option=language&lang=' + pregunta.languageId +'&name=' + pregunta.name +'">' + pregunta.name + '</a><a href="index.php?option=question&question=' + pregunta.questionID + '&lang=' + pregunta.name + '&langId=' + pregunta.languageId + '" class="list-group-item list-group-item-action">' + pregunta.title + '</a></div>';
     }
     $('#listaPreguntas').html(html);
   }
@@ -157,7 +157,7 @@ function peticionRespuestasCorrecta() {
     console.log(respuestas)
     var html = "";
     for (respuesta of respuestas){
-      html += '<div class="list-group-item "><a style="color: black" href="language.html?lang=' + pregunta.languageId +'&name=' + pregunta.name +'">' + respuesta.name + '</a><a href="question.html?question=' + respuesta.questionId + '&lang=' + respuesta.name + '&langId=' + respuesta.languageId + '" class="list-group-item list-group-item-action">' + respuesta.text.substring(0, 30) + '...</a></div>';
+      html += '<div class="list-group-item "><a style="color: black" href="index.php?option=language&lang=' + pregunta.languageId +'&name=' + pregunta.name +'">' + respuesta.name + '</a><a href="index.php?option=question&question=' + respuesta.questionId + '&lang=' + respuesta.name + '&langId=' + respuesta.languageId + '" class="list-group-item list-group-item-action">' + respuesta.text.substring(0, 30) + '...</a></div>';
     }
     console.log(html)
     $('#listaRespuestas').html(html);
