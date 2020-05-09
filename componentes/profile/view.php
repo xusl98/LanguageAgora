@@ -34,7 +34,7 @@ $xajax->processRequest();
                                             class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
                                     </div>
                                 </div>
-                                <button id="btnPreguntas" class="btn btn-primary">Ver Todas</button>
+                                <a href="#" id="btnPreguntas" class="btn btn-primary">Ver Todas</a>
                                 <!-- //TODO acceder a página userList con la lista de las preguntas realizadas por dicho usuario -->
                             </div>
                             <div class="col-md-6">
@@ -44,7 +44,7 @@ $xajax->processRequest();
                                             class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
                                     </div>
                                 </div>
-                                <button id="btnRespuestas" class="btn btn-primary">Ver Todas</button>
+                                <a href="#" id="btnRespuestas" class="btn btn-primary">Ver Todas</a>
                                 <!-- //TODO acceder a página userList con la lista de las respuestas realizadas por dicho usuario -->
                             </div>
                         </div>

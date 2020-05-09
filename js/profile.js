@@ -51,6 +51,10 @@ $(document).ready(function () {
   miXHR.send(param);
 
 
+  $('#btnPreguntas').attr('href', 'index.php?option=userList&user=' + userId + '&tipo=Preguntas');
+  $('#btnRespuestas').attr('href', 'index.php?option=userList&user=' + userId + '&tipo=Respuestas');
+
+
 });
 
 
@@ -157,7 +161,7 @@ function peticionRespuestasCorrecta() {
     console.log(respuestas)
     var html = "";
     for (respuesta of respuestas){
-      html += '<div class="list-group-item "><a style="color: black" href="index.php?option=language&lang=' + pregunta.languageId +'&name=' + pregunta.name +'">' + respuesta.name + '</a><a href="index.php?option=question&question=' + respuesta.questionId + '&lang=' + respuesta.name + '&langId=' + respuesta.languageId + '" class="list-group-item list-group-item-action">' + respuesta.text.substring(0, 30) + '...</a></div>';
+      html += '<div class="list-group-item "><a style="color: black" href="index.php?option=language&lang=' + respuesta.languageId +'&name=' + respuesta.name +'">' + respuesta.name + '</a><a href="index.php?option=question&question=' + respuesta.questionId + '&lang=' + respuesta.name + '&langId=' + respuesta.languageId + '" class="list-group-item list-group-item-action">' + respuesta.text.substring(0, 30) + '...</a></div>';
     }
     console.log(html)
     $('#listaRespuestas').html(html);
