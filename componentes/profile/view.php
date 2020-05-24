@@ -14,6 +14,7 @@ $xajax->register(XAJAX_FUNCTION,"getIdiomas");
 
 //El objeto xajax tiene que procesar cualquier petici�n 
 $xajax->processRequest();
+$user = $_GET['user'];
 ?> 
 
 <div class="row">
@@ -24,7 +25,7 @@ $xajax->processRequest();
                     <div class="container-fluid">
                         <div class="row">
                             <h1 id="userTitle" class="col-md-9">Nombre de usuario</h1>
-                            <button class="btn btn-primary" class="col-md-3">Modificar Perfil</button>
+                            <a href="#" id="modPerfil" class="btn btn-primary" class="col-md-3">Modificar Perfil</a>
                         </div>
                         <div class="row">
                             <div class="col-md-6">

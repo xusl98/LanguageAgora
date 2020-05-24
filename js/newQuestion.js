@@ -40,6 +40,10 @@ $(document).ready(function () {
         miXHR.send(param);
     }
 
+    $('#btnCancelar').click(function (){
+        window.history.back();
+    });
+
 
 
 

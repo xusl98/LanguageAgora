@@ -25,7 +25,6 @@ $xajax->processRequest();
 <div class="row">
             <div class="col-md-3" style="margin-top: 4%;">
                 <div style="margin: 0 0% 0 10%;">
-                    <!-- //TODO hacer que cargue de la base de datos una lista con los usuarios con más preguntas -->
                     <h5>Usuarios con más preguntas de <span class="idioma"></span></h5>
                     <ul id="listaUsuariosPreguntas" class="list-group">
                     <?php
@@ -76,7 +75,6 @@ $xajax->processRequest();
             </div>
             <div class="col-md-3" style="margin-top: 4%;">
                 <div style="margin: 0 10% 0 0%;">
-                    <!-- //TODO hacer que cargue de la base de datos una lista con los usuarios con más respuestas  -->
                     <h5>Usuarios con más respuestas de <span class="idioma"></span></h5>
                     <ul id="listaUsuariosRespuestas" class="list-group">
                     <?php

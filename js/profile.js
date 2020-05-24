@@ -55,7 +55,26 @@ $(document).ready(function () {
   $('#btnRespuestas').attr('href', 'index.php?option=userList&user=' + userId + '&tipo=Respuestas');
 
 
+
+  sesionCambiada();
+
+  $(document).on('sesionCerrada', function () {
+    sesionCambiada();
+  });
+  $(document).on('sesionIniciada', function () {
+    sesionCambiada();
+  });
+
+
 });
+
+function sesionCambiada() {
+  if (sesionIniciada == true && parseInt(sessionStorage.getItem('user')) == userId) {
+    $('#modPerfil').css('visibility', 'visible');
+  } else {
+    $('#modPerfil').css('visibility', 'hidden');
+  }
+}
 
 
 
@@ -65,6 +84,7 @@ function peticionPerfilCorrecta() {
     var respuesta = JSON.parse(this.responseText);
     user = respuesta[0];
     console.log(user)
+    $('#modPerfil').attr('href', 'index.php?option=modifProfile&user=' + userId + '&userName=' + user.name);
     $('#userTitle').text(user.name);
   }
 }
@@ -149,8 +169,12 @@ function peticionPreguntasCorrecta() {
     var preguntas = JSON.parse(this.responseText);
     console.log(preguntas)
     var html = "";
-    for (pregunta of preguntas){
-      html += '<div class="list-group-item "><a style="color:black" href="index.php?option=language&lang=' + pregunta.languageId +'&name=' + pregunta.name +'">' + pregunta.name + '</a><a href="index.php?option=question&question=' + pregunta.questionID + '&lang=' + pregunta.name + '&langId=' + pregunta.languageId + '" class="list-group-item list-group-item-action">' + pregunta.title + '</a></div>';
+    for (pregunta of preguntas) {
+      html += '<div class="list-group-item "><a style="color:black" href="index.php?option=language&lang=' + pregunta.languageId + '&name=' + pregunta.name + '">' + pregunta.name + '</a><a href="index.php?option=question&question=' + pregunta.questionID + '&lang=' + pregunta.name + '&langId=' + pregunta.languageId + '" class="list-group-item list-group-item-action">' + pregunta.title + '</a></div>';
+    }
+    if (html == "") {
+      html = '<div class="list-group-item ">Este usuario no ha realizado ninguna pregunta</div>';
+      $('#btnPreguntas').css('visibility', 'hidden');
     }
     $('#listaPreguntas').html(html);
   }
@@ -160,10 +184,13 @@ function peticionRespuestasCorrecta() {
     var respuestas = JSON.parse(this.responseText);
     console.log(respuestas)
     var html = "";
-    for (respuesta of respuestas){
-      html += '<div class="list-group-item "><a style="color: black" href="index.php?option=language&lang=' + respuesta.languageId +'&name=' + respuesta.name +'">' + respuesta.name + '</a><a href="index.php?option=question&question=' + respuesta.questionId + '&lang=' + respuesta.name + '&langId=' + respuesta.languageId + '" class="list-group-item list-group-item-action">' + respuesta.text.substring(0, 30) + '...</a></div>';
+    for (respuesta of respuestas) {
+      html += '<div class="list-group-item "><a style="color: black" href="index.php?option=language&lang=' + respuesta.languageId + '&name=' + respuesta.name + '">' + respuesta.name + '</a><a href="index.php?option=question&question=' + respuesta.questionId + '&lang=' + respuesta.name + '&langId=' + respuesta.languageId + '" class="list-group-item list-group-item-action">' + respuesta.text.substring(0, 30) + '...</a></div>';
     }
-    console.log(html)
+    if (html == "") {
+      html = '<div class="list-group-item ">Este usuario no ha respondido ninguna pregunta</div>';
+      $('#btnRespuestas').css('visibility', 'hidden');
+    }
     $('#listaRespuestas').html(html);
   }
 }

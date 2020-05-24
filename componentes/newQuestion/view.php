@@ -33,7 +33,10 @@ $xajax->processRequest();
                                 <label for="exampleInputPassword1">Cuerpo</label>
                                 <textarea class="form-control" id="questionBody" rows="5"></textarea>
                             </div>
-                            <button id="btnAceptar" class="btn btn-primary">Aceptar</button>
+                            <div style="text-align:right;">
+                                <button id="btnCancelar" class="btn btn-primary">Cancelar</button>
+                                <button id="btnAceptar" class="btn btn-primary">Aceptar</button>
+                            </div>
                         </div>
                     </div>
 
