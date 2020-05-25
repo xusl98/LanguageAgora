@@ -131,7 +131,7 @@
         </div>
     </div>
     <!-- TOAST -->
-    <div id="nameToast" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+    <div id="nameToast" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" style="display: none;">
         <div class="toast-header toast-error-header">
             <strong id="toastTitle" class="mr-auto">Error</strong>
             <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" style="color: white;">

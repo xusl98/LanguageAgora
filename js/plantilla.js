@@ -19,7 +19,7 @@ $(document).ready(function () {
     console.log(sesionIniciada)
     cambioSesion();
 
-    $('#nameToast').hide();
+    $('#nameToast').css('display', 'none');
 
 
 });
@@ -85,7 +85,7 @@ function cambioSesion() {
             autohide: true,
             delay: 3000
         });
-        $('#nameToast').show(); $('#nameToast').toast('show');
+        $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
         return false;
     });
 }
@@ -108,7 +108,7 @@ function inicioSesionCorrecto() {
                 autohide: true,
                 delay: 3000
             });
-            $('#nameToast').show(); $('#nameToast').toast('show');
+            $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
         } else {
             $('#toastText').text('El usuario y la contraseña no coinciden.');
             $('#nameToast').toast({
@@ -116,7 +116,7 @@ function inicioSesionCorrecto() {
                 autohide: true,
                 delay: 3000
             });
-            $('#nameToast').show(); $('#nameToast').toast('show');
+            $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
         }
 
     }

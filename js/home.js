@@ -19,6 +19,8 @@ $(document).ready(function () {
     console.log(sesionIniciada)
     cambioSesion();
 
+    $('#nameToast').css('display', 'none');
+
 });
 
 function peticionCorrecta() {
@@ -83,7 +85,7 @@ function cambioSesion() {
             autohide: true,
             delay: 3000
         });
-        $('#nameToast').show(); $('#nameToast').toast('show');
+        $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
         return false;
     });
 }
@@ -105,14 +107,14 @@ function inicioSesionCorrecto() {
                 autohide: true,
                 delay: 3000
             });
-            $('#nameToast').show(); $('#nameToast').toast('show');
+            $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
         } else {
             $('#nameToast').toast({
                 animation: true,
                 autohide: true,
                 delay: 3000
             });
-            $('#nameToast').show(); $('#nameToast').toast('show');
+            $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
         }
 
     }
