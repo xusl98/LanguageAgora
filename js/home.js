@@ -54,6 +54,8 @@ function cambioSesion() {
             var name = $('#userNav').val();
             var pass = $('#passwordNav').val();
             var param = 'name=' + name + '&pass=' + pass;
+            $('#userNav').val('');
+            $('#passwordNav').val('');
             // console.log(param)
             var miXHR = new XMLHttpRequest();
             miXHR.onreadystatechange = inicioSesionCorrecto;
@@ -81,7 +83,7 @@ function cambioSesion() {
             autohide: true,
             delay: 3000
         });
-        $('#nameToast').toast('show');
+        $('#nameToast').show(); $('#nameToast').toast('show');
         return false;
     });
 }
@@ -103,14 +105,14 @@ function inicioSesionCorrecto() {
                 autohide: true,
                 delay: 3000
             });
-            $('#nameToast').toast('show');
+            $('#nameToast').show(); $('#nameToast').toast('show');
         } else {
             $('#nameToast').toast({
                 animation: true,
                 autohide: true,
                 delay: 3000
             });
-            $('#nameToast').toast('show');
+            $('#nameToast').show(); $('#nameToast').toast('show');
         }
 
     }
