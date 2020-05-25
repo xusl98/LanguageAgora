@@ -42,7 +42,7 @@ $xajax->processRequest();
                                     <small id="passHelp2" class="form-text text-muted">Vuelve a introducir la contraseña</small>
                                     <input type="password" class="form-control" id="confPass" aria-describedby="confPass">
                                     <div style="text-align:right;">
-                                        <button class="btn btn-primary">Cambiar</button>
+                                        <button id="btnCambiarPassword" class="btn btn-primary"  data-toggle="modal" data-target="#passwordModal">Cambiar</button>
                                     </div>
                                 </div>
                             </div>
@@ -67,6 +67,24 @@ $xajax->processRequest();
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-primary" id="btnNombre">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- MODAL Cambiar contraseña -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Seguro que quieres cambiar la contraseña?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnPassword">Aceptar</button>
                 </div>
             </div>
         </div>

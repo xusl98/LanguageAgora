@@ -28,6 +28,14 @@ $user = $_GET['user'];
                             <a href="#" id="modPerfil" class="btn btn-primary" class="col-md-3">Modificar Perfil</a>
                         </div>
                         <div class="row">
+                            <div class="col-md-12">
+                                <h6>Puntuación de respuestas: <?php
+                                    echo modelHome::getPuntuacionRespuestas($_GET['user'])['score'];
+
+                                ?></h6>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <h5>Últimas Preguntas</h5>
                                 <div id="listaPreguntas" class="list-group">

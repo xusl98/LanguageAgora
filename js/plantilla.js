@@ -19,6 +19,9 @@ $(document).ready(function () {
     console.log(sesionIniciada)
     cambioSesion();
 
+    $('#nameToast').hide();
+
+
 });
 
 function peticionCorrecta() {
@@ -51,6 +54,8 @@ function cambioSesion() {
             var name = $('#userNav').val();
             var pass = $('#passwordNav').val();
             var param = 'name=' + name + '&pass=' + pass;
+            $('#userNav').val('');
+            $('#passwordNav').val('');
             // console.log(param)
             console.log(name + ' ' + pass )
             var miXHR = new XMLHttpRequest();
@@ -80,7 +85,7 @@ function cambioSesion() {
             autohide: true,
             delay: 3000
         });
-        $('#nameToast').toast('show');
+        $('#nameToast').show(); $('#nameToast').toast('show');
         return false;
     });
 }
@@ -103,15 +108,15 @@ function inicioSesionCorrecto() {
                 autohide: true,
                 delay: 3000
             });
-            $('#nameToast').toast('show');
+            $('#nameToast').show(); $('#nameToast').toast('show');
         } else {
-            $('#toastText').text('Error.');
+            $('#toastText').text('El usuario y la contraseña no coinciden.');
             $('#nameToast').toast({
                 animation: true,
                 autohide: true,
                 delay: 3000
             });
-            $('#nameToast').toast('show');
+            $('#nameToast').show(); $('#nameToast').toast('show');
         }
 
     }

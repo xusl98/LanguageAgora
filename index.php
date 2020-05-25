@@ -13,6 +13,7 @@
 
 <html>
     <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="./librerias/jquery/jQuery-3.4.1.js"></script>
     <script src="./librerias/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
