@@ -27,6 +27,12 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="./resources/favicon.ico">
     <link rel="icon" href="./resources/favicon.ico" type="image/x-icon">
+
+
+
+    <script src="./librerias/SweetAlerts/dist/sweetalert2.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
+    <link rel="stylesheet" href="./librerias/SweetAlerts/dist/sweetalert2.min.css">
     </head>
 
 

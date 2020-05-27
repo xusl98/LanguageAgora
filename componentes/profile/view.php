@@ -44,7 +44,6 @@ $user = $_GET['user'];
                                     </div>
                                 </div>
                                 <a href="#" id="btnPreguntas" class="btn btn-primary">Ver Todas</a>
-                                <!-- //TODO acceder a página userList con la lista de las preguntas realizadas por dicho usuario -->
                             </div>
                             <div class="col-md-6">
                                 <h5>Últimas Respuestas</h5>
@@ -54,7 +53,6 @@ $user = $_GET['user'];
                                     </div>
                                 </div>
                                 <a href="#" id="btnRespuestas" class="btn btn-primary">Ver Todas</a>
-                                <!-- //TODO acceder a página userList con la lista de las respuestas realizadas por dicho usuario -->
                             </div>
                         </div>
                         <div class="row">

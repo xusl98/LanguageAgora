@@ -29,7 +29,13 @@ $(document).ready(function () {
             miXHR.send(param);
 
         } else {
-            alert('Rellena el campo de nombre');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Rellena el campo nombre',
+                showConfirmButton: false,
+                timer: 1500
+              });
             $('#nombreModal').modal('hide');
         }
     });
@@ -38,7 +44,13 @@ $(document).ready(function () {
     $('#btnPassword').click(function () {
         if ($('#oldPass').val().trim() == '' || $('#pass').val().trim() == '' || $('#confPass').val().trim() == ''){
             $('#passwordModal').modal('hide');
-            alert('Rellena todos los campos');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Rellena todos los campos',
+                showConfirmButton: false,
+                timer: 1500
+              });
         } else {
             var url = path + "server/modifProfile/comprobarInicio.php"
             var name = $('#user').val();
@@ -60,8 +72,13 @@ function peticionUsuarioCorrecta() {
         var respuesta = JSON.parse(this.responseText);
         if (respuesta.length > 0) {
 
-
-            alert('El nombre de usuario ya existe');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'El nombre de usuario ya existe',
+                showConfirmButton: false,
+                timer: 1500
+              });
             $('#nombreModal').modal('hide');
         } else {
             var url = path + "server/modifProfile/actualizaNombreUsuario.php"
@@ -98,11 +115,24 @@ function peticionPassCorrecta() {
                 miXHR.send(param);
             } else {
                 $('#passwordModal').modal('hide');
-                alert('Las contraseñas no coinciden');
+                
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Las contraseñas no coinciden',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
             }
         } else {
             $('#passwordModal').modal('hide');
-            alert('Contraseña incorrecta');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Contraseña incorrecta',
+                showConfirmButton: false,
+                timer: 1500
+              });
         }
     }
 }
@@ -111,6 +141,12 @@ function peticionCambioPassword() {
     if ((this.readyState === 4) && (this.status === 200)) {
         console.log(this.responseText);
         $('#passwordModal').modal('hide');
-        alert('Contraseña cambiada satisfactoriamente');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Contraseña cambiada satisfactoriamente',
+            showConfirmButton: false,
+            timer: 1500
+          });
     }
 }
