@@ -25,7 +25,10 @@ $user = $_GET['user'];
                     <div class="container-fluid">
                         <div class="row">
                             <h1 id="userTitle" class="col-md-9">Nombre de usuario</h1>
-                            <a href="#" id="modPerfil" class="btn btn-primary" class="col-md-3">Modificar Perfil</a>
+                            <div class="col-md-3">
+                                <a href="#" id="modPerfil" class="btn btn-primary">Modificar Perfil</a>
+                                <a href="#" id="mensaje" class="btn btn-primary"><i class="far fa-envelope"></i></a>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">

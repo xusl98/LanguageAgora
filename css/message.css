@@ -1,0 +1,30 @@
+.mensajes{
+    overflow-y: scroll;
+    height: 50vh;
+    width: 100%;
+}
+
+.him{
+    color: white;
+    display: inline-block;
+    padding: 2%;
+    background-color: #1A5F83;
+    border: 1px solid #1A5F83;
+    border-top-right-radius: 35px;
+    border-top-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
+.mine{
+    float: right;
+    color: white;
+    display: inline-block;
+    padding: 2%;
+    background-color: #1A5F83;
+    border: 1px solid #1A5F83;
+    border-top-right-radius: 35px;
+    border-top-left-radius: 35px;
+    border-bottom-left-radius: 35px;
+}
+.message{
+    margin-bottom: 2%;
+}

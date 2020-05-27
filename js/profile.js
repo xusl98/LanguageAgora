@@ -1,4 +1,5 @@
 var user;
+var userId;
 $(document).ready(function () {
 
   var queryString = window.location.search;
@@ -69,10 +70,18 @@ $(document).ready(function () {
 });
 
 function sesionCambiada() {
-  if (sesionIniciada == true && parseInt(sessionStorage.getItem('user')) == userId) {
-    $('#modPerfil').css('visibility', 'visible');
-  } else {
+  if (sesionIniciada == true) {//Si la sesión está iniciada
+    if (parseInt(sessionStorage.getItem('user')) == userId){//si tu usuario es el mismo que el del perfil se verá el botón de de modif el perfil pero no el de mensaje
+      $('#modPerfil').css('visibility', 'visible');
+      $('#mensaje').css('visibility', 'hidden');
+    } else {//si tu usuario es distinto al del perfil se verá el botón de mensaje pero no el de modif el perfil
+      $('#modPerfil').css('visibility', 'hidden');
+      $('#mensaje').css('visibility', 'visible');
+      $('#mensaje').attr('href', 'index.php?option=message&user=' + parseInt(sessionStorage.getItem('user')) + '&receiver=' + userId);
+    }
+  } else {//si no tienes sesión iniciada no se verá ningún botón
     $('#modPerfil').css('visibility', 'hidden');
+    $('#mensaje').css('visibility', 'hidden');
   }
 }
 
