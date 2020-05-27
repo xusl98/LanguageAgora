@@ -1,4 +1,4 @@
-<!-- <script src="./js/profile.js"></script> -->
+<script src="./js/message.js"></script>
 <link rel="stylesheet" href="./css/message.css">
 <?php 
 //inclu�mos la clase ajax 
@@ -24,15 +24,16 @@ $user = $_GET['user'];
                     <!-- CONTENIDO -->
                     <div class="container-fluid card">
                         <div class="row card-header">
-                            <h3>User</h3>
+                            <h3 id="receiverName">User</h3>
                         </div>
                         <div class="row card-body">
-                        <div class="mensajes container-fluid">
+                        <div id="mensajes" class="mensajes container-fluid">
                         <!--  -->
                             <div class="row message">
                                 <div class="col-md-6">
                                     <div class="him">
-                                        Mensaje recibido        
+                                        Mensaje recibido 
+                                        <small>10:34</small>       
                                     </div>
                                 </div>
                                 <div class="col-md-6">&nbsp;</div>
@@ -41,7 +42,8 @@ $user = $_GET['user'];
                                 <div class="col-md-6">&nbsp;</div>
                                 <div class="col-md-6">
                                     <div class="mine">
-                                        Mensaje enviado        
+                                        Mensaje enviado  
+                                        <small>10:35</small>       
                                     </div>
                                 </div>
                             </div>
@@ -50,9 +52,9 @@ $user = $_GET['user'];
                         </div>
                         <div class="row card-footer">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Escribe el mensaje..." >
+                                <input id="mensaje" type="text" class="form-control" placeholder="Escribe el mensaje..." >
                                 <div class="input-group-append">
-                                    <button class="input-group-text btn btn-light"><i class="far fa-paper-plane"></i></button>
+                                    <button id="enviarMensaje" class="input-group-text btn btn-light"><i class="far fa-paper-plane"></i></button>
                                 </div>
                             </div>
                         </div>

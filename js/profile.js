@@ -1,4 +1,5 @@
 var user;
+var userName;
 var userId;
 $(document).ready(function () {
 
@@ -77,7 +78,7 @@ function sesionCambiada() {
     } else {//si tu usuario es distinto al del perfil se verá el botón de mensaje pero no el de modif el perfil
       $('#modPerfil').css('visibility', 'hidden');
       $('#mensaje').css('visibility', 'visible');
-      $('#mensaje').attr('href', 'index.php?option=message&user=' + parseInt(sessionStorage.getItem('user')) + '&receiver=' + userId);
+      $('#mensaje').attr('href', 'index.php?option=message&user=' + parseInt(sessionStorage.getItem('user')) + '&receiver=' + userId + '&receiverName=' + userName);
     }
   } else {//si no tienes sesión iniciada no se verá ningún botón
     $('#modPerfil').css('visibility', 'hidden');
@@ -94,6 +95,8 @@ function peticionPerfilCorrecta() {
     user = respuesta[0];
     console.log(user)
     $('#modPerfil').attr('href', 'index.php?option=modifProfile&user=' + userId + '&userName=' + user.name);
+    userName = user.name;
+    $('#mensaje').attr('href', 'index.php?option=message&user=' + parseInt(sessionStorage.getItem('user')) + '&receiver=' + userId + '&receiverName=' + userName);
     $('#userTitle').text(user.name);
   }
 }
