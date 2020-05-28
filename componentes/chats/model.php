@@ -3,7 +3,7 @@
 class modelHome {
     public static function getChats($userId){
         $db = new database();
-        $sql = "SELECT DISTINCT chat.chatId as michat, chat.user1Id, chat.user2Id, (select count(message.messageId) from message, chat where message.chatId = chat.chatId and chat.chatId = michat) as numMensajes, (select message.text from message, chat where message.chatId = chat.chatId and chat.chatId = michat order by message.dateTime limit 1) as ultimoMensaje FROM chat, message, user WHERE (chat.user1Id = user.userId or chat.user2Id = user.userId) and user.userId = $userId";
+        $sql = "SELECT DISTINCT chat.chatId as michat, chat.user1Id, chat.user2Id, (select count(message.messageId) from message, chat where message.chatId = chat.chatId and chat.chatId = michat) as numMensajes, (select message.text from message, chat where message.chatId = chat.chatId and chat.chatId = michat order by message.dateTime desc limit 1) as ultimoMensaje FROM chat, message, user WHERE (chat.user1Id = user.userId or chat.user2Id = user.userId) and user.userId = $userId";
         $db->query($sql);
         return $db->cargaMatriz();
     }

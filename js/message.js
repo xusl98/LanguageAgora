@@ -130,6 +130,7 @@ function peticionComprobacionCorrecta() {
     }
 }
 
+
 function peticionMensajesCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
         var mensajes = JSON.parse(this.responseText);
@@ -170,5 +171,5 @@ document.onkeydown = function(e){
 }
 
 $(document).on('sesionCerrada', function () {
-    window.history.back();
+    window.location.href = "index.php";
   });
