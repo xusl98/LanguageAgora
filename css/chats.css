@@ -1,0 +1,17 @@
+#chats{
+    overflow-y: scroll;
+    height: 50vh;
+    width: 100%;
+    background-color: white;
+}
+
+.chat{
+    border: 1px solid #1A5F83 !important;
+    text-decoration: none;
+    color: black;
+}
+
+.chat:hover{
+    color: black;
+    text-decoration: none;
+}

@@ -14,6 +14,8 @@ $(document).ready(function () {
 
     comprobarChatCreado();
 
+
+
     $('#enviarMensaje').click(function () {
         var mensaje = $('#mensaje').val().trim()
         if (mensaje != '') {
@@ -22,9 +24,24 @@ $(document).ready(function () {
     });
 
 
+    
+
+
+
 });
 
 //TODO hacer en la barra de navegación un enlace a una página de chats abiertos
+
+function marcarLeido(){
+    url = path + "server/message/marcarMensajeLeido.php"
+    var param = 'chatId=' + chatId + '&otraPersona=' + receiver;
+    console.log(param)
+    var miXHR = new XMLHttpRequest();
+    miXHR.onreadystatechange = marcarLeidoCorrectamente;
+    miXHR.open("POST", url);
+    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    miXHR.send(param);
+}
 
 function insertaMensaje(mensaje) {
     url = path + "server/message/insertaMensaje.php"
@@ -91,6 +108,8 @@ function peticionComprobacionCorrecta() {
 
             chatId = respuesta[0].chatId;
 
+            marcarLeido();
+
             obtenerMensajes();
 
         } else {
@@ -121,6 +140,11 @@ function peticionMensajesCorrecta() {
 
 
 function chatCreadoCorrectamente() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        console.log(this.responseText)
+    }
+}
+function marcarLeidoCorrectamente() {
     if ((this.readyState === 4) && (this.status === 200)) {
         console.log(this.responseText)
     }

@@ -29,25 +29,7 @@ $user = $_GET['user'];
                         <div class="row card-body">
                         <div id="mensajes" class="mensajes container-fluid">
                         <!--  -->
-                            <div class="row message">
-                                <div class="col-md-6">
-                                    <div class="him">
-                                        Mensaje recibido 
-                                        <small>10:34</small>       
-                                    </div>
-                                </div>
-                                <div class="col-md-6">&nbsp;</div>
-                            </div>
-                            <div class="row message">
-                                <div class="col-md-6">&nbsp;</div>
-                                <div class="col-md-6">
-                                    <div class="mine">
-                                        Mensaje enviado  
-                                        <small>10:35</small>       
-                                    </div>
-                                </div>
-                            </div>
-                            <!--  -->
+                        <!--  -->
                         </div>
                         </div>
                         <div class="row card-footer">
