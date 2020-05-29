@@ -31,3 +31,17 @@
 small{
     color: #F4F5CC;
 }
+
+.dia{
+    margin-top: 2%;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+.diaTexto{
+    display: inline-block;
+    background-color: #ACACAC;
+    color: white;
+    padding: 1%;
+    border-radius: 35px;
+}

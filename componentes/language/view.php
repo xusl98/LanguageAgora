@@ -2,7 +2,6 @@
 
 <?php 
 
-//TODO ver si puedo cargar por php las preguntas
 
 
 

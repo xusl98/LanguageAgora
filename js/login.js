@@ -1,4 +1,3 @@
-//TODO para cargar la página de inicio (spinner que aparezca al dar click a iniciar sesión hasta que termine de procesarse la petición)
 //TODO hacer olvidaste la contraseña
 $(document).ready(function () {
     console.log(path)

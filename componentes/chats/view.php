@@ -41,16 +41,15 @@ $user = $_GET['user'];
                                             } else {
                                                 $otraPersona = $chat['user1Id'];
                                             }
-//TODO hacer que destaque el chat con mensajes no leidos
-                                            $html = "<a href=\"index.php?option=message&user=$userId&receiver=$otraPersona&receiverName=" . modelHome::getUserName($otraPersona)['name'] . "\" class=\"row chat\">";
+                                            $html = "<a href=\"index.php?option=message&user=$userId&receiver=$otraPersona&receiverName=" . modelHome::getUserName($otraPersona)['name'] . "\" class=\"row chat";
 
                                             $noLeidos = modelHome::getMensajesNoLeidos($chat['michat'], $otraPersona);
                                             if ($noLeidos['noLeidos'] > 0){
-                                                $html .= "<div class=\"card-body col-md-1\">
+                                                $html .= " chatDestacado\"><div class=\"card-body col-md-1\">
                                                 <span class=\"badge badge-secondary\">" . $noLeidos['noLeidos'] . "</span>
                                                 </div>";
                                             } else {
-                                                $html .= "<div class=\"card-body col-md-1\">
+                                                $html .= "\"><div class=\"card-body col-md-1\">
                                                 &nbsp;
                                                 </div>";
                                             }

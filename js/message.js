@@ -24,15 +24,19 @@ $(document).ready(function () {
     });
 
 
-    
+
 
 
 
 });
 
-//TODO hacer en la barra de navegación un enlace a una página de chats abiertos
+function focoUltimoMensaje() {
+    var objDiv =  $('#mensajes')[0];
+    objDiv.scrollTop = objDiv.scrollHeight;
+}
 
-function marcarLeido(){
+//TODO hacer sistema de reportes de preguntas
+function marcarLeido() {
     url = path + "server/message/marcarMensajeLeido.php"
     var param = 'chatId=' + chatId + '&otraPersona=' + receiver;
     console.log(param)
@@ -50,10 +54,10 @@ function insertaMensaje(mensaje) {
     var fecha = d.getFullYear() + '-' + (parseInt(d.getMonth()) + 1) + '-' + d.getDate();
     var hora = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 
-    
+
     var param = 'sender=' + parseInt(sessionStorage.getItem('user')) + '&chatId=' + chatId + '&text=' + mensaje + '&date=' + fecha + '&time=' + hora;
     console.log(param)
-    
+
     $('#mensaje').val('');
 
     var miXHR = new XMLHttpRequest();
@@ -86,7 +90,13 @@ function obtenerMensajes() {
 
 function mostrarMensajes(mensajes) {
     var html = '';
+    var lastDate = '';
     for (mensaje of mensajes) {
+        if (mensaje.dateTime.split(' ')[0] != lastDate){
+            //si cambia de día pone el día en el que se han mandado los siguientes mensajes
+            html += "<div class=\"row dia\"><div class=\"col-md-12\"><div class=\"diaTexto\" >" + mensaje.dateTime.split(' ')[0] + "</div></div></div>";
+        }
+        lastDate = mensaje.dateTime.split(' ')[0];
         if (parseInt(sessionStorage.getItem('user')) == mensaje.sender) {
             //si el mensaje lo has enviado tu
             html += '<div class="row message"><div class="col-md-6">&nbsp;</div><div class="col-md-6"><div class="mine">' + mensaje.text + '<small>&nbsp;' + mensaje.dateTime.split(' ')[1].substring(0, 5) + '</small></div></div></div>';
@@ -97,6 +107,7 @@ function mostrarMensajes(mensajes) {
         }
         $('#mensajes').html(html);
     }
+    focoUltimoMensaje();
 }
 
 function peticionComprobacionCorrecta() {
@@ -159,10 +170,10 @@ function mensajeInsertadoCorrectamente() {
 }
 
 
-document.onkeydown = function(e){
+document.onkeydown = function (e) {
     e = e || window.event;
     var key = e.which || e.keyCode;
-    if(key===13){
+    if (key === 13) {
         var mensaje = $('#mensaje').val().trim()
         if (mensaje != '') {
             insertaMensaje(mensaje);
@@ -172,4 +183,4 @@ document.onkeydown = function(e){
 
 $(document).on('sesionCerrada', function () {
     window.location.href = "index.php";
-  });
+});

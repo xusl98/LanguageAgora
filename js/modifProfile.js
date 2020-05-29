@@ -63,7 +63,6 @@ $(document).ready(function () {
         }
     });
 
-    //TODO funcionalidad para el cambio de contraseña
 });
 
 $(document).on('sesionCerrada', function () {

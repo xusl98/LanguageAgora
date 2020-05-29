@@ -1,4 +1,3 @@
-//TODO FUNCIONALIDAD MODO OSCURO
 
 var languageId;
 var languageName;
