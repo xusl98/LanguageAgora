@@ -15,10 +15,7 @@ $(document).ready(function () {
     $('#titulo').text(languageName);
     obtenerPreguntas()
 
-
-    if (sessionStorage.getItem('user') != null) {
-        sesionIniciada = true;
-    }
+    console.log(sessionStorage.getItem('user'))
 
     $('.idioma').text(languageName);
 

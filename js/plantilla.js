@@ -15,6 +15,8 @@ $(document).ready(function () {
     //Si tiene sesión iniciada
     if (parseInt(sessionStorage.getItem('user'))) {
         sesionIniciada = true;
+    } else {
+        sesionIniciada = false;
     }
     console.log(sesionIniciada)
     cambioSesion();
