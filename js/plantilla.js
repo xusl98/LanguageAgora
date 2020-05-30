@@ -15,6 +15,7 @@ $(document).ready(function () {
     //Si tiene sesión iniciada
     if (parseInt(sessionStorage.getItem('user'))) {
         sesionIniciada = true;
+        comprobarChats();
     } else {
         sesionIniciada = false;
     }
@@ -25,6 +26,34 @@ $(document).ready(function () {
 
 
 });
+
+function comprobarChats() {
+    url = path + "server/home/comprobarChats.php"
+    var miXHR = new XMLHttpRequest();
+    var param = 'userId=' + sessionStorage.getItem('user');
+    console.log(param)
+    miXHR.onreadystatechange = peticionChatsCorrecta;
+    miXHR.open("POST", url);
+    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    miXHR.send(param);
+}
+
+function peticionChatsCorrecta() {
+    if ((this.readyState === 4) && (this.status === 200)) {
+        var chats = JSON.parse(this.responseText);
+        if (chats.length > 0) {
+            console.log(chats[0])
+            if (chats[0]['chats'] > 0){
+                $('#badgeChats').css('visibility', 'visible');
+                $('#badgeChats').text(chats[0]['chats']);
+            } else {
+                $('#badgeChats').css('visibility', 'hidden');
+
+            }
+        } 
+
+    }
+}
 
 function peticionCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
@@ -70,11 +99,12 @@ function cambioSesion() {
 
     } else {
         perfilDropdown = '<a class="dropdown-item" href="index.php?option=profile&user=' + sessionStorage.getItem('user') + '">Ver Perfil</a>';
-        perfilDropdown += '<a id="toChats" class="dropdown-item" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '">Chats</a>';
+        perfilDropdown += '<a id="toChats" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '" class="notification dropdown-item"><span>Chats</span><span id="badgeChats" class="badge">3</span></a>';
+        // perfilDropdown += '<a id="toChats" class="dropdown-item" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '">Chats</a>';
         perfilDropdown += '<span style="cursor: pointer;" class="dropdown-item" id="cerrarSesion" href="#">Cerrar Sesión</span>';
     }
     $('#perfilDropdown').html(perfilDropdown);
-
+    comprobarChats();
     $('#cerrarSesion').click(function () {
         sessionStorage.setItem('user', null);
         console.log(sessionStorage.getItem('user'))

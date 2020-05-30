@@ -36,6 +36,7 @@ function focoUltimoMensaje() {
 }
 
 //TODO hacer sistema de reportes de preguntas
+//TODO hacer que aparezca una notificación al entrar a la página si has recibido algún mensaje de chat
 function marcarLeido() {
     url = path + "server/message/marcarMensajeLeido.php"
     var param = 'chatId=' + chatId + '&otraPersona=' + receiver;
