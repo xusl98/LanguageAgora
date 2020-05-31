@@ -1,19 +1,3 @@
-
-<?php 
-//inclu�mos la clase ajax 
-require ('./librerias/xajax/xajax_core/xajax.inc.php');
-
-//instanciamos el objeto de la clase xajax 
-$xajax = new xajax(); 
-// $xajax->setFlag('debug', true);
-
-
-//asociamos la funci�n creada anteriormente al objeto xajax 
-$xajax->register(XAJAX_FUNCTION,"getIdiomas"); 
-
-//El objeto xajax tiene que procesar cualquier petici�n 
-$xajax->processRequest();
-?> 
 <script src="./js/modifProfile.js"></script>
 <div class="row">
             <div class="col-md-3">&nbsp;</div>
