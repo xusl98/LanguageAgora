@@ -27,8 +27,8 @@ $xajax->processRequest();
             <div class="user_card">
                 <div class="d-flex justify-content-center">
                     <div class="brand_logo_container">
-                        <img src="./resources/logoLetNegra.png"
-                            class="brand_logo" alt="Logo">
+                        <a href="index.php"><img src="./resources/logoLetNegra.png"
+                            class="brand_logo" alt="Logo"></a>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center form_container">
@@ -64,7 +64,7 @@ $xajax->processRequest();
                         ¿No tienes una cuenta? <a href="index.php?option=signUp" class="ml-2">Registrarse</a>
                     </div>
                     <div class="d-flex justify-content-center links">
-                        <a href="#">¿Olvidaste la contraseña?</a>
+                        <a id="olvPass" href="#">¿Olvidaste la contraseña?</a>
                     </div>
                 </div>
             </div>

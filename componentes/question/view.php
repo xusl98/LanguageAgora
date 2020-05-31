@@ -33,7 +33,7 @@ $xajax->processRequest();
                                 additional content.
                             </p>
                             <div class="row">
-                                <div class="col-md-8" style="text-align: left;"><a id="editQuestion" style="color: gray;" href="#">Editar</a>&nbsp;<a id="deleteQuestion" style="color: gray;" href="#" data-toggle="modal" data-target="#elimModal">Eliminar</a></div>
+                                <div class="col-md-8" style="text-align: left;"><a id="editQuestion" style="color: gray;" href="#">Editar</a>&nbsp;<a id="deleteQuestion" style="color: gray;" href="#" >Eliminar</a></div>
                                 <div id="contResp" class="col-md-4">
                                     <button id="btnResponder" class="btn btn-primary">Responder</button>
                                 </div>

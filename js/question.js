@@ -20,26 +20,6 @@ $(document).ready(function () {
 
     $('#editQuestion').attr('href', 'index.php?option=newQuestion&lang=' + languageId + '&name=' + language + '&question=' + questionId);
 
-    $('#btnEliminar').click(function () {
-        url = path + "server/question/borrarPregunta.php"
-        var miXHR = new XMLHttpRequest();
-        var param = 'question=' + questionId;
-        miXHR.onreadystatechange = peticionEliminarPregCorrecta;
-        miXHR.open("POST", url);
-        miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        miXHR.send(param);
-    });
-    $('#btnEliminarResp').click(function () {
-        var answer = $(this).attr('answer');
-        url = path + "server/question/borrarRespuesta.php"
-        var miXHR = new XMLHttpRequest();
-        console.log(answer)
-        var param = 'answer=' + answer;
-        miXHR.onreadystatechange = peticionEliminarRespCorrecta;
-        miXHR.open("POST", url);
-        miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        miXHR.send(param);
-    });
 
 
 
@@ -84,7 +64,32 @@ $(document).ready(function () {
         $('#nuevaRespuesta').css('display', 'none');
     });
 
+
+    $('#deleteQuestion').click(function () {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás recuperar la pregunta después de borrarla",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar'
+        }).then((result) => {
+            if (result.value) {
+                url = path + "server/question/borrarPregunta.php"
+                var miXHR = new XMLHttpRequest();
+                var param = 'question=' + questionId;
+                miXHR.onreadystatechange = peticionEliminarPregCorrecta;
+                miXHR.open("POST", url);
+                miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                miXHR.send(param);
+
+            }
+        })
+    });
+    
 });
+
 
 
 
@@ -201,6 +206,11 @@ function peticionEditaRespCorrecta() {
 
 function peticionEliminarPregCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
+        Swal.fire(
+            'Eliminado!',
+            'La pregunta ha sido eliminada',
+            'success'
+        )
         window.location.href = 'index.php?option=language&lang=' + languageId + '&name=' + language;
     }
 }
@@ -208,7 +218,12 @@ function peticionEliminarPregCorrecta() {
 function peticionEliminarRespCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
         cargarRespuestas(questionId);
-        $('#elimModalResp').modal('hide');
+        Swal.fire(
+            'Eliminado!',
+            'La respuesta ha sido eliminada',
+            'success'
+        )
+        // $('#elimModalResp').modal('hide');
     }
 }
 
@@ -281,7 +296,7 @@ function peticionRespuestasCorrecta() {
                     '<p id="text-' + respuesta.answerId + '"  class="card-text align-left">' + respuesta.text +
                     '</p>' +
                     '<div class="row">' +
-                    '<div class="col-md-8" style="text-align:left;"><a id="editAnswer-' + respuesta.answerId + '" class="editAnswer" style="color: gray;" href="#">Editar</a>&nbsp;<a  data-toggle="modal" data-target="#elimModalResp" id="deleteAnswer-' + respuesta.answerId + '" class="deleteAnswer" style="color: gray;" href="#">Eliminar</a></div>' +
+                    '<div class="col-md-8" style="text-align:left;"><a id="editAnswer-' + respuesta.answerId + '" class="editAnswer" style="color: gray;" href="#">Editar</a>&nbsp;<a id="deleteAnswer-' + respuesta.answerId + '" class="deleteAnswer" style="color: gray;" href="#">Eliminar</a></div>' +
                     '<div class="col-md-4">' +
                     '<button id="down-' + respuesta.answerId + '" partnerBtn="up-' + respuesta.answerId + '" type="button" class="btn btn-secondary btn-vote"><i class="fa fa-arrow-down"></i></button>' +
                     '<span id="score-' + respuesta.answerId + '">' + respuesta.score + '</span>' +
@@ -304,8 +319,30 @@ function peticionRespuestasCorrecta() {
 
             $('.deleteAnswer').click(function () {
                 var id = $(this).attr('id').split('-')[1];
-                $('#btnEliminarResp').attr('answer', id);
+                var answer = id;
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "No podrás recuperar la respuesta después de borrarla",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar'
+                }).then((result) => {
+                    if (result.value) {
+                        url = path + "server/question/borrarRespuesta.php"
+                        var miXHR = new XMLHttpRequest();
+                        console.log(answer)
+                        var param = 'answer=' + answer;
+                        miXHR.onreadystatechange = peticionEliminarRespCorrecta;
+                        miXHR.open("POST", url);
+                        miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        miXHR.send(param);
+        
+                    }
+                })
             });
+
 
             $('.editAnswer').click(function () {
                 var id = $(this).attr('id').split('-')[1];
