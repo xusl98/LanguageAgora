@@ -84,18 +84,6 @@
         background-color: #b96c63 !important;
     }
 
-    #nametoast{
-        position: absolute;
-        top: 4%;
-        right: 0;
-    }
-    .toast-error-header{
-        color: white;
-        background-color: #c0392b;
-    }
-    .toast-error-body{
-        background-color: #b96c63;
-    }
 
     .validatorValid{
         background: green !important;

@@ -70,15 +70,3 @@ $xajax->processRequest();
             </div>
         </div>
     </div>
-    <!-- TOAST -->
-    <div id="nameToast" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
-        <div class="toast-header toast-error-header">
-            <strong class="mr-auto">Error</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" style="color: white;">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div id="toastText" class="toast-body toast-error-body">
-            La combinación de usuario y contraseña no es correcta.
-        </div>
-    </div>

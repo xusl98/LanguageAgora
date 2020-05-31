@@ -22,7 +22,7 @@ $(document).ready(function () {
     console.log(sesionIniciada)
     cambioSesion();
 
-    $('#nameToast').css('display', 'none');
+    
 
 
 });
@@ -111,14 +111,14 @@ function cambioSesion() {
         sesionIniciada = false;
         document.dispatchEvent(eventoSesionCerrada);
         cambioSesion();
-        $('#toastTitle').text('Cierre de sesión.');
-        $('#toastText').text('Sesión cerrada satisfactoriamente.');
-        $('#nameToast').toast({
-            animation: true,
-            autohide: true,
-            delay: 3000
-        });
-        $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Éxito',
+            text: 'Sesión cerrada satisfactoriamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
         return false;
     });
 }
@@ -134,22 +134,23 @@ function inicioSesionCorrecto() {
             document.dispatchEvent(eventoSesionIniciada);
             cambioSesion();
             $('#inicioModal').modal('hide');
-            $('#toastTitle').text('Inicio de sesión.');
-            $('#toastText').text('Sesión iniciada satisfactoriamente.');
-            $('#nameToast').toast({
-                animation: true,
-                autohide: true,
-                delay: 3000
-            });
-            $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Sesión iniciada satisfactoriamente',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } else {
-            $('#toastText').text('El usuario y la contraseña no coinciden.');
-            $('#nameToast').toast({
-                animation: true,
-                autohide: true,
-                delay: 3000
-            });
-            $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error',
+                text: 'El usuario y la contraseña no coinciden',
+                showConfirmButton: false,
+                timer: 1500
+              })
         }
 
     }

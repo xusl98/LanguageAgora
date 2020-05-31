@@ -144,12 +144,14 @@ function peticionLoginCorrecta() {
             sessionStorage.setItem('user', respuesta[0].userId);
             window.location.href = 'index.php';
         } else {
-            $('#nameToast').toast({
-                animation: true,
-                autohide: true,
-                delay: 3000
-            });
-            $('#nameToast').toast('show');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error',
+                text: 'Las contraseña y usuario no coinciden',
+                showConfirmButton: false,
+                timer: 1000
+            })
         }
 
     }

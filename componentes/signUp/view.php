@@ -75,18 +75,6 @@ $xajax->processRequest();
             </div>
         </div>
     </div>
-    <!-- TOAST -->
-    <div id="nameToast" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
-        <div class="toast-header toast-error-header">
-            <strong class="mr-auto">Error</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" style="color: white;">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div id="toastText" class="toast-body toast-error-body">
-            El nombre insertadoya está siendo utilizado.
-        </div>
-    </div>
 
     <!-- MODAL -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false"

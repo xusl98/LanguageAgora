@@ -20,18 +20,6 @@ a{
 #idiomas{
     margin-top: 4%;
 }
-#nametoast{
-    position: absolute;
-    top: 4%;
-    right: 0;
-}
-.toast-error-header{
-    color: white;
-    background-color: #14801F;
-}
-.toast-error-body{
-    background-color: #53BD5E;
-}
 
 body{
     background-color: #EAEAEA !important;

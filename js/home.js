@@ -22,7 +22,6 @@ $(document).ready(function () {
     console.log(sesionIniciada)
     cambioSesion();
 
-    $('#nameToast').css('display', 'none');
 
 });
 
@@ -108,17 +107,18 @@ function cambioSesion() {
     comprobarChats();
     $('#cerrarSesion').click(function () {
         sessionStorage.setItem('user', null);
+        console.log(sessionStorage.getItem('user'))
         sesionIniciada = false;
         document.dispatchEvent(eventoSesionCerrada);
         cambioSesion();
-        $('#toastTitle').text('Cierre de sesión.');
-        $('#toastText').text('Sesión cerrada satisfactoriamente.');
-        $('#nameToast').toast({
-            animation: true,
-            autohide: true,
-            delay: 3000
-        });
-        $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Éxito',
+            text: 'Sesión cerrada satisfactoriamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
         return false;
     });
 }
@@ -129,25 +129,28 @@ function inicioSesionCorrecto() {
         var respuesta = JSON.parse(this.responseText);
         if (respuesta.length > 0) {
             sessionStorage.setItem('user', respuesta[0].userId);
+            console.log(sessionStorage.getItem('user'))
             sesionIniciada = true;
             document.dispatchEvent(eventoSesionIniciada);
             cambioSesion();
             $('#inicioModal').modal('hide');
-            $('#toastTitle').text('Inicio de sesión.');
-            $('#toastText').text('Sesión iniciada satisfactoriamente.');
-            $('#nameToast').toast({
-                animation: true,
-                autohide: true,
-                delay: 3000
-            });
-            $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Sesión iniciada satisfactoriamente',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } else {
-            $('#nameToast').toast({
-                animation: true,
-                autohide: true,
-                delay: 3000
-            });
-            $('#nameToast').css('display', 'block'); $('#nameToast').toast('show');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error',
+                text: 'El usuario y la contraseña no coinciden',
+                showConfirmButton: false,
+                timer: 1500
+              })
         }
 
     }

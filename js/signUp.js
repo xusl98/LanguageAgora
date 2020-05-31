@@ -9,10 +9,9 @@ var code = 0;
 inputChangeEvent = 1;
 inputChangeEvent = new Event("inputChange", { bubbles: true });
 
-
+cargaUser = 0;
 
 $(document).ready(function () {
-
     $('input').on('blur', function () {
 
         switch (this.id) {
@@ -85,7 +84,8 @@ $(document).on('inputChange', function () {
 
 
 function compruebaNombre(user) {
-    url = path + "server/signUp/compruebaNombre.php"
+    
+    var url = path + "server/signUp/compruebaNombre.php"
     var name = user.value;
 
     var param = 'name=' + name;
@@ -93,36 +93,40 @@ function compruebaNombre(user) {
     if (name.trim() == '') {
         isValid = false;
         $('#validUser').removeClass('validatorValid');
-        $('#toastText').text('El campo nombre no puede estar vacío.');
-        $('#nameToast').toast({
-            animation: true,
-            autohide: true,
-            delay: 3000
-        });
-        $('#nameToast').toast('show');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo nombre no puede estar vacío',
+            showConfirmButton: false,
+            timer: 1000
+        })
         document.dispatchEvent(inputChangeEvent);
     } else {
         var miXHR = new XMLHttpRequest();
-        miXHR.onreadystatechange = peticionCorrecta;
+        miXHR.onreadystatechange = peticionNombreCorrecta;
         miXHR.open("POST", url);
         miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         miXHR.send(param);
     }
+    cargaUser++;
 }
 
-function peticionCorrecta() {
+function peticionNombreCorrecta() {
     if ((this.readyState === 4) && (this.status === 200)) {
         // console.log(this.responseText);
         var respuesta = JSON.parse(this.responseText);
+        console.log(respuesta)
         if (respuesta.length > 0) {
             $('#validUser').removeClass('validatorValid');
-            $('#toastText').text('El nombre insertadoya está siendo utilizado.');
-            $('#nameToast').toast({
-                animation: true,
-                autohide: true,
-                delay: 3000
-            });
-            $('#nameToast').toast('show');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error',
+                text: 'El nombre insertado ya está siendo utilizado',
+                showConfirmButton: false,
+                timer: 1000
+            })
             nameValid = false;
         } else {
             $('#validUser').addClass('validatorValid');
@@ -169,13 +173,14 @@ function passwordNoVacia(password) {
 function comprobarPassword(passoword) {
     if ($('#password').val() != passoword.value) {
         $('#validPass2').removeClass('validatorValid');
-        $('#toastText').text('Las dos contraseñas deben coincidir.');
-        $('#nameToast').toast({
-            animation: true,
-            autohide: true,
-            delay: 3000
-        });
-        $('#nameToast').toast('show');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Error',
+            text: 'Las dos contraseñas deben coincidir',
+            showConfirmButton: false,
+            timer: 1000
+        })
         passwordValid = false;
     } else {
         passwordValid = true;
@@ -197,13 +202,14 @@ function comprobarEmail(email) {
         miXHR.send(param);
     } else {
         $('#validEmail').removeClass('validatorValid');
-        $('#toastText').text('Introduce una dirección de correo válido.');
-        $('#nameToast').toast({
-            animation: true,
-            autohide: true,
-            delay: 3000
-        });
-        $('#nameToast').toast('show');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Error',
+            text: 'Introduce una dirección de correo válida',
+            showConfirmButton: false,
+            timer: 1000
+        })
         emailValid = false;
     }
 
@@ -216,13 +222,14 @@ function peticionEmailCorrecta() {
         var respuesta = JSON.parse(this.responseText);
         if (respuesta.length > 0) {
             $('#validEmail').removeClass('validatorValid');
-            $('#toastText').text('El email insertadoya está siendo utilizado.');
-            $('#nameToast').toast({
-                animation: true,
-                autohide: true,
-                delay: 3000
-            });
-            $('#nameToast').toast('show');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error',
+                text: 'El email insertado ya está siendo utilizado',
+                showConfirmButton: false,
+                timer: 1000
+            })
             emailValid = false;
         } else {
             $('#validEmail').addClass('validatorValid');
