@@ -84,11 +84,11 @@ $(document).on('inputChange', function () {
 
 
 function compruebaNombre(user) {
-    
-    var url = path + "server/signUp/compruebaNombre.php"
+
+    // var url = path + "server/signUp/compruebaNombre.php"
     var name = user.value;
 
-    var param = 'name=' + name;
+    // var param = 'name=' + name;
     // console.log(param)
     if (name.trim() == '') {
         isValid = false;
@@ -103,37 +103,44 @@ function compruebaNombre(user) {
         })
         document.dispatchEvent(inputChangeEvent);
     } else {
-        var miXHR = new XMLHttpRequest();
-        miXHR.onreadystatechange = peticionNombreCorrecta;
-        miXHR.open("POST", url);
-        miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        miXHR.send(param);
+        // var miXHR = new XMLHttpRequest();
+        // miXHR.onreadystatechange = peticionNombreCorrecta;
+        // miXHR.open("POST", url);
+        // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // miXHR.send(param);
+
+        var opciones = { url: path + "server/signUp/compruebaNombre.php", data: { name: name }, type: "POST", dataType: "json", };
+        $.ajax(opciones)
+            .done(peticionNombreCorrecta)
+            // .fail()
+            // .always(peticionNombreCorrecta)
+            ;
     }
     cargaUser++;
 }
 
-function peticionNombreCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        // console.log(this.responseText);
-        var respuesta = JSON.parse(this.responseText);
-        console.log(respuesta)
-        if (respuesta.length > 0) {
-            $('#validUser').removeClass('validatorValid');
-            Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'Error',
-                text: 'El nombre insertado ya está siendo utilizado',
-                showConfirmButton: false,
-                timer: 1000
-            })
-            nameValid = false;
-        } else {
-            $('#validUser').addClass('validatorValid');
-            nameValid = true;
-        }
-
+function peticionNombreCorrecta(respuesta) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    // console.log(this.responseText);
+    // var respuesta = JSON.parse(this.responseText);
+    console.log(respuesta)
+    if (respuesta.length > 0) {
+        $('#validUser').removeClass('validatorValid');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre insertado ya está siendo utilizado',
+            showConfirmButton: false,
+            timer: 1000
+        })
+        nameValid = false;
+    } else {
+        $('#validUser').addClass('validatorValid');
+        nameValid = true;
     }
+
+    // }
     comprobarVacios();
     document.dispatchEvent(inputChangeEvent);
 }
@@ -192,14 +199,21 @@ function comprobarEmail(email) {
     if (validarEmail(email.value)) {
 
 
-        url = path + "server/signUp/compruebaEmail.php"
+        // url = path + "server/signUp/compruebaEmail.php"
 
-        var param = 'email=' + email.value;
-        var miXHR = new XMLHttpRequest();
-        miXHR.onreadystatechange = peticionEmailCorrecta;
-        miXHR.open("POST", url);
-        miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        miXHR.send(param);
+        // var param = 'email=' + email.value;
+        // var miXHR = new XMLHttpRequest();
+        // miXHR.onreadystatechange = peticionEmailCorrecta;
+        // miXHR.open("POST", url);
+        // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // miXHR.send(param);
+
+        var opciones = { url: path + "server/signUp/compruebaEmail.php", data: { email: email.value }, type: "POST", dataType: "json", };
+        $.ajax(opciones)
+            .done(peticionEmailCorrecta)
+            // .fail()
+            // .always(peticionNombreCorrecta)
+            ;
     } else {
         $('#validEmail').removeClass('validatorValid');
         Swal.fire({
@@ -216,48 +230,55 @@ function comprobarEmail(email) {
 
 }
 
-function peticionEmailCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        console.log(this.responseText);
-        var respuesta = JSON.parse(this.responseText);
-        if (respuesta.length > 0) {
-            $('#validEmail').removeClass('validatorValid');
-            Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'Error',
-                text: 'El email insertado ya está siendo utilizado',
-                showConfirmButton: false,
-                timer: 1000
-            })
-            emailValid = false;
-        } else {
-            $('#validEmail').addClass('validatorValid');
-            emailValid = true;
-        }
-
+function peticionEmailCorrecta(respuesta) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    // console.log(this.responseText);
+    // var respuesta = JSON.parse(this.responseText);
+    if (respuesta.length > 0) {
+        $('#validEmail').removeClass('validatorValid');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Error',
+            text: 'El email insertado ya está siendo utilizado',
+            showConfirmButton: false,
+            timer: 1000
+        })
+        emailValid = false;
+    } else {
+        $('#validEmail').addClass('validatorValid');
+        emailValid = true;
     }
+
+    // }
     comprobarVacios();
     document.dispatchEvent(inputChangeEvent);
 }
 
 
 function insertaUsuario(user, pass, email) {
-    url = path + "server/signUp/registraUsuario.php"
+    // url = path + "server/signUp/registraUsuario.php"
 
-    var param = 'name=' + user + '&pass=' + pass + '&email=' + email + '&date=' + (new Date().toLocaleDateString('fr-CA'));
+    // var param = 'name=' + user + '&pass=' + pass + '&email=' + email + '&date=' + (new Date().toLocaleDateString('fr-CA'));
 
-    var miXHR = new XMLHttpRequest();
-    miXHR.onreadystatechange = insercionCorrecta;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
+    // var miXHR = new XMLHttpRequest();
+    // miXHR.onreadystatechange = insercionCorrecta;
+    // miXHR.open("POST", url);
+    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // miXHR.send(param);
+
+    var opciones = { url: path + "server/signUp/registraUsuario.php", data: { name: user, pass: pass, email: email, date: (new Date().toLocaleDateString('fr-CA')) }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEmailCorrecta)
+        // .fail()
+        .always(insercionCorrecta)
+        ;
 
 }
 
 function insercionCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
         console.log(this.responseText)
-    }
+    // }
 }
 

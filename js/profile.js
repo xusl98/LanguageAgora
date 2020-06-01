@@ -8,49 +8,84 @@ $(document).ready(function () {
   userId = urlParams.get('user');
 
   //Datos del perfil
-  url = path + "server/profile/obtenerPerfil.php"
-  var miXHR = new XMLHttpRequest();
-  var param = 'user=' + userId;
-  miXHR.onreadystatechange = peticionPerfilCorrecta;
-  miXHR.open("POST", url);
-  miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  miXHR.send(param);
+  // url = path + "server/profile/obtenerPerfil.php"
+  // var miXHR = new XMLHttpRequest();
+  // var param = 'user=' + userId;
+  // miXHR.onreadystatechange = peticionPerfilCorrecta;
+  // miXHR.open("POST", url);
+  // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  // miXHR.send(param);
+
+  var opciones = { url: path + "server/profile/obtenerPerfil.php", data: { user: userId }, type: "POST", dataType: "json", };
+  $.ajax(opciones)
+    .done(peticionPerfilCorrecta)
+    // .fail()
+    // .always(inicioSesionCorrecto)
+    ;
 
   //Gráfico preguntas
-  url = path + "server/profile/obtenerPreguntasRealizadas.php"
-  var miXHR = new XMLHttpRequest();
-  var param = 'user=' + userId;
-  miXHR.onreadystatechange = peticionGraficoPreguntasCorrecta;
-  miXHR.open("POST", url);
-  miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  miXHR.send(param);
+  // url = path + "server/profile/obtenerPreguntasRealizadas.php"
+  // var miXHR = new XMLHttpRequest();
+  // var param = 'user=' + userId;
+  // miXHR.onreadystatechange = peticionGraficoPreguntasCorrecta;
+  // miXHR.open("POST", url);
+  // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  // miXHR.send(param);
+
+  var opciones = { url: path + "server/profile/obtenerPreguntasRealizadas.php", data: { user: userId }, type: "POST", dataType: "json", };
+  $.ajax(opciones)
+    .done(peticionGraficoPreguntasCorrecta)
+    // .fail()
+    // .always(inicioSesionCorrecto)
+    ;
 
   //Gráfico repuestas
-  url = path + "server/profile/obtenerRespuestasRealizadas.php"
-  var miXHR = new XMLHttpRequest();
-  var param = 'user=' + userId;
-  miXHR.onreadystatechange = peticionGraficoRespuestasCorrecta;
-  miXHR.open("POST", url);
-  miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  miXHR.send(param);
+  // url = path + "server/profile/obtenerRespuestasRealizadas.php"
+  // var miXHR = new XMLHttpRequest();
+  // var param = 'user=' + userId;
+  // miXHR.onreadystatechange = peticionGraficoRespuestasCorrecta;
+  // miXHR.open("POST", url);
+  // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  // miXHR.send(param);
+
+  var opciones = { url: path + "server/profile/obtenerRespuestasRealizadas.php", data: { user: userId }, type: "POST", dataType: "json", };
+  $.ajax(opciones)
+    .done(peticionGraficoRespuestasCorrecta)
+    // .fail()
+    // .always(inicioSesionCorrecto)
+    ;
 
   //Últimas preguntas
-  url = path + "server/profile/obtenerUltimasPreguntas.php"
-  var miXHR = new XMLHttpRequest();
-  var param = 'user=' + userId;
-  miXHR.onreadystatechange = peticionPreguntasCorrecta;
-  miXHR.open("POST", url);
-  miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  miXHR.send(param);
+  // url = path + "server/profile/obtenerUltimasPreguntas.php"
+  // var miXHR = new XMLHttpRequest();
+  // var param = 'user=' + userId;
+  // miXHR.onreadystatechange = peticionPreguntasCorrecta;
+  // miXHR.open("POST", url);
+  // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  // miXHR.send(param);
+
+  var opciones = { url: path + "server/profile/obtenerUltimasPreguntas.php", data: { user: userId }, type: "POST", dataType: "json", };
+  $.ajax(opciones)
+    .done(peticionPreguntasCorrecta)
+    // .fail()
+    // .always(inicioSesionCorrecto)
+    ;
 
   //Últimas respuestas
-  url = path + "server/profile/obtenerUltimasRespuestas.php"
-  var miXHR = new XMLHttpRequest();
-  var param = 'user=' + userId;
-  miXHR.onreadystatechange = peticionRespuestasCorrecta;
-  miXHR.open("POST", url);
-  miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  miXHR.send(param);
+  // url = path + "server/profile/obtenerUltimasRespuestas.php"
+  // var miXHR = new XMLHttpRequest();
+  // var param = 'user=' + userId;
+  // miXHR.onreadystatechange = peticionRespuestasCorrecta;
+  // miXHR.open("POST", url);
+  // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  // miXHR.send(param);
+
+  var opciones = { url: path + "server/profile/obtenerUltimasRespuestas.php", data: { user: userId }, type: "POST", dataType: "json", };
+  $.ajax(opciones)
+    .done(peticionRespuestasCorrecta)
+    // .fail()
+    // .always(inicioSesionCorrecto)
+    ;
 
 
   $('#btnPreguntas').attr('href', 'index.php?option=userList&user=' + userId + '&tipo=Preguntas');
@@ -72,7 +107,7 @@ $(document).ready(function () {
 
 function sesionCambiada() {
   if (sesionIniciada == true) {//Si la sesión está iniciada
-    if (parseInt(sessionStorage.getItem('user')) == userId){//si tu usuario es el mismo que el del perfil se verá el botón de de modif el perfil pero no el de mensaje
+    if (parseInt(sessionStorage.getItem('user')) == userId) {//si tu usuario es el mismo que el del perfil se verá el botón de de modif el perfil pero no el de mensaje
       $('#modPerfil').css('visibility', 'visible');
       $('#mensaje').css('visibility', 'hidden');
     } else {//si tu usuario es distinto al del perfil se verá el botón de mensaje pero no el de modif el perfil
@@ -88,21 +123,21 @@ function sesionCambiada() {
 
 
 
-function peticionPerfilCorrecta() {
-  if ((this.readyState === 4) && (this.status === 200)) {
+function peticionPerfilCorrecta(respuesta) {
+  // if ((this.readyState === 4) && (this.status === 200)) {
     console.log(this.responseText);
-    var respuesta = JSON.parse(this.responseText);
+    // var respuesta = JSON.parse(this.responseText);
     user = respuesta[0];
     console.log(user)
     $('#modPerfil').attr('href', 'index.php?option=modifProfile&user=' + userId + '&userName=' + user.name);
     userName = user.name;
     $('#mensaje').attr('href', 'index.php?option=message&user=' + parseInt(sessionStorage.getItem('user')) + '&receiver=' + userId + '&receiverName=' + userName);
     $('#userTitle').text(user.name);
-  }
+  // }
 }
-function peticionGraficoPreguntasCorrecta() {
-  if ((this.readyState === 4) && (this.status === 200)) {
-    var respuesta = JSON.parse(this.responseText);
+function peticionGraficoPreguntasCorrecta(respuesta) {
+  // if ((this.readyState === 4) && (this.status === 200)) {
+    // var respuesta = JSON.parse(this.responseText);
     var graphData = respuesta;
     console.log(graphData)
 
@@ -136,11 +171,11 @@ function peticionGraficoPreguntasCorrecta() {
         }
       }
     });
-  }
+  // }
 }
-function peticionGraficoRespuestasCorrecta() {
-  if ((this.readyState === 4) && (this.status === 200)) {
-    var respuesta = JSON.parse(this.responseText);
+function peticionGraficoRespuestasCorrecta(respuesta) {
+  // if ((this.readyState === 4) && (this.status === 200)) {
+    // var respuesta = JSON.parse(this.responseText);
     var graphData = respuesta;
     console.log(graphData)
 
@@ -174,11 +209,11 @@ function peticionGraficoRespuestasCorrecta() {
         }
       }
     });
-  }
+  // }
 }
-function peticionPreguntasCorrecta() {
-  if ((this.readyState === 4) && (this.status === 200)) {
-    var preguntas = JSON.parse(this.responseText);
+function peticionPreguntasCorrecta(preguntas) {
+  // if ((this.readyState === 4) && (this.status === 200)) {
+    // var preguntas = JSON.parse(this.responseText);
     console.log(preguntas)
     var html = "";
     for (pregunta of preguntas) {
@@ -189,11 +224,11 @@ function peticionPreguntasCorrecta() {
       $('#btnPreguntas').css('visibility', 'hidden');
     }
     $('#listaPreguntas').html(html);
-  }
+  // }
 }
-function peticionRespuestasCorrecta() {
-  if ((this.readyState === 4) && (this.status === 200)) {
-    var respuestas = JSON.parse(this.responseText);
+function peticionRespuestasCorrecta(respuestas) {
+  // if ((this.readyState === 4) && (this.status === 200)) {
+    // var respuestas = JSON.parse(this.responseText);
     console.log(respuestas)
     var html = "";
     for (respuesta of respuestas) {
@@ -204,5 +239,5 @@ function peticionRespuestasCorrecta() {
       $('#btnRespuestas').css('visibility', 'hidden');
     }
     $('#listaRespuestas').html(html);
-  }
+  // }
 }

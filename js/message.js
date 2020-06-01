@@ -31,25 +31,35 @@ $(document).ready(function () {
 });
 
 function focoUltimoMensaje() {
-    var objDiv =  $('#mensajes')[0];
+    var objDiv = $('#mensajes')[0];
     objDiv.scrollTop = objDiv.scrollHeight;
 }
 
 //TODO hacer sistema de reportes de preguntas
 //TODO hacer que aparezca una notificación al entrar a la página si has recibido algún mensaje de chat
 function marcarLeido() {
-    url = path + "server/message/marcarMensajeLeido.php"
-    var param = 'chatId=' + chatId + '&otraPersona=' + receiver;
-    console.log(param)
-    var miXHR = new XMLHttpRequest();
-    miXHR.onreadystatechange = marcarLeidoCorrectamente;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
+
+
+    var opciones = { url: path + "server/message/marcarMensajeLeido.php", data: { chatId: chatId, otraPersona: receiver }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        .done(marcarLeidoCorrectamente)
+        // .fail()
+        // .always()
+        ;
+
+    // url = path + "server/message/marcarMensajeLeido.php"
+    // var param = 'chatId=' + chatId + '&otraPersona=' + receiver;
+    // console.log(param)
+    // var miXHR = new XMLHttpRequest();
+    // miXHR.onreadystatechange = marcarLeidoCorrectamente;
+    // miXHR.open("POST", url);
+    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // miXHR.send(param);
 }
 
 function insertaMensaje(mensaje) {
-    url = path + "server/message/insertaMensaje.php"
+
+    // url = path + "server/message/insertaMensaje.php"
 
     var d = new Date();
     var fecha = d.getFullYear() + '-' + (parseInt(d.getMonth()) + 1) + '-' + d.getDate();
@@ -61,39 +71,61 @@ function insertaMensaje(mensaje) {
 
     $('#mensaje').val('');
 
-    var miXHR = new XMLHttpRequest();
-    miXHR.onreadystatechange = mensajeInsertadoCorrectamente;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
+    // var miXHR = new XMLHttpRequest();
+    // miXHR.onreadystatechange = mensajeInsertadoCorrectamente;
+    // miXHR.open("POST", url);
+    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // miXHR.send(param);
+
+
+    var opciones = { url: path + "server/message/insertaMensaje.php", data: { sender: parseInt(sessionStorage.getItem('user')), chatId: chatId, text: mensaje, date: fecha, time: hora }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(mensajeInsertadoCorrectamente)
+        // .fail()
+        .always(mensajeInsertadoCorrectamente)
+        ;
 }
 
 
 function comprobarChatCreado() {
-    url = path + "server/message/comprobarChatCreado.php"
-    var param = 'user=' + user + '&receiver=' + receiver;
-    var miXHR = new XMLHttpRequest();
-    miXHR.onreadystatechange = peticionComprobacionCorrecta;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
+    // url = path + "server/message/comprobarChatCreado.php"
+    // var param = 'user=' + user + '&receiver=' + receiver;
+    // var miXHR = new XMLHttpRequest();
+    // miXHR.onreadystatechange = peticionComprobacionCorrecta;
+    // miXHR.open("POST", url);
+    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // miXHR.send(param);
+
+    var opciones = { url: path + "server/message/comprobarChatCreado.php", data: { user: user, receiver: receiver }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        .done(peticionComprobacionCorrecta)
+        // .fail()
+        // .always(mensajeInsertadoCorrectamente)
+        ;
 }
 
 function obtenerMensajes() {
-    url = path + "server/message/obtenerMensajes.php"
-    var param = 'chatId=' + chatId;
-    var miXHR = new XMLHttpRequest();
-    miXHR.onreadystatechange = peticionMensajesCorrecta;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
+    // url = path + "server/message/obtenerMensajes.php"
+    // var param = 'chatId=' + chatId;
+    // var miXHR = new XMLHttpRequest();
+    // miXHR.onreadystatechange = peticionMensajesCorrecta;
+    // miXHR.open("POST", url);
+    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // miXHR.send(param);
+
+    var opciones = { url: path + "server/message/obtenerMensajes.php", data: { chatId: chatId }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        .done(peticionMensajesCorrecta)
+        // .fail()
+        // .always()
+        ;
 }
 
 function mostrarMensajes(mensajes) {
     var html = '';
     var lastDate = '';
     for (mensaje of mensajes) {
-        if (mensaje.dateTime.split(' ')[0] != lastDate){
+        if (mensaje.dateTime.split(' ')[0] != lastDate) {
             //si cambia de día pone el día en el que se han mandado los siguientes mensajes
             html += "<div class=\"row dia\"><div class=\"col-md-12\"><div class=\"diaTexto\" >" + mensaje.dateTime.split(' ')[0] + "</div></div></div>";
         }
@@ -111,44 +143,50 @@ function mostrarMensajes(mensajes) {
     focoUltimoMensaje();
 }
 
-function peticionComprobacionCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        var respuesta = JSON.parse(this.responseText);
-        console.log(this.responseText)
-        if (respuesta.length > 0) {
-            //cuando ya existe el chat
+function peticionComprobacionCorrecta(respuesta) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    // var respuesta = JSON.parse(this.responseText);
+    // console.log(this.responseText)
+    if (respuesta.length > 0) {
+        //cuando ya existe el chat
+        chatId = respuesta[0].chatId;
 
-            chatId = respuesta[0].chatId;
+        marcarLeido();
 
-            marcarLeido();
+        obtenerMensajes();
 
-            obtenerMensajes();
+    } else {
+        //cuando no existe el chat
+        // url = path + "server/message/registraChat.php"
 
-        } else {
-            //cuando no existe el chat
-            url = path + "server/message/registraChat.php"
+        // var param = 'user=' + user + '&receiver=' + receiver;
 
-            var param = 'user=' + user + '&receiver=' + receiver;
+        // var miXHR = new XMLHttpRequest();
+        // miXHR.onreadystatechange = chatCreadoCorrectamente;
+        // miXHR.open("POST", url);
+        // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // miXHR.send(param);
 
-            var miXHR = new XMLHttpRequest();
-            miXHR.onreadystatechange = chatCreadoCorrectamente;
-            miXHR.open("POST", url);
-            miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            miXHR.send(param);
+        var opciones = { url: path + "server/message/registraChat.php", data: { user: user, receiver: receiver }, type: "POST", dataType: "json", };
+        $.ajax(opciones)
+            .done(chatCreadoCorrectamente)
+            // .fail()
+            // .always()
+            ;
 
-            comprobarChatCreado();
-        }
-
+        comprobarChatCreado();
     }
+
+    // }
 }
 
 
-function peticionMensajesCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        var mensajes = JSON.parse(this.responseText);
-        console.log(mensajes)
-        mostrarMensajes(mensajes);
-    }
+function peticionMensajesCorrecta(mensajes) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    // var mensajes = JSON.parse(this.responseText);
+    console.log(mensajes)
+    mostrarMensajes(mensajes);
+    // }
 }
 
 
@@ -158,16 +196,16 @@ function chatCreadoCorrectamente() {
     }
 }
 function marcarLeidoCorrectamente() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        console.log(this.responseText)
-    }
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    // console.log(this.responseText)
+    // }
 }
 
 function mensajeInsertadoCorrectamente() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        console.log(this.responseText)
-        obtenerMensajes();
-    }
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    // console.log(this.responseText)
+    obtenerMensajes();
+    // }
 }
 
 

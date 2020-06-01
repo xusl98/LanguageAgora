@@ -21,23 +21,37 @@ $(document).ready(function () {
             console.log(sessionStorage.getItem('user'))
             console.log(languageId)
             
-            url = path + "server/newQuestion/insertarPregunta.php"
-            var miXHR = new XMLHttpRequest();
-            var param = 'title=' + $('#questionTitle').val() + '&text=' + $('#questionBody').val() + '&user=' + sessionStorage.getItem('user') + '&date=' + (new Date().toLocaleDateString('fr-CA')) + '&lang=' + languageId;
-            miXHR.onreadystatechange = peticionInsertarQuestionCorrecta;
-            miXHR.open("POST", url);
-            miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            miXHR.send(param);
+            // url = path + "server/newQuestion/insertarPregunta.php"
+            // var miXHR = new XMLHttpRequest();
+            // var param = 'title=' + $('#questionTitle').val() + '&text=' + $('#questionBody').val() + '&user=' + sessionStorage.getItem('user') + '&date=' + (new Date().toLocaleDateString('fr-CA')) + '&lang=' + languageId;
+            // miXHR.onreadystatechange = peticionInsertarQuestionCorrecta;
+            // miXHR.open("POST", url);
+            // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // miXHR.send(param);
+
+            var opciones = { url: path + "server/newQuestion/insertarPregunta.php", data: { title: $('#questionTitle').val(), text: $('#questionBody').val(), user: sessionStorage.getItem('user'), date: (new Date().toLocaleDateString('fr-CA')), lang: languageId }, type: "POST", dataType: "json", };
+            $.ajax(opciones)
+                // .done(peticionInsertarQuestionCorrecta)
+                // .fail()
+                .always(peticionInsertarQuestionCorrecta)
+                ;
         });
     } else {
         //Si se edita una pregunta ya existente
-        url = path + "server/question/obtenerPregunta.php"
-        var miXHR = new XMLHttpRequest();
-        var param = 'question=' + questionId;
-        miXHR.onreadystatechange = peticionPreguntasCorrecta;
-        miXHR.open("POST", url);
-        miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        miXHR.send(param);
+        // url = path + "server/question/obtenerPregunta.php"
+        // var miXHR = new XMLHttpRequest();
+        // var param = 'question=' + questionId;
+        // miXHR.onreadystatechange = peticionPreguntasCorrecta;
+        // miXHR.open("POST", url);
+        // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // miXHR.send(param);
+
+        var opciones = { url: path + "server/question/obtenerPregunta.php", data: { question: questionId }, type: "POST", dataType: "json", };
+            $.ajax(opciones)
+                .done(peticionPreguntasCorrecta)
+                // .fail()
+                // .always(peticionInsertarQuestionCorrecta)
+                ;
     }
 
     $('#btnCancelar').click(function (){
@@ -49,9 +63,9 @@ $(document).ready(function () {
 
 });
 
-function peticionPreguntasCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        var preguntas = JSON.parse(this.responseText);
+function peticionPreguntasCorrecta(preguntas) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+        // var preguntas = JSON.parse(this.responseText);
         if (preguntas.length > 0) {
 
             console.log(preguntas)
@@ -70,26 +84,33 @@ function peticionPreguntasCorrecta() {
             console.log(sessionStorage.getItem('user'))
             console.log(languageId)
 
-            url = path + "server/newQuestion/actualizarPregunta.php"
-            var miXHR = new XMLHttpRequest();
-            var param = 'title=' + $('#questionTitle').val() + '&text=' + $('#questionBody').val() + '&id=' + questionId;
-            miXHR.onreadystatechange = peticionActualizarQuestionCorrecta;
-            miXHR.open("POST", url);
-            miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            miXHR.send(param);
+            // url = path + "server/newQuestion/actualizarPregunta.php"
+            // var miXHR = new XMLHttpRequest();
+            // var param = 'title=' + $('#questionTitle').val() + '&text=' + $('#questionBody').val() + '&id=' + questionId;
+            // miXHR.onreadystatechange = peticionActualizarQuestionCorrecta;
+            // miXHR.open("POST", url);
+            // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // miXHR.send(param);
+
+            var opciones = { url: path + "server/newQuestion/actualizarPregunta.php", data: { title: $('#questionTitle').val(), text: $('#questionBody').val(), id: questionId }, type: "POST", dataType: "json", };
+            $.ajax(opciones)
+                // .done(peticionActualizarQuestionCorrecta)
+                // .fail()
+                .always(peticionActualizarQuestionCorrecta)
+                ;
         });
-    }
+    // }
 }
 
 function peticionActualizarQuestionCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
         console.log(this.responseText)
         window.location.href = 'index.php?option=question&question=' + questionId + '&lang=' + languageName + '&langId=' + languageId;
-    }
+    // }
 }
 function peticionInsertarQuestionCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        console.log(this.responseText)
+    // if ((this.readyState === 4) && (this.status === 200)) {
+        // console.log(this.responseText)
         window.location.href = 'index.php?option=language&lang=' + languageId + '&name=' + languageName;
-    }
+    // }
 }

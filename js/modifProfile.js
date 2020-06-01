@@ -19,14 +19,21 @@ $(document).ready(function () {
     $('#btnNombre').click(function () {
         if ($('#userName').val().trim() != '') {
 
-            var url = path + "server/modifProfile/comprobarUsuario.php"
-            var name = $('#user').val();
-            var param = 'name=' + $('#userName').val();
-            var miXHR = new XMLHttpRequest();
-            miXHR.onreadystatechange = peticionUsuarioCorrecta;
-            miXHR.open("POST", url);
-            miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            miXHR.send(param);
+            // var url = path + "server/modifProfile/comprobarUsuario.php"
+            // var name = $('#user').val();
+            // var param = 'name=' + $('#userName').val();
+            // var miXHR = new XMLHttpRequest();
+            // miXHR.onreadystatechange = peticionUsuarioCorrecta;
+            // miXHR.open("POST", url);
+            // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // miXHR.send(param);
+
+            var opciones = { url: path + "server/modifProfile/comprobarUsuario.php", data: { name: $('#userName').val() }, type: "POST", dataType: "json", };
+            $.ajax(opciones)
+                .done(peticionUsuarioCorrecta)
+                // .fail()
+                // .always()
+                ;
 
         } else {
             Swal.fire({
@@ -35,14 +42,14 @@ $(document).ready(function () {
                 title: 'Rellena el campo nombre',
                 showConfirmButton: false,
                 timer: 1500
-              });
+            });
             $('#nombreModal').modal('hide');
         }
     });
 
 
     $('#btnPassword').click(function () {
-        if ($('#oldPass').val().trim() == '' || $('#pass').val().trim() == '' || $('#confPass').val().trim() == ''){
+        if ($('#oldPass').val().trim() == '' || $('#pass').val().trim() == '' || $('#confPass').val().trim() == '') {
             $('#passwordModal').modal('hide');
             Swal.fire({
                 position: 'top-end',
@@ -50,16 +57,23 @@ $(document).ready(function () {
                 title: 'Rellena todos los campos',
                 showConfirmButton: false,
                 timer: 1500
-              });
+            });
         } else {
-            var url = path + "server/modifProfile/comprobarInicio.php"
-            var name = $('#user').val();
-            var param = 'name=' + userName + '&pass=' + $('#oldPass').val();
-            var miXHR = new XMLHttpRequest();
-            miXHR.onreadystatechange = peticionPassCorrecta;
-            miXHR.open("POST", url);
-            miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            miXHR.send(param);
+            // var url = path + "server/modifProfile/comprobarInicio.php"
+            // var name = $('#user').val();
+            // var param = 'name=' + userName + '&pass=' + $('#oldPass').val();
+            // var miXHR = new XMLHttpRequest();
+            // miXHR.onreadystatechange = peticionPassCorrecta;
+            // miXHR.open("POST", url);
+            // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // miXHR.send(param);
+
+            var opciones = { url: path + "server/modifProfile/comprobarInicio.php", data: { name: userName, pass: $('#oldPass').val() }, type: "POST", dataType: "json", };
+            $.ajax(opciones)
+                .done(peticionPassCorrecta)
+                // .fail()
+                // .always()
+                ;
         }
     });
 
@@ -67,34 +81,34 @@ $(document).ready(function () {
 
 $(document).on('sesionCerrada', function () {
     window.history.back();
-  });
+});
 
-function peticionUsuarioCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        // console.log(this.responseText);
-        var respuesta = JSON.parse(this.responseText);
-        if (respuesta.length > 0) {
+function peticionUsuarioCorrecta(respuesta) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    // console.log(this.responseText);
+    // var respuesta = JSON.parse(this.responseText);
+    if (respuesta.length > 0) {
 
-            Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'El nombre de usuario ya existe',
-                showConfirmButton: false,
-                timer: 1500
-              });
-            $('#nombreModal').modal('hide');
-        } else {
-            var url = path + "server/modifProfile/actualizaNombreUsuario.php"
-            var miXHR = new XMLHttpRequest();
-            var param = 'name=' + $('#userName').val() + '&userId=' + userId;
-            miXHR.onreadystatechange = peticionCambioNombreCorrecta;
-            miXHR.open("POST", url);
-            miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            miXHR.send(param);
-            $('#nombreModal').modal('hide');
-        }
-
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'El nombre de usuario ya existe',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        $('#nombreModal').modal('hide');
+    } else {
+        var url = path + "server/modifProfile/actualizaNombreUsuario.php"
+        var miXHR = new XMLHttpRequest();
+        var param = 'name=' + $('#userName').val() + '&userId=' + userId;
+        miXHR.onreadystatechange = peticionCambioNombreCorrecta;
+        miXHR.open("POST", url);
+        miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        miXHR.send(param);
+        $('#nombreModal').modal('hide');
     }
+
+    // }
 }
 
 
@@ -104,45 +118,52 @@ function peticionCambioNombreCorrecta() {
     }
 }
 
-function peticionPassCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        var respuesta = JSON.parse(this.responseText);
-        if (respuesta.length > 0) {
-            if ($('#pass').val() == $('#confPass').val()) {
-                var url = path + "server/modifProfile/actualizaPassword.php"
-                var miXHR = new XMLHttpRequest();
-                var param = 'password=' + $('#pass').val() + '&userId=' + userId;
-                miXHR.onreadystatechange = peticionCambioPassword;
-                miXHR.open("POST", url);
-                miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                miXHR.send(param);
-            } else {
-                $('#passwordModal').modal('hide');
-                
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Las contraseñas no coinciden',
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-            }
+function peticionPassCorrecta(respuesta) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    // var respuesta = JSON.parse(this.responseText);
+    if (respuesta.length > 0) {
+        if ($('#pass').val() == $('#confPass').val()) {
+            // var url = path + "server/modifProfile/actualizaPassword.php"
+            // var miXHR = new XMLHttpRequest();
+            // var param = 'password=' + $('#pass').val() + '&userId=' + userId;
+            // miXHR.onreadystatechange = peticionCambioPassword;
+            // miXHR.open("POST", url);
+            // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // miXHR.send(param);
+
+            var opciones = { url: path + "server/modifProfile/actualizaPassword.php", data: { password: $('#pass').val(), userId: userId }, type: "POST", dataType: "json", };
+            $.ajax(opciones)
+                .done(peticionCambioPassword)
+                // .fail()
+                // .always()
+                ;
         } else {
             $('#passwordModal').modal('hide');
+
             Swal.fire({
                 position: 'top-end',
                 icon: 'error',
-                title: 'Contraseña incorrecta',
+                title: 'Las contraseñas no coinciden',
                 showConfirmButton: false,
                 timer: 1500
-              });
+            });
         }
+    } else {
+        $('#passwordModal').modal('hide');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Contraseña incorrecta',
+            showConfirmButton: false,
+            timer: 1500
+        });
     }
+    // }
 }
 
 function peticionCambioPassword() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        console.log(this.responseText);
+    // if ((this.readyState === 4) && (this.status === 200)) {
+        // console.log(this.responseText);
         $('#passwordModal').modal('hide');
         Swal.fire({
             position: 'top-end',
@@ -150,6 +171,6 @@ function peticionCambioPassword() {
             title: 'Contraseña cambiada satisfactoriamente',
             showConfirmButton: false,
             timer: 1500
-          });
-    }
+        });
+    // }
 }

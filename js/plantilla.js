@@ -4,13 +4,20 @@ var sesionIniciada = false;
 var eventoSesionCerrada = new Event("sesionCerrada", { bubbles: true });
 var eventoSesionIniciada = new Event("sesionIniciada", { bubbles: true });
 $(document).ready(function () {
-    url = path + "server/home/obtenerIdiomas.php"
-    // console.log(param)
-    var miXHR = new XMLHttpRequest();
-    miXHR.onreadystatechange = peticionCorrecta;
-    miXHR.open("GET", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(null);
+    // url = path + "server/home/obtenerIdiomas.php"
+    // // console.log(param)
+    // var miXHR = new XMLHttpRequest();
+    // miXHR.onreadystatechange = peticionCorrecta;
+    // miXHR.open("GET", url);
+    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // miXHR.send(null);
+
+    var opciones = { url: path + "server/home/obtenerIdiomas.php", type: "GET", dataType: "json", };
+    $.ajax(opciones)
+        .done(peticionCorrecta)
+        // .fail()
+        // .always(peticionActualizarQuestionCorrecta)
+        ;
 
     //Si tiene sesión iniciada
     if (parseInt(sessionStorage.getItem('user'))) {
@@ -24,9 +31,9 @@ $(document).ready(function () {
 
 
     $('#inicioSesion').click(function () {
-        setTimeout(function(){ 
+        setTimeout(function () {
             $('#userNav').focus();
-        }, 500);
+        }, 700);
     });
 
 
@@ -34,49 +41,56 @@ $(document).ready(function () {
 });
 
 function comprobarChats() {
-    url = path + "server/home/comprobarChats.php"
-    var miXHR = new XMLHttpRequest();
-    var param = 'userId=' + sessionStorage.getItem('user');
-    console.log(param)
-    miXHR.onreadystatechange = peticionChatsCorrecta;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
+    // url = path + "server/home/comprobarChats.php"
+    // var miXHR = new XMLHttpRequest();
+    // var param = 'userId=' + sessionStorage.getItem('user');
+    // console.log(param)
+    // miXHR.onreadystatechange = peticionChatsCorrecta;
+    // miXHR.open("POST", url);
+    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // miXHR.send(param);
+
+    var opciones = { url: path + "server/home/comprobarChats.php", data: { userId: sessionStorage.getItem('user') }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        .done(peticionChatsCorrecta)
+        // .fail()
+        // .always(peticionActualizarQuestionCorrecta)
+        ;
 }
 
-function peticionChatsCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        var chats = JSON.parse(this.responseText);
-        if (chats.length > 0) {
-            console.log(chats[0])
-            if (chats[0]['chats'] > 0) {
-                $('#badgeChats').css('visibility', 'visible');
-                $('#badgeChats').text(chats[0]['chats']);
-            } else {
-                $('#badgeChats').css('visibility', 'hidden');
-
-            }
-        }
-
-    }
-}
-
-function peticionCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        var idiomas = JSON.parse(this.responseText);
-        if (idiomas.length > 0) {
-            //idiomas el dropdown y la lista de idiomas
-            console.log(idiomas)
-            var dropMenu = '';
-            for (let idioma of idiomas) {
-                dropMenu += '<a class="dropdown-item" href="index.php?option=language&lang=' + idioma.languageId + '&name=' + idioma.name + '">' + idioma.name + '</a>';
-                // $('#dropdown').html(dropMenu);
-            }
+function peticionChatsCorrecta(chats) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    // var chats = JSON.parse(this.responseText);
+    if (chats.length > 0) {
+        console.log(chats[0])
+        if (chats[0]['chats'] > 0) {
+            $('#badgeChats').css('visibility', 'visible');
+            $('#badgeChats').text(chats[0]['chats']);
         } else {
-            alert('Fallo en el servidor');
-        }
+            $('#badgeChats').css('visibility', 'hidden');
 
+        }
     }
+
+    // }
+}
+
+function peticionCorrecta(idiomas) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    // var idiomas = JSON.parse(this.responseText);
+    if (idiomas.length > 0) {
+        //idiomas el dropdown y la lista de idiomas
+        console.log(idiomas)
+        var dropMenu = '';
+        for (let idioma of idiomas) {
+            dropMenu += '<a class="dropdown-item" href="index.php?option=language&lang=' + idioma.languageId + '&name=' + idioma.name + '">' + idioma.name + '</a>';
+            // $('#dropdown').html(dropMenu);
+        }
+    } else {
+        alert('Fallo en el servidor');
+    }
+
+    // }
 }
 
 function cambioSesion() {
@@ -87,19 +101,27 @@ function cambioSesion() {
 
         //Al pulsar incicio de sesión
         $('#btnInicio').click(function () {
-            url = path + "server/index/comprobarInicio.php"
+            // url = path + "server/index/comprobarInicio.php"
             var name = $('#userNav').val();
             var pass = $('#passwordNav').val();
-            var param = 'name=' + name + '&pass=' + pass;
+            // var param = 'name=' + name + '&pass=' + pass;
             $('#userNav').val('');
             $('#passwordNav').val('');
             // console.log(param)
-            console.log(name + ' ' + pass)
-            var miXHR = new XMLHttpRequest();
-            miXHR.onreadystatechange = inicioSesionCorrecto;
-            miXHR.open("POST", url);
-            miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            miXHR.send(param);
+            // console.log(name + ' ' + pass)
+            // var miXHR = new XMLHttpRequest();
+            // miXHR.onreadystatechange = inicioSesionCorrecto;
+            // miXHR.open("POST", url);
+            // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // miXHR.send(param);
+
+
+            var opciones = { url: path + "server/index/comprobarInicio.php", data: { name: name, pass: pass }, type: "POST", dataType: "json", };
+            $.ajax(opciones)
+                .done(inicioSesionCorrecto)
+                // .fail()
+                // .always(inicioSesionCorrecto)
+                ;
             return false;
         });
 
@@ -129,10 +151,10 @@ function cambioSesion() {
     });
 }
 
-function inicioSesionCorrecto() {
-    if ((this.readyState === 4) && (this.status === 200)) {
+function inicioSesionCorrecto(respuesta) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
         // console.log(this.responseText);
-        var respuesta = JSON.parse(this.responseText);
+        // var respuesta = JSON.parse(this.responseText);
         if (respuesta.length > 0) {
             sessionStorage.setItem('user', respuesta[0].userId);
             console.log(sessionStorage.getItem('user'))
@@ -159,7 +181,7 @@ function inicioSesionCorrecto() {
             })
         }
 
-    }
+    // }
 }
 
 

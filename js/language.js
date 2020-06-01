@@ -3,6 +3,8 @@ var languageId;
 var languageName;
 var num = 10;
 
+
+
 $(document).ready(function () {
 
 
@@ -68,13 +70,22 @@ function obtenerPreguntas() {
         $('#chipText').text(filter);
     }
     console.log('-' + filter + '-')
-    url = path + "server/language/obtenerPreguntas.php"
-    var miXHR = new XMLHttpRequest();
-    var param = 'lang=' + languageId + '&num=' + num + '&filter=' + filter;
-    miXHR.onreadystatechange = peticionPreguntasCorrecta;
-    miXHR.open("POST", url);
-    miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    miXHR.send(param);
+
+    var opciones = { url: path + "server/language/obtenerPreguntas.php", data: { lang: languageId, num: num, filter: filter }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        .done(peticionPreguntasCorrecta)
+        // .fail()
+        // .always()
+        ;
+
+
+    // url = path + "server/language/obtenerPreguntas.php"
+    // var miXHR = new XMLHttpRequest();
+    // var param = 'lang=' + languageId + '&num=' + num + '&filter=' + filter;
+    // miXHR.onreadystatechange = peticionPreguntasCorrecta;
+    // miXHR.open("POST", url);
+    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // miXHR.send(param);
 
     // url = path + "server/language/obtenerUsuariosMasPreguntas.php"
     // var miXHR = new XMLHttpRequest();
@@ -93,9 +104,9 @@ function obtenerPreguntas() {
     // miXHR.send(param);
 }
 
-function peticionPreguntasCorrecta() {
-    if ((this.readyState === 4) && (this.status === 200)) {
-        var preguntas = JSON.parse(this.responseText);
+function peticionPreguntasCorrecta(preguntas) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+        // var preguntas = JSON.parse(this.responseText);
         if (preguntas.length > 0) {
             //idiomas el dropdown y la lista de idiomas
             console.log(preguntas)
@@ -110,7 +121,7 @@ function peticionPreguntasCorrecta() {
             console.log('No hay preguntas')
         }
 
-    }
+    // }
 }
 // function peticionUsuariosPreguntasCorrecta() {
 //     if ((this.readyState === 4) && (this.status === 200)) {
