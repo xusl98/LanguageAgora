@@ -1,6 +1,6 @@
 #chats{
     overflow-y: scroll;
-    height: 50vh;
+    height: 70vh;
     width: 100%;
     background-color: white;
 }
@@ -19,3 +19,9 @@
 .chatDestacado{
     background-color: #F3F5A2;
 }
+.content{
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid #1A5F83;
+    padding-top: 1%;
+  }

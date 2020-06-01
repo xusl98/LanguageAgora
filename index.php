@@ -49,7 +49,7 @@
     }
 
     $nav = '
-    <nav class="navbar navbar-expand-lg row nav">
+    <nav style="z-index:999" class="navbar navbar-expand-lg row nav">
         <div class="col-md-5">
             <a class="navbar-brand" href="index.php">LanguageAgora</a>
         </div>
@@ -103,7 +103,7 @@
             
     </div>
     <!-- MODAL Iniciar sesión -->
-    <div class="modal fade" id="inicioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="inicioModal" tabindex="-1" role="dialog" 
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -1,0 +1,15 @@
+
+.fondoNegro{
+    display: inline-block;
+    padding: 1%;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,.2);
+}
+
+.menosOscuro{
+    background-color: rgba(0,0,0,.1) !important;
+}
+.masOscuro{
+    background-color: rgba(0,0,0,.4) !important;
+}
+

@@ -1,12 +1,12 @@
 <script src="./js/profile.js"></script>
-
+<link rel="stylesheet" href="./css/profile.css">
 <?php 
 $user = $_GET['user'];
 ?> 
 
 <div class="row">
             <div class="col-md-3">&nbsp;</div>
-            <div class="col-md-6" style="margin-top: 2%;">
+            <div class="col-md-6 content" style="margin-top: 2%;">
                 <div>
                     <!-- CONTENIDO -->
                     <div class="container-fluid">
@@ -33,7 +33,7 @@ $user = $_GET['user'];
                                             class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
                                     </div>
                                 </div>
-                                <a href="#" id="btnPreguntas" class="btn btn-primary">Ver Todas</a>
+                                <a href="#" id="btnPreguntas" class="btn btn-primary btnTodas">Ver Todas</a>
                             </div>
                             <div class="col-md-6">
                                 <h5>Últimas Respuestas</h5>
@@ -42,7 +42,7 @@ $user = $_GET['user'];
                                             class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
                                     </div>
                                 </div>
-                                <a href="#" id="btnRespuestas" class="btn btn-primary">Ver Todas</a>
+                                <a href="#" id="btnRespuestas" class="btn btn-primary btnTodas">Ver Todas</a>
                             </div>
                         </div>
                         <div class="row">

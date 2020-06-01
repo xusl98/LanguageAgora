@@ -1,5 +1,19 @@
 
 
+.carousel-item {
+    height: 700px;
+  }
+  
+  .carousel-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+  }
+
+  
+
+
 nav{
     background-color: #013652 !important;
 }

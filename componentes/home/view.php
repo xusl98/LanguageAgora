@@ -1,8 +1,8 @@
 
 <script src="./js/home.js"></script>
+<link rel="stylesheet" href="./css/home.css">
 <div class="row">
-            <div class="col-md-3">&nbsp;</div>
-            <div class="col-md-6" style="margin-top: 2%;">
+            <div class="col-md-12" style="margin-top: -2%;">
                 <div>
                     <!-- CONTENIDO -->
                     <!-- CAROUSSEL -->
@@ -14,24 +14,30 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="./resources/slider/foto1.PNG" class="d-block w-100" alt="...">
+                                <img src="./resources/slider/foto1.jpg" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>Pregunta</h5>
-                                    <p>Haz preguntas sobre las dudas que te surjan.</p>
+                                    <div class="fondoNegro menosOscuro">
+                                        <h5>Pregunta</h5>
+                                        <p>Haz preguntas sobre las dudas que te surjan.</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="./resources/slider/foto2.PNG" class="d-block w-100" alt="...">
+                                <img src="./resources/slider/foto2.jpg" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>Responde</h5>
-                                    <p>Ayuda a resolver las dudas de otros usuarios</p>
+                                    <div class="fondoNegro">
+                                        <h5>Responde</h5>
+                                        <p>Ayuda a resolver las dudas de otros usuarios</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="./resources/slider/foto3.PNG" class="d-block w-100" alt="...">
+                                <img src="./resources/slider/foto3.jpg" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>Valora</h5>
-                                    <p>Valora las respuestas de otros usuarios.</p>
+                                    <div class="fondoNegro masOscuro">
+                                        <h5>Valora</h5>
+                                        <p>Valora las respuestas de otros usuarios.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +53,7 @@
                         </a>
                     </div>
                     <!-- LISTA IDIOMAS -->
-                    <div style="margin-bottom: 2%;" id="idiomas">
+                    <div style="margin-bottom: 2%; text-align:center; padding: 0 20% 0 20%;" id="idiomas">
                         <h1>Idiomas</h1>
                         <div id="lista" class="list-group">
                         <?php 
@@ -60,5 +66,4 @@
                     <!-- CONTENIDO -->
                 </div>
             </div>
-            <div class="col-md-3">&nbsp;</div>
         </div>

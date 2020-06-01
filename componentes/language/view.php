@@ -17,7 +17,7 @@
                       </ul>
                 </div>
             </div>
-            <div class="col-md-6" style="margin-top: 2%;"> 
+            <div class="col-md-6 content" style="margin-top: 2%;"> 
                 <div>
                     <!-- CONTENIDO -->
                     <h1 id="titulo"></h1>
@@ -36,10 +36,10 @@
                     <div class="row">
                         <div class="col-9">&nbsp;</div>
                         <div class="col-3">
-                            <a id="newQuestionAnchor" href="#" class="btn btn-primary">Realizar una
+                            <a id="newQuestionAnchor" href="#" class="anchor btn btn-primary">Realizar una
                                 Pregunta</a>
                             <a id="newQuestionAnchor2" style="display: none;" data-toggle="modal"
-                                data-target="#inicioModal" class="btn btn-primary">Realizar una
+                                data-target="#inicioModal" class="anchor btn btn-primary">Realizar una
                                 Pregunta</a>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                     </div>
                     <!-- LISTA PREGUNTAS -->
                     <div style="text-align: center;">
-                        <button type="button" id="btnVerMas" class="btn btn-primary">Ver más</button>
+                        <button type="button" id="btnVerMas" class="anchor btn btn-primary">Ver más</button>
                     </div>
                     <!-- CONTENIDO -->
                 </div>

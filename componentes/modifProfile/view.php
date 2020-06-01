@@ -1,7 +1,8 @@
 <script src="./js/modifProfile.js"></script>
+<link rel="stylesheet" href="./css/modifProfile.css">
 <div class="row">
             <div class="col-md-3">&nbsp;</div>
-            <div class="col-md-6" style="margin-top: 2%;">
+            <div class="col-md-6 content" style="margin-top: 2%;">
                 <div>
                     <!-- CONTENIDO -->
                     <div class="container-fluid ">

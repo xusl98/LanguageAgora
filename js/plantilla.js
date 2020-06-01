@@ -22,7 +22,13 @@ $(document).ready(function () {
     console.log(sesionIniciada)
     cambioSesion();
 
-    
+
+    $('#inicioSesion').click(function () {
+        setTimeout(function(){ 
+            $('#userNav').focus();
+        }, 500);
+    });
+
 
 
 });
@@ -43,14 +49,14 @@ function peticionChatsCorrecta() {
         var chats = JSON.parse(this.responseText);
         if (chats.length > 0) {
             console.log(chats[0])
-            if (chats[0]['chats'] > 0){
+            if (chats[0]['chats'] > 0) {
                 $('#badgeChats').css('visibility', 'visible');
                 $('#badgeChats').text(chats[0]['chats']);
             } else {
                 $('#badgeChats').css('visibility', 'hidden');
 
             }
-        } 
+        }
 
     }
 }
@@ -88,7 +94,7 @@ function cambioSesion() {
             $('#userNav').val('');
             $('#passwordNav').val('');
             // console.log(param)
-            console.log(name + ' ' + pass )
+            console.log(name + ' ' + pass)
             var miXHR = new XMLHttpRequest();
             miXHR.onreadystatechange = inicioSesionCorrecto;
             miXHR.open("POST", url);
@@ -118,7 +124,7 @@ function cambioSesion() {
             text: 'Sesión cerrada satisfactoriamente',
             showConfirmButton: false,
             timer: 1500
-          })
+        })
         return false;
     });
 }
@@ -141,7 +147,7 @@ function inicioSesionCorrecto() {
                 text: 'Sesión iniciada satisfactoriamente',
                 showConfirmButton: false,
                 timer: 1500
-              })
+            })
         } else {
             Swal.fire({
                 position: 'top-end',
@@ -150,8 +156,15 @@ function inicioSesionCorrecto() {
                 text: 'El usuario y la contraseña no coinciden',
                 showConfirmButton: false,
                 timer: 1500
-              })
+            })
         }
 
     }
 }
+
+
+$(document).on("keypress", "input", function (e) {
+    if (e.which == 13) {
+        $('#btnInicio').click();
+    }
+});

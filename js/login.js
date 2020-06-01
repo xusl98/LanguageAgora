@@ -20,9 +20,9 @@ $(document).ready(function () {
 
 
         Swal.fire({
-            title: 'Input email address',
+            title: 'Email',
             input: 'email',
-            inputPlaceholder: 'Enter your email address'
+            inputPlaceholder: 'Introduce tu correo electrónico'
         }).then((result) => {
             email = result.value;
 
