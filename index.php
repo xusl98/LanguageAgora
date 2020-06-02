@@ -76,7 +76,7 @@
             </div>
             <div class="dropdown col-md-6">
                 <div class="input-group mb-3">
-                    <input id="inputBUsuario" type="text" class="form-control" placeholder="Usuario..." >
+                    <input id="inputBUsuario" btn="btnBUsuario" type="text" class="form-control" placeholder="Usuario..." >
                     <div class="input-group-append">
                         <button id="btnBUsuario" class="input-group-text btn btn-light"><i class="fas fa-search"></i></button>
                     </div>
@@ -112,13 +112,13 @@
                         <div class="form-group row">
                           <label for="userNav" class="col-md-2 col-form-label">Usuario</label>
                           <div class="col-md-10">
-                            <input type="text" class="form-control" id="userNav">
+                            <input btn="btnInicio" type="text" class="form-control" id="userNav">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="passwordNav" class="col-md-2 col-form-label">Contraseña</label>
                           <div class="col-md-10">
-                            <input type="password" class="form-control" id="passwordNav">
+                            <input btn="btnInicio" type="password" class="form-control" id="passwordNav">
                           </div>
                         </div>
                       </form>

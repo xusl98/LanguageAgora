@@ -79,34 +79,9 @@ function obtenerPreguntas() {
         ;
 
 
-    // url = path + "server/language/obtenerPreguntas.php"
-    // var miXHR = new XMLHttpRequest();
-    // var param = 'lang=' + languageId + '&num=' + num + '&filter=' + filter;
-    // miXHR.onreadystatechange = peticionPreguntasCorrecta;
-    // miXHR.open("POST", url);
-    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // miXHR.send(param);
-
-    // url = path + "server/language/obtenerUsuariosMasPreguntas.php"
-    // var miXHR = new XMLHttpRequest();
-    // var param = 'lang=' + languageId;
-    // miXHR.onreadystatechange = peticionUsuariosPreguntasCorrecta;
-    // miXHR.open("POST", url);
-    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // miXHR.send(param);
-
-    // url = path + "server/language/obtenerUsuariosMasRespuestas.php"
-    // var miXHR = new XMLHttpRequest();
-    // var param = 'lang=' + languageId;
-    // miXHR.onreadystatechange = peticionUsuariosRespuestasCorrecta;
-    // miXHR.open("POST", url);
-    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // miXHR.send(param);
 }
 
 function peticionPreguntasCorrecta(preguntas) {
-    // if ((this.readyState === 4) && (this.status === 200)) {
-        // var preguntas = JSON.parse(this.responseText);
         if (preguntas.length > 0) {
             //idiomas el dropdown y la lista de idiomas
             console.log(preguntas)
@@ -121,43 +96,6 @@ function peticionPreguntasCorrecta(preguntas) {
             console.log('No hay preguntas')
         }
 
-    // }
 }
-// function peticionUsuariosPreguntasCorrecta() {
-//     if ((this.readyState === 4) && (this.status === 200)) {
-//         var usuarios = JSON.parse(this.responseText);
-//         if (usuarios.length > 0) {
-//             //lista usuarios con más preguntas
-//             console.log(usuarios)
-//             var lista = '';
-//             for (let usuario of usuarios) {
-//                 lista += '<a href="index.php?option=profile&user=' + usuario.userId + '" class="list-group-item d-flex justify-content-between align-items-center user">' + usuario.name + '<span class="badge badge-primary badge-pill">' + usuario.questions + '</span></a>';
-//             }
-//             // $('#listaUsuariosPreguntas').html(lista);
-//             console.log(lista)
-//         } else {
-//             console.log('No hay usuarios')
-//         }
-
-//     }
-// }
-// function peticionUsuariosRespuestasCorrecta() {
-//     if ((this.readyState === 4) && (this.status === 200)) {
-//         var usuarios = JSON.parse(this.responseText);
-//         if (usuarios.length > 0) {
-//             //lista usuarios con más respuestas
-//             console.log(usuarios)
-//             var lista = '';
-//             for (let usuario of usuarios) {
-//                 lista += '<a href="index.php?option=profile&user=' + usuario.userId + '" class="list-group-item d-flex justify-content-between align-items-center user">' + usuario.name + '<span class="badge badge-primary badge-pill">' + usuario.answers + '</span></a>';
-//             }
-//             // $('#listaUsuariosRespuestas').html(lista);
-//             console.log(lista)
-//         } else {
-//             console.log('No hay usuarios')
-//         }
-
-//     }
-// }
 
 

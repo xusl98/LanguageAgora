@@ -4,20 +4,7 @@ var sesionIniciada = false;
 var eventoSesionCerrada = new Event("sesionCerrada", { bubbles: true });
 var eventoSesionIniciada = new Event("sesionIniciada", { bubbles: true });
 $(document).ready(function () {
-    // url = path + "server/home/obtenerIdiomas.php"
-    // // console.log(param)
-    // var miXHR = new XMLHttpRequest();
-    // miXHR.onreadystatechange = peticionCorrecta;
-    // miXHR.open("GET", url);
-    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // miXHR.send(null);
 
-    var opciones = { url: path + "server/home/obtenerIdiomas.php", type: "GET", dataType: "json", };
-    $.ajax(opciones)
-        .done(peticionCorrecta)
-        // .fail()
-        // .always(peticionActualizarQuestionCorrecta)
-        ;
 
     //Si tiene sesión iniciada
     if (parseInt(sessionStorage.getItem('user'))) {
@@ -51,14 +38,6 @@ $(document).ready(function () {
 });
 
 function comprobarChats() {
-    // url = path + "server/home/comprobarChats.php"
-    // var miXHR = new XMLHttpRequest();
-    // var param = 'userId=' + sessionStorage.getItem('user');
-    // console.log(param)
-    // miXHR.onreadystatechange = peticionChatsCorrecta;
-    // miXHR.open("POST", url);
-    // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // miXHR.send(param);
 
     var opciones = { url: path + "server/home/comprobarChats.php", data: { userId: sessionStorage.getItem('user') }, type: "POST", dataType: "json", };
     $.ajax(opciones)
@@ -83,8 +62,6 @@ function peticionBusquedaUsuario(usuario) {
     }
 }
 function peticionChatsCorrecta(chats) {
-    // if ((this.readyState === 4) && (this.status === 200)) {
-    // var chats = JSON.parse(this.responseText);
     if (chats.length > 0) {
         console.log(chats[0])
         if (chats[0]['chats'] > 0) {
@@ -96,26 +73,8 @@ function peticionChatsCorrecta(chats) {
         }
     }
 
-    // }
 }
 
-function peticionCorrecta(idiomas) {
-    // if ((this.readyState === 4) && (this.status === 200)) {
-    // var idiomas = JSON.parse(this.responseText);
-    if (idiomas.length > 0) {
-        //idiomas el dropdown y la lista de idiomas
-        console.log(idiomas)
-        var dropMenu = '';
-        for (let idioma of idiomas) {
-            dropMenu += '<a class="dropdown-item" href="index.php?option=language&lang=' + idioma.languageId + '&name=' + idioma.name + '">' + idioma.name + '</a>';
-            // $('#dropdown').html(dropMenu);
-        }
-    } else {
-        alert('Fallo en el servidor');
-    }
-
-    // }
-}
 
 function cambioSesion() {
     var perfilDropdown = '';
@@ -125,19 +84,10 @@ function cambioSesion() {
 
         //Al pulsar incicio de sesión
         $('#btnInicio').click(function () {
-            // url = path + "server/index/comprobarInicio.php"
             var name = $('#userNav').val();
             var pass = $('#passwordNav').val();
-            // var param = 'name=' + name + '&pass=' + pass;
             $('#userNav').val('');
             $('#passwordNav').val('');
-            // console.log(param)
-            // console.log(name + ' ' + pass)
-            // var miXHR = new XMLHttpRequest();
-            // miXHR.onreadystatechange = inicioSesionCorrecto;
-            // miXHR.open("POST", url);
-            // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            // miXHR.send(param);
 
 
             var opciones = { url: path + "server/index/comprobarInicio.php", data: { name: name, pass: pass }, type: "POST", dataType: "json", };
@@ -152,7 +102,6 @@ function cambioSesion() {
     } else {
         perfilDropdown = '<a class="dropdown-item" href="index.php?option=profile&user=' + sessionStorage.getItem('user') + '">Ver Perfil</a>';
         perfilDropdown += '<a id="toChats" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '" class="notification dropdown-item"><span>Chats</span><span id="badgeChats" class="badge">3</span></a>';
-        // perfilDropdown += '<a id="toChats" class="dropdown-item" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '">Chats</a>';
         perfilDropdown += '<span style="cursor: pointer;" class="dropdown-item" id="cerrarSesion" href="#">Cerrar Sesión</span>';
     }
     $('#perfilDropdown').html(perfilDropdown);
@@ -176,9 +125,6 @@ function cambioSesion() {
 }
 
 function inicioSesionCorrecto(respuesta) {
-    // if ((this.readyState === 4) && (this.status === 200)) {
-    // console.log(this.responseText);
-    // var respuesta = JSON.parse(this.responseText);
     if (respuesta.length > 0) {
         sessionStorage.setItem('user', respuesta[0].userId);
         console.log(sessionStorage.getItem('user'))
@@ -205,12 +151,14 @@ function inicioSesionCorrecto(respuesta) {
         })
     }
 
-    // }
 }
 
 
 $(document).on("keypress", "input", function (e) {
     if (e.which == 13) {
-        $('#btnInicio').click();
+        //Se ejecutará click en el botón correspondiente al input en el que esté situado el foco
+        var btn= e.target.getAttribute('btn');
+        console.log(btn)
+        $('#' + btn).click();
     }
 });

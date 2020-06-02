@@ -5,13 +5,6 @@ $(document).ready(function () {
         url = path + "server/index/comprobarInicio.php"
         var name = $('#user').val();
         var pass = $('#password').val();
-        // var param = 'name=' + name + '&pass=' + pass;
-        // console.log(param)
-        // var miXHR = new XMLHttpRequest();
-        // miXHR.onreadystatechange = peticionLoginCorrecta;
-        // miXHR.open("POST", url);
-        // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        // miXHR.send(param);
 
 
         var opciones = { url: path + "server/index/comprobarInicio.php", data: { name: name, pass: pass }, type: "POST", dataType: "json", };
@@ -41,14 +34,6 @@ $(document).ready(function () {
                 // .always()
                 ;
 
-            // var url = path + "server/index/comprobarCorreo.php"
-            // var param = 'correo=' + email;
-            // // console.log(param)
-            // var miXHR = new XMLHttpRequest();
-            // miXHR.onreadystatechange = peticionCorreoCorrecta;
-            // miXHR.open("POST", url);
-            // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            // miXHR.send(param);
         });
 
     });
@@ -56,9 +41,6 @@ $(document).ready(function () {
 });
 
 function peticionCorreoCorrecta(respuesta) {
-    // if ((this.readyState === 4) && (this.status === 200)) {
-    // console.log(this.responseText);
-    // var respuesta = JSON.parse(this.responseText);
     if (respuesta.length > 0) {
         var email = respuesta[0]['email'];
         console.log(email)
@@ -115,14 +97,6 @@ function peticionCorreoCorrecta(respuesta) {
                             ;
 
 
-                        // var url = path + "server/index/cambiarPassword.php"
-                        // var param = 'userId=' + respuesta[0]['userId'] + '&password=' + answers[1];
-                        // // console.log(param)
-                        // var miXHR = new XMLHttpRequest();
-                        // miXHR.onreadystatechange = peticionCambioPassCorrecta;
-                        // miXHR.open("POST", url);
-                        // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        // miXHR.send(param);
                     } else {
                         Swal.fire({
                             icon: 'error',
@@ -149,23 +123,17 @@ function peticionCorreoCorrecta(respuesta) {
         })
     }
 
-    // }
 }
 
 function peticionCambioPassCorrecta() {
-    // if ((this.readyState === 4) && (this.status === 200)) {
         console.log(this.responseText);
         Swal.fire({
             icon: 'success',
             title: 'Contraseña cambiada satisfactoriamente'
         })
 
-    // }
 }
 function peticionLoginCorrecta(respuesta) {
-    // if ((this.readyState === 4) && (this.status === 200)) {
-    // console.log(this.responseText);
-    // var respuesta = JSON.parse(this.responseText);
     if (respuesta.length > 0) {
         sessionStorage.setItem('user', respuesta[0].userId);
         window.location.href = 'index.php';
@@ -180,5 +148,4 @@ function peticionLoginCorrecta(respuesta) {
         })
     }
 
-    // }
 }
