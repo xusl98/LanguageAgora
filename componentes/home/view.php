@@ -54,8 +54,11 @@
                     </div>
                     <!-- LISTA IDIOMAS -->
                     <div style="margin-bottom: 2%; text-align:center; padding: 0 20% 0 20%;" id="idiomas">
-                        <h1>Idiomas</h1>
-                        <div id="lista" class="list-group">
+                        <!-- <h1>Idiomas</h1> -->
+                        <a id="idiomasDesp" data-toggle="collapse" href="#lista" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <h1>Idiomas <i id="despleg" class="fas fa-chevron-right"></i></h1>
+                        </a>
+                        <div id="lista" class="list-group collapse">
                         <?php 
                         foreach ($idiomas as $idioma){
                             echo '<a href="index.php?option=language&lang='.$idioma['languageId'].'&name='.$idioma['name'].'" class="list-group-item list-group-item-action">'.$idioma['name'].'</a>';
