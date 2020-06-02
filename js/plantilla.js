@@ -36,6 +36,16 @@ $(document).ready(function () {
         }, 700);
     });
 
+    $('#btnBUsuario').click(function () {
+        var name = $('#inputBUsuario').val();
+        var opciones = { url: path + "server/home/buscarUsuario.php", data: { name: name }, type: "POST", dataType: "json", };
+        $.ajax(opciones)
+            // .done(peticionBusquedaUsuario)
+            // .fail()
+            .always(peticionBusquedaUsuario)
+            ;
+    });
+
 
 
 });
@@ -58,6 +68,20 @@ function comprobarChats() {
         ;
 }
 
+function peticionBusquedaUsuario(usuario) {
+    if (usuario.length > 0) {
+        //Usuario no encontrado
+        console.log(usuario)
+        window.location.href = "index.php?option=profile&user=" + usuario[0]['userId'];
+    } else {
+        //No encontrado
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Usuario no encontrado',
+        })
+    }
+}
 function peticionChatsCorrecta(chats) {
     // if ((this.readyState === 4) && (this.status === 200)) {
     // var chats = JSON.parse(this.responseText);
@@ -153,33 +177,33 @@ function cambioSesion() {
 
 function inicioSesionCorrecto(respuesta) {
     // if ((this.readyState === 4) && (this.status === 200)) {
-        // console.log(this.responseText);
-        // var respuesta = JSON.parse(this.responseText);
-        if (respuesta.length > 0) {
-            sessionStorage.setItem('user', respuesta[0].userId);
-            console.log(sessionStorage.getItem('user'))
-            sesionIniciada = true;
-            document.dispatchEvent(eventoSesionIniciada);
-            cambioSesion();
-            $('#inicioModal').modal('hide');
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Éxito',
-                text: 'Sesión iniciada satisfactoriamente',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        } else {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'Error',
-                text: 'El usuario y la contraseña no coinciden',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        }
+    // console.log(this.responseText);
+    // var respuesta = JSON.parse(this.responseText);
+    if (respuesta.length > 0) {
+        sessionStorage.setItem('user', respuesta[0].userId);
+        console.log(sessionStorage.getItem('user'))
+        sesionIniciada = true;
+        document.dispatchEvent(eventoSesionIniciada);
+        cambioSesion();
+        $('#inicioModal').modal('hide');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Éxito',
+            text: 'Sesión iniciada satisfactoriamente',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    } else {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Error',
+            text: 'El usuario y la contraseña no coinciden',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
 
     // }
 }

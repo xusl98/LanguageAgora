@@ -49,7 +49,7 @@
     }
 
     $nav = '
-    <nav style="z-index:999" class="navbar navbar-expand-lg row nav">
+    <nav style="z-index:100" class="navbar navbar-expand-lg row nav">
         <div class="col-md-5">
             <a class="navbar-brand" href="index.php">LanguageAgora</a>
         </div>
@@ -75,16 +75,10 @@
                 <div id="perfilDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
             </div>
             <div class="dropdown col-md-6">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Configuración
-                </a>
-                <div id="confDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <div class="dropdown-item">
-                        <div class="custom-control custom-switch ">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                            <label class="custom-control-label" for="customSwitch1">Modo Oscuro</label>
-                        </div>
+                <div class="input-group mb-3">
+                    <input id="inputBUsuario" type="text" class="form-control" placeholder="Usuario..." >
+                    <div class="input-group-append">
+                        <button id="btnBUsuario" class="input-group-text btn btn-light"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
             </div>

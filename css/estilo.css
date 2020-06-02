@@ -11,7 +11,14 @@
       height: 100%;
   }
 
-  
+  #inputBUsuario{
+    background-color: #5D75A1;
+     color: white;
+  }
+
+  #inputBUsuario::placeholder{
+     color: white;
+  }
 
 
 nav{
