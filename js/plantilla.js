@@ -13,6 +13,12 @@ $(document).ready(function () {
     } else {
         sesionIniciada = false;
     }
+    if (sessionStorage.getItem('name')){
+        $('#profileDrop').text(sessionStorage.getItem('name'));
+    } else {
+        $('#profileDrop').text('Perfil');
+    }
+
     console.log(sesionIniciada)
     cambioSesion();
 
@@ -79,7 +85,10 @@ function peticionChatsCorrecta(chats) {
 function cambioSesion() {
     var perfilDropdown = '';
     if (!sesionIniciada) {
+        $('#profileDrop').text('Perfil');
         perfilDropdown = '<a id="inicioSesion" class="dropdown-item" href="#" data-toggle="modal" data-target="#inicioModal">Iniciar Sesión</a>';
+        chatHtml = '';
+        $('#pestChats').html(chatHtml);
         perfilDropdown += '<a class="dropdown-item" href="index.php?option=signUp">Registrarse</a>';
 
         //Al pulsar incicio de sesión
@@ -101,13 +110,16 @@ function cambioSesion() {
 
     } else {
         perfilDropdown = '<a class="dropdown-item" href="index.php?option=profile&user=' + sessionStorage.getItem('user') + '">Ver Perfil</a>';
-        perfilDropdown += '<a id="toChats" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '" class="notification dropdown-item"><span>Chats</span><span id="badgeChats" class="badge">3</span></a>';
+        chatHtml = '<a id="toChats" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '" class="notification nav-link"><span>Chats</span><span id="badgeChats" class="badge">3</span></a>';
+        $('#pestChats').html(chatHtml);
         perfilDropdown += '<span style="cursor: pointer;" class="dropdown-item" id="cerrarSesion" href="#">Cerrar Sesión</span>';
     }
     $('#perfilDropdown').html(perfilDropdown);
     comprobarChats();
     $('#cerrarSesion').click(function () {
         sessionStorage.setItem('user', null);
+        sessionStorage.setItem('name', null);
+        $('#profileDrop').text('Perfil');
         console.log(sessionStorage.getItem('user'))
         sesionIniciada = false;
         document.dispatchEvent(eventoSesionCerrada);
@@ -127,8 +139,10 @@ function cambioSesion() {
 function inicioSesionCorrecto(respuesta) {
     if (respuesta.length > 0) {
         sessionStorage.setItem('user', respuesta[0].userId);
+        sessionStorage.setItem('name', respuesta[0].name);
         console.log(sessionStorage.getItem('user'))
         sesionIniciada = true;
+        $('#profileDrop').text(respuesta[0].name);
         document.dispatchEvent(eventoSesionIniciada);
         cambioSesion();
         $('#inicioModal').modal('hide');
@@ -157,7 +171,7 @@ function inicioSesionCorrecto(respuesta) {
 $(document).on("keypress", "input", function (e) {
     if (e.which == 13) {
         //Se ejecutará click en el botón correspondiente al input en el que esté situado el foco
-        var btn= e.target.getAttribute('btn');
+        var btn = e.target.getAttribute('btn');
         console.log(btn)
         $('#' + btn).click();
     }

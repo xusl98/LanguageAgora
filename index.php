@@ -37,7 +37,7 @@
 
 
     <body>
-    <div class="container-fluid">
+    <div class="container-fluid" style="min-height: 80%;">
     <?php 
 
 
@@ -48,54 +48,99 @@
         return $db->cargaMatriz();
     }
 
-    $nav = '
-    <nav style="z-index:100" class="navbar navbar-expand-lg row nav">
-        <div class="col-md-5">
-            <a class="navbar-brand" href="index.php">LanguageAgora</a>
-        </div>
-        <div class=" dropdown col-md-4">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Idioma
-            </a>
-            <div id="dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">';
-    $idiomas = getIdiomaS();
-    foreach ($idiomas as $idioma){
-        $nav .= '<a class="dropdown-item" href="index.php?option=language&lang='.$idioma['languageId'].'&name='.$idioma['name'].'">'.$idioma['name'].'</a>';
-    }
+    
+    // $nav = '
+    // <nav style="z-index:100" class="navbar navbar-expand-lg row nav">
+    //     <div class="col-md-5">
+    //         <a class="navbar-brand" href="index.php">LanguageAgora</a>
+    //     </div>
+    //     <div class=" dropdown col-md-4">
+    //         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+    //             aria-haspopup="true" aria-expanded="false">
+    //             Idioma
+    //         </a>
+    //         <div id="dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">';
+    // $idiomas = getIdiomaS();
+    // foreach ($idiomas as $idioma){
+    //     $nav .= '<a class="dropdown-item" href="index.php?option=language&lang='.$idioma['languageId'].'&name='.$idioma['name'].'">'.$idioma['name'].'</a>';
+    // }
 
-            $nav .= '</div>
+    //         $nav .= '</div>
+    //     </div>
+    //     <div class="col-md-3 row">
+    //         <div class="dropdown col-md-6">
+    //             <a class="nav-link dropdown-toggle" href="#" id="profileDrop" role="button"
+    //                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    //                 Perfil
+    //             </a>
+    //             <div id="perfilDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
+    //         </div>
+    //         <div class="dropdown col-md-6">
+    //             <div class="input-group mb-3">
+    //                 <input id="inputBUsuario" btn="btnBUsuario" type="text" class="form-control x" placeholder="Usuario..." >
+    //                 <div class="input-group-append">
+    //                     <button id="btnBUsuario" class="input-group-text btn btn-light"><i class="fas fa-search"></i></button>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     </div>
+    // </nav>
+    // ';
+    // echo $nav;
+            ?>
+
+<nav class="navbar navbar-expand-lg ">
+  <a class="navbar-brand" href="index.php">LanguageAgora</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"><i style="color:white;" class="fas fa-bars"></i></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Idioma
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <?php
+            $idiomas = getIdiomaS();
+            foreach ($idiomas as $idioma){
+                echo '<a class="dropdown-item" href="index.php?option=language&lang='.$idioma['languageId'].'&name='.$idioma['name'].'">'.$idioma['name'].'</a>';
+            }
+        ?>
         </div>
-        <div class="col-md-3 row">
-            <div class="dropdown col-md-6">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Perfil
-                </a>
-                <div id="perfilDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
-            </div>
-            <div class="dropdown col-md-6">
-                <div class="input-group mb-3">
-                    <input id="inputBUsuario" btn="btnBUsuario" type="text" class="form-control" placeholder="Usuario..." >
-                    <div class="input-group-append">
-                        <button id="btnBUsuario" class="input-group-text btn btn-light"><i class="fas fa-search"></i></button>
-                    </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a id="profileDrop" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Perfil
+        </a>
+        <div id="perfilDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
+      </li>
+      <li class="nav-item" id="pestChats">
+          
+      </li>
+    </ul>
+        <form class="form-inline my-2 my-lg-0" style="margin-right:1%;">
+            <div class="input-group mb-3">
+                <input id="inputBUsuario" btn="btnBUsuario" type="text" class="form-control x" placeholder="Usuario..." >
+                <div class="input-group-append">
+                    <button id="btnBUsuario" class="input-group-text btn btn-light"><i class="fas fa-search"></i></button>
                 </div>
             </div>
-        </div>
-    </nav>
-    ';
-  if(isset($_GET['option'])){
-      if ($_GET['option'] != 'signUp' && $_GET['option'] != 'login'){
-      echo $nav;
-    }
-} else {
-    echo $nav;
-} 
-            ?>
+        </form>
+  </div>
+</nav>
+
+
+
             <?php echo loader($componente); 					// Cuerpo ?>
             
     </div>
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; 2020 LanguageAgora</small>
+    </div>
+  </footer>
     <!-- MODAL Iniciar sesión -->
     <div class="modal fade" id="inicioModal" tabindex="-1" role="dialog" 
         data-backdrop="static" data-keyboard="false" aria-hidden="true">

@@ -3,11 +3,6 @@
 <link rel="stylesheet" href="./css/signUp.css">
 <script src="./js/signUp.js"></script>
 
-<style>
-    i{
-        visibility: hidden;
-    }
-</style>
 <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
             <div class="user_card">
@@ -20,34 +15,34 @@
                     <form id="formReg">
                         <div class="input-group mb-3">
                             <div class="input-group-append">
-                                <span id="validUser" class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span id="validUser" class="input-group-text fondoR"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" id="user" name="user" pattern="[^\s]+" required
                                 class="form-control input_user myInput" value="" placeholder="Usuario">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-append">
-                                <span id="validEmail" class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span id="validEmail" class="input-group-text fondoR"><i class="fas fa-envelope"></i></span>
                             </div>
                             <input type="email" id="email" name="email" pattern="[^\s]+" required
                                 class="form-control input_user myInput" value="" placeholder="Email">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-append">
-                                <span id="validPass" class="input-group-text"><i class="fas fa-key"></i></span>
+                                <span id="validPass" class="input-group-text fondoR"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" id="password" name="password" pattern="[^\s]+" required
                                 class="form-control input_pass myInput" value="" placeholder="Contraseña">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-append">
-                                <span id="validPass2" class="input-group-text"><i class="fas fa-key"></i></span>
+                                <span id="validPass2" class="input-group-text fondoR"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" id="password2" name="password2" pattern="[^\s]+" required
                                 class="form-control input_pass myInput" value="" placeholder="Repetir Contraseña">
                         </div>
                         <div class="d-flex justify-content-center mt-3 login_container">
-                            <input type="button" disabled="true" id="submit" name="button" class="btn login_btn"
+                            <input type="button" disabled="true" id="submit" name="button" class="miBbtn btn login_btn"
                                 value="Registrarse" data-toggle="modal" data-target="#loginModal">
                         </div>
                     </form>
@@ -78,8 +73,8 @@
                     <input type="text" id="code" name="code">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="codeBtn">Aceptar</button>
+                    <button type="button" class="miBbtn btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="miBbtn btn btn-primary" id="codeBtn">Aceptar</button>
                 </div>
             </div>
         </div>
