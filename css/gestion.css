@@ -17,3 +17,15 @@ ul{
     cursor: pointer;
     color: gray;
 }
+.elimPreg:hover{
+    cursor: pointer;
+    color: gray;
+}
+
+.enlace{
+    text-decoration: none;
+    color: black;
+}
+.enlace:hover{
+    text-decoration: none;
+}

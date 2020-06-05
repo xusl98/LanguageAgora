@@ -51,9 +51,9 @@ $(document).ready(function () {
 
                 var opciones = { url: path + "server/question/enviaReporte.php", data: { questionId: questionId }, type: "POST", dataType: "json", };
                 $.ajax(opciones)
-                    .done(peticionReporteCorrecta)
+                    // .done(peticionReporteCorrecta)
                     // .fail()
-                    // .always(inicioSesionCorrecto)
+                    .always(peticionReporteCorrecta)
                     ;
 
             }
@@ -79,9 +79,9 @@ $(document).ready(function () {
 
             var opciones = { url: path + "server/question/insertaRespuesta.php", data: { question: questionId, text: text, user: sessionStorage.getItem('user'), date: (new Date().toLocaleDateString('fr-CA')) }, type: "POST", dataType: "json", };
             $.ajax(opciones)
-                .done(peticionInsertaRespCorrecta)
+                // .done(peticionInsertaRespCorrecta)
                 // .fail()
-                // .always(inicioSesionCorrecto)
+                .always(peticionInsertaRespCorrecta)
                 ;
         } else {
             //  Update respuesta y cargarRespuestas()
@@ -97,9 +97,9 @@ $(document).ready(function () {
 
             var opciones = { url: path + "server/question/actualizaRespuesta.php", data: { answer: answer, text: text }, type: "POST", dataType: "json", };
             $.ajax(opciones)
-                .done(peticionEditaRespCorrecta)
+                // .done(peticionEditaRespCorrecta)
                 // .fail()
-                // .always(inicioSesionCorrecto)
+                .always(peticionEditaRespCorrecta)
                 ;
         }
 
@@ -170,9 +170,9 @@ function cargarPregunta(questionId) {
 
     var opciones = { url: path + "server/question/obtenerPregunta.php", data: { question: questionId }, type: "POST", dataType: "json", };
     $.ajax(opciones)
-        .done(peticionPreguntasCorrecta)
+        // .done(peticionPreguntasCorrecta)
         // .fail()
-        // .always(peticionEliminarPregCorrecta)
+        .always(peticionPreguntasCorrecta)
         ;
 }
 
@@ -187,9 +187,9 @@ function cargarRespuestas(questionId) {
 
     var opciones = { url: path + "server/question/obtenerRespuestas.php", data: { question: questionId }, type: "POST", dataType: "json", };
     $.ajax(opciones)
-        .done(peticionRespuestasCorrecta)
+        // .done(peticionRespuestasCorrecta)
         // .fail()
-        // .always(peticionEliminarPregCorrecta)
+        .always(peticionRespuestasCorrecta)
         ;
 
 }

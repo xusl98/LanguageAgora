@@ -1,9 +1,23 @@
-//TODO FUNCIONALIDAD MODO OSCURO
 // Este js contiene la funcionalidad de la barra de navegación que será común en muchas pantallas
 var sesionIniciada = false;
 var eventoSesionCerrada = new Event("sesionCerrada", { bubbles: true });
 var eventoSesionIniciada = new Event("sesionIniciada", { bubbles: true });
 $(document).ready(function () {
+
+    $.getJSON("https://api.ipify.org/?format=json", function (e) {
+        ip = e.ip;
+        $.getJSON("https://extreme-ip-lookup.com/json/" + e.ip, function (e) {
+            console.log(e)
+
+            var opciones = { url: path + "server/home/insertaVisit.php", data: { ip: e.query, country: e.country, region: e.region }, type: "POST", dataType: "json", };
+            $.ajax(opciones)
+            // .done(peticionBusquedaUsuario)
+            // .fail()
+            .always(peticionInsertaVisita)
+            ;
+        });
+    });
+
 
 
     //Si tiene sesión iniciada
@@ -13,7 +27,7 @@ $(document).ready(function () {
     } else {
         sesionIniciada = false;
     }
-    if (sessionStorage.getItem('name')){
+    if (sessionStorage.getItem('name')) {
         $('#profileDrop').text(sessionStorage.getItem('name'));
     } else {
         $('#profileDrop').text('Perfil');
@@ -67,6 +81,9 @@ function peticionBusquedaUsuario(usuario) {
         })
     }
 }
+function peticionInsertaVisita() {
+    console.log('visita insertada')
+}
 function peticionChatsCorrecta(chats) {
     if (chats.length > 0) {
         console.log(chats[0])
@@ -113,7 +130,7 @@ function cambioSesion() {
         chatHtml = '<a id="toChats" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '" class="notification nav-link"><span>Chats</span><span id="badgeChats" class="badge">3</span></a>';
         $('#pestChats').html(chatHtml);
         console.log(sessionStorage.getItem('userType'))
-        if (parseInt(sessionStorage.getItem('userType')) != 0){
+        if (parseInt(sessionStorage.getItem('userType')) != 0) {
             $('#pestGestion').html('<a class="nav-link " href="index.php?option=gestion" tabindex="-1" aria-disabled="true">Gestión</a>');
         } else {
             $('#pestGestion').html('');
