@@ -2,7 +2,11 @@
     clear: both;
     position: relative;
     height: 80px;
-    margin-top: 100px;
+    margin-top: 120px;
+}
+
+#spanReport:hover{
+    cursor: pointer;
 }
 
 
@@ -55,7 +59,7 @@ a{
 }
 
 body{
-    padding-top: 5%;
+    /* padding-top: 5%; */
     background-color: #EAEAEA !important;
 }
 

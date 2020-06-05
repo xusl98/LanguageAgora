@@ -17,10 +17,16 @@
                                 to
                                 additional content.
                             </p>
+                            <p>
+                            
+                            <span id="spanReport" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Pregunta no adecuada" data-placement="right">
+                                <button id="btnReport" question="" class="btn btn-primary" style="pointer-events: none;" type="button"><i class="far fa-flag"></i></button>
+                            </span>
+                            </p>    
                             <div class="row">
                                 <div class="col-md-8" style="text-align: left;"><a id="editQuestion" style="color: gray;" href="#">Editar</a>&nbsp;<a id="deleteQuestion" style="color: gray;" href="#" >Eliminar</a></div>
                                 <div id="contResp" class="col-md-4">
-                                    <button id="btnResponder" class="btn btn-primary">Responder</button>
+                                    <button id="btnResponder" class="btn btn-primary">Responder</button> 
                                 </div>
                             </div>
                         </div>

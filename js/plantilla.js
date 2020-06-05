@@ -87,8 +87,8 @@ function cambioSesion() {
     if (!sesionIniciada) {
         $('#profileDrop').text('Perfil');
         perfilDropdown = '<a id="inicioSesion" class="dropdown-item" href="#" data-toggle="modal" data-target="#inicioModal">Iniciar Sesión</a>';
-        chatHtml = '';
-        $('#pestChats').html(chatHtml);
+        $('#pestChats').html('');
+        $('#pestGestion').html('');
         perfilDropdown += '<a class="dropdown-item" href="index.php?option=signUp">Registrarse</a>';
 
         //Al pulsar incicio de sesión
@@ -112,6 +112,12 @@ function cambioSesion() {
         perfilDropdown = '<a class="dropdown-item" href="index.php?option=profile&user=' + sessionStorage.getItem('user') + '">Ver Perfil</a>';
         chatHtml = '<a id="toChats" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '" class="notification nav-link"><span>Chats</span><span id="badgeChats" class="badge">3</span></a>';
         $('#pestChats').html(chatHtml);
+        console.log(sessionStorage.getItem('userType'))
+        if (parseInt(sessionStorage.getItem('userType')) != 0){
+            $('#pestGestion').html('<a class="nav-link " href="index.php?option=gestion" tabindex="-1" aria-disabled="true">Gestión</a>');
+        } else {
+            $('#pestGestion').html('');
+        }
         perfilDropdown += '<span style="cursor: pointer;" class="dropdown-item" id="cerrarSesion" href="#">Cerrar Sesión</span>';
     }
     $('#perfilDropdown').html(perfilDropdown);
@@ -119,6 +125,7 @@ function cambioSesion() {
     $('#cerrarSesion').click(function () {
         sessionStorage.setItem('user', null);
         sessionStorage.setItem('name', null);
+        sessionStorage.setItem('userType', null);
         $('#profileDrop').text('Perfil');
         console.log(sessionStorage.getItem('user'))
         sesionIniciada = false;
@@ -140,6 +147,7 @@ function inicioSesionCorrecto(respuesta) {
     if (respuesta.length > 0) {
         sessionStorage.setItem('user', respuesta[0].userId);
         sessionStorage.setItem('name', respuesta[0].name);
+        sessionStorage.setItem('userType', respuesta[0].userTypeId);
         console.log(sessionStorage.getItem('user'))
         sesionIniciada = true;
         $('#profileDrop').text(respuesta[0].name);

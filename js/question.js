@@ -10,7 +10,12 @@ $(document).ready(function () {
     language = urlParams.get('lang');
     languageId = urlParams.get('langId');
 
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
     cargarPregunta(questionId);
+
 
     $('#idioma').text(language);
     $("#idioma").attr("href", 'index.php?option=language&lang=' + languageId + '&name=' + language);
@@ -30,6 +35,30 @@ $(document).ready(function () {
 
     $('#btnCancelarRespuesta').click(function () {
         $('#nuevaRespuesta').css('display', 'none');
+    });
+
+    $('#spanReport').click(function () {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Se enviará un reporte de esta pregunta",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar'
+        }).then((result) => {
+            if (result.value) {
+
+                var opciones = { url: path + "server/question/enviaReporte.php", data: { questionId: questionId }, type: "POST", dataType: "json", };
+                $.ajax(opciones)
+                    .done(peticionReporteCorrecta)
+                    // .fail()
+                    // .always(inicioSesionCorrecto)
+                    ;
+
+            }
+        })
+
     });
 
     $('#btnAceptarRespuesta').click(function () {
@@ -74,6 +103,8 @@ $(document).ready(function () {
                 ;
         }
 
+
+        
 
 
 
@@ -261,6 +292,16 @@ function peticionEditaRespCorrecta() {
     cargarRespuestas(questionId);
     // }
 }
+function peticionReporteCorrecta(resp) {
+    // if ((this.readyState === 4) && (this.status === 200)) {
+    console.log(resp)
+    Swal.fire(
+        'Reporte Enviado!',
+        'Será revisado por un moderador',
+        'success'
+    )
+    // }
+}
 
 function peticionEliminarPregCorrecta() {
     // if ((this.readyState === 4) && (this.status === 200)) {
@@ -275,13 +316,13 @@ function peticionEliminarPregCorrecta() {
 
 function peticionEliminarRespCorrecta() {
     // if ((this.readyState === 4) && (this.status === 200)) {
-        cargarRespuestas(questionId);
-        Swal.fire(
-            'Eliminado!',
-            'La respuesta ha sido eliminada',
-            'success'
-        )
-        // $('#elimModalResp').modal('hide');
+    cargarRespuestas(questionId);
+    Swal.fire(
+        'Eliminado!',
+        'La respuesta ha sido eliminada',
+        'success'
+    )
+    // $('#elimModalResp').modal('hide');
     // }
 }
 

@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="./librerias/jquery/jQuery-3.4.1.js"></script>
-    <script src="./librerias/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="./librerias/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/plantilla.js"></script>
     <script src="./js/common.js"></script>
     <script src="./js/smtp.js"></script>
@@ -119,6 +119,9 @@
       <li class="nav-item" id="pestChats">
           
       </li>
+      <li class="nav-item" id="pestGestion">
+        
+      </li>
     </ul>
         <form class="form-inline my-2 my-lg-0" style="margin-right:1%;">
             <div class="input-group mb-3">
@@ -130,7 +133,7 @@
         </form>
   </div>
 </nav>
-
+<div style="height: 150px;">&nbsp;</div>
 
 
             <?php echo loader($componente); 					// Cuerpo ?>

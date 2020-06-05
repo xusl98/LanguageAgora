@@ -1,0 +1,19 @@
+.miTab{
+    color: black !important;
+}
+
+ul{
+    border-color: #1A5F83 !important;
+}
+.active{
+    border-color: #1A5F83 !important;
+}
+
+.x{
+    border-color: #1A5F83 !important;
+}
+
+.elimUser:hover{
+    cursor: pointer;
+    color: gray;
+}
