@@ -29,7 +29,7 @@
                     width="100%">
                     <thead>
                         <tr>
-                            <th class="th-sm">Título
+                            <th class="th-sm">Pregunta
 
                             </th>
                             <th class="th-sm">Texto
@@ -58,7 +58,7 @@
                                 echo "<tr id=\"tr".$pregunta['questionId']."\">
                                 <td id=\"title" . $pregunta['questionId'] . "\"><a class=\"enlace\" href=\"index.php?option=question&question=" . $pregunta['questionId'] . "&lang=" . $pregunta['language'] . "&langId=" . $pregunta['languageId'] . "\">".$pregunta['title']."</a></td>
                                 <td>".$pregunta['text']."</td>
-                                <td>".$pregunta['user']."</td>
+                                <td id=\"name".$pregunta['userId']."\"><a class=\"enlace\" href=\"index.php?option=profile&user=" . $pregunta['userId'] . "\">".$pregunta['user']."</a></td>
                                 <td>".$pregunta['date']."</td>
                                 <td>".$pregunta['language']."</td>
                                 <td><i id=\"".$pregunta['questionId']."\" class=\"fas fa-trash-alt elimPreg\"></i></td>
@@ -69,7 +69,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Título
+                            <th>Pregunta
                             </th>
                             <th>Texto
                             </th>
@@ -167,8 +167,29 @@
                     </tfoot>
                 </table>
             </div>
-            
-            <div class="tab-pane fade" id="data" role="tabpanel" aria-labelledby="data-tab">...</div>
+            <!-- DATOS -->
+            <div class="tab-pane fade" id="data" role="tabpanel" aria-labelledby="data-tab">
+                <div class="container-fluid">
+                        <div style="text-align:center;"><h1>Visitas</h1></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <canvas class="canvas" id="line-chart-visits-month"></canvas>
+                            </div>
+                            <div class="col-md-6">
+                            <canvas class="canvas" id="line-chart-visits-year"></canvas>
+                            </div>
+                        </div>
+                        <div style="text-align:center;"><h1>Preguntas</h1></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <canvas class="canvas" id="line-chart-questions-month"></canvas>
+                            </div>
+                            <div class="col-md-6">
+                                <canvas class="canvas" id="line-chart-questions-year"></canvas>
+                            </div>
+                        </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

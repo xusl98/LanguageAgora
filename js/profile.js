@@ -154,6 +154,7 @@ function peticionGraficoPreguntasCorrecta(respuesta) {
 
     new Chart(document.getElementById("doughnut-chart-questions"), {
       type: 'doughnut',
+      responsive: true,
       data: {
         labels: labels,
         datasets: [
@@ -192,6 +193,7 @@ function peticionGraficoRespuestasCorrecta(respuesta) {
 
     new Chart(document.getElementById("doughnut-chart-answers"), {
       type: 'doughnut',
+      responsive: true,
       data: {
         labels: labels,
         datasets: [

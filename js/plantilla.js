@@ -4,17 +4,23 @@ var eventoSesionCerrada = new Event("sesionCerrada", { bubbles: true });
 var eventoSesionIniciada = new Event("sesionIniciada", { bubbles: true });
 $(document).ready(function () {
 
+
+
     $.getJSON("https://api.ipify.org/?format=json", function (e) {
         ip = e.ip;
         $.getJSON("https://extreme-ip-lookup.com/json/" + e.ip, function (e) {
             console.log(e)
 
-            var opciones = { url: path + "server/home/insertaVisit.php", data: { ip: e.query, country: e.country, region: e.region }, type: "POST", dataType: "json", };
+            var d = new Date();
+            var fecha = d.getFullYear() + '-' + (parseInt(d.getMonth()) + 1) + '-' + d.getDate();
+            var hora = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+
+            var opciones = { url: path + "server/home/insertaVisit.php", data: { ip: e.query, country: e.country, countryCode: e.countryCode, date: fecha, time: hora }, type: "POST", dataType: "json", };
             $.ajax(opciones)
-            // .done(peticionBusquedaUsuario)
-            // .fail()
-            .always(peticionInsertaVisita)
-            ;
+                // .done(peticionBusquedaUsuario)
+                // .fail()
+                .always(peticionInsertaVisita)
+                ;
         });
     });
 
@@ -88,10 +94,10 @@ function peticionChatsCorrecta(chats) {
     if (chats.length > 0) {
         console.log(chats[0])
         if (chats[0]['chats'] > 0) {
-            $('#badgeChats').css('visibility', 'visible');
+            $('#badgeChats').css('display', 'block');
             $('#badgeChats').text(chats[0]['chats']);
         } else {
-            $('#badgeChats').css('visibility', 'hidden');
+            $('#badgeChats').css('display', 'none');
 
         }
     }
@@ -127,7 +133,7 @@ function cambioSesion() {
 
     } else {
         perfilDropdown = '<a class="dropdown-item" href="index.php?option=profile&user=' + sessionStorage.getItem('user') + '">Ver Perfil</a>';
-        chatHtml = '<a id="toChats" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '" class="notification nav-link"><span>Chats</span><span id="badgeChats" class="badge">3</span></a>';
+        chatHtml = '<a id="toChats" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '" class="notification nav-link"><span>Chats</span><span style="display:none;" id="badgeChats" class="badge">3</span></a>';
         $('#pestChats').html(chatHtml);
         console.log(sessionStorage.getItem('userType'))
         if (parseInt(sessionStorage.getItem('userType')) != 0) {

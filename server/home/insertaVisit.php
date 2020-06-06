@@ -4,12 +4,16 @@ $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
 $ip = $_POST['ip'];
 $country = $_POST['country'];
-$region = $_POST['region'];
+$countryCode = $_POST['countryCode'];
+$date = $_POST['date'];
+$time = $_POST['time'];
+
+$dateTime = $date . ' ' . $time;
 
 
 
 //'2020-05-26 11:16:12'
-$cons="INSERT INTO visit (ip, country, region) VALUES ('$ip', '$country', '$region');";
+$cons="INSERT INTO visit (ip, country, countryCode, dateTime) VALUES ('$ip', '$country', '$countryCode', '$dateTime');";
 
 
 // if(isset($_POST['name']))
