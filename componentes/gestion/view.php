@@ -14,16 +14,21 @@
                 <a class="nav-link active miTab" id="reports-tab" data-toggle="tab" href="#reports" role="tab"
                     aria-controls="reports" aria-selected="false">Reportes</a>
             </li>
-            <li class="nav-item" id="usersLi">
+            <li class="nav-item onlyAdmin">
                 <a class="nav-link miTab" id="users-tab" data-toggle="tab" href="#users" role="tab"
                     aria-controls="users" aria-selected="true">Usuarios</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item onlyAdmin">
                 <a class="nav-link miTab" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data"
                     aria-selected="false">Datos</a>
             </li>
+            <li class="nav-item onlyAdmin">
+                <a class="nav-link miTab" id="languages-tab" data-toggle="tab" href="#languages" role="tab" aria-controls="data"
+                    aria-selected="false">Idiomas</a>
+            </li>
         </ul>
         <div class="tab-content" id="myTabContent">
+            
             <div class="tab-pane fade show active" id="reports" role="tabpanel" aria-labelledby="reports-tab">
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0"
                     width="100%">
@@ -170,24 +175,82 @@
             <!-- DATOS -->
             <div class="tab-pane fade" id="data" role="tabpanel" aria-labelledby="data-tab">
                 <div class="container-fluid">
-                        <div style="text-align:center;"><h1>Visitas</h1></div>
+                        <div class="textoCentro"><h1>Visitas</h1></div>
                         <div class="row">
+                            <div class="col-md-6">
+                                <canvas class="canvas" id="line-chart-visits-year"></canvas>
+                            </div>
                             <div class="col-md-6">
                                 <canvas class="canvas" id="line-chart-visits-month"></canvas>
                             </div>
-                            <div class="col-md-6">
-                            <canvas class="canvas" id="line-chart-visits-year"></canvas>
-                            </div>
                         </div>
-                        <div style="text-align:center;"><h1>Preguntas</h1></div>
+                        <div class="textoCentro"><h1>Preguntas</h1></div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <canvas class="canvas" id="line-chart-questions-month"></canvas>
-                            </div>
                             <div class="col-md-6">
                                 <canvas class="canvas" id="line-chart-questions-year"></canvas>
                             </div>
+                            <div class="col-md-6">
+                                <canvas class="canvas" id="line-chart-questions-month"></canvas>
+                            </div>
                         </div>
+                </div>
+            </div>
+            <div class="tab-pane fade container-fluid" id="languages" role="tabpanel" aria-labelledby="languages-tab">
+            <!-- Hacer un combobox para seleccionar un idioma y que te salgan datos del idioma seleccionado, poder desactivar el idioma para que no se vea en la página y poder dar de alta un nuevo idioma -->
+                
+                <div class="row">
+                    <div class="col-md-2">
+                        <input id="inputLangName" type="text" class="form-control" placeholder="Idioma">
+                    </div>
+                    <div class="col-md-2">
+                            <button class="btn btn-primary" id="btnAddLang">Añadir Idioma</button>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="input-group mb-3">
+                            <select id="langSelector" class="custom-select">
+                                <option id="default" selected>Elige un idioma...</option>
+                                    <?php
+                                        $idiomas = modelHome::getIdiomas();
+                                        foreach ($idiomas as $idioma){
+                                            // print_r($pregunta);
+                                                echo "<option lang=\"" . $idioma['languageId'] . "\" langDisabled=\"" . $idioma['disabled'] . "\">" . $idioma['name'] . "</option>";
+                                                
+                                        }
+                                    ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-8 textoCentro" ><h1 id="selectedLang">&nbsp;</h1></div>
+                    <div class="col-md-2">
+                        <button id="btnDisable" type="button" class="btn btn-light">Deshabilitar Idioma</button>
+                    </div>
+                </div>
+
+                <div id="langGraphs" style="display:none;" class="container-fluid">
+                    <div class="textoCentro"><h2>Preguntas</h2></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas class="canvas" id="line-chart-questionsLang-year"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <canvas class="canvas" id="line-chart-questionsLang-month"></canvas>
+                        </div>
+                    </div>
+                    <div class="textoCentro"><h2>Respuestas</h2></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas class="canvas" id="line-chart-answersLang-year"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <canvas class="canvas" id="line-chart-answersLang-month"></canvas>
+                        </div>
+                    </div>
+                </div>                        
+                <div class="textoCentro">
+                    <button style="visibility: hidden;" id="btnEliminarIdioma" class="btn btn-danger">Eliminar Idioma</button>   
                 </div>
             </div>
         </div>

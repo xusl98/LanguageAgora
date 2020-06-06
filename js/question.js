@@ -306,7 +306,7 @@ function peticionReporteCorrecta(resp) {
 function peticionEliminarPregCorrecta() {
     // if ((this.readyState === 4) && (this.status === 200)) {
     Swal.fire(
-        'Eliminado!',
+        '¡Eliminado!',
         'La pregunta ha sido eliminada',
         'success'
     )
@@ -318,7 +318,7 @@ function peticionEliminarRespCorrecta() {
     // if ((this.readyState === 4) && (this.status === 200)) {
     cargarRespuestas(questionId);
     Swal.fire(
-        'Eliminado!',
+        '¡Eliminado!',
         'La respuesta ha sido eliminada',
         'success'
     )

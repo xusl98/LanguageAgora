@@ -101,7 +101,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Idioma
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div id="dropLangs" class="dropdown-menu" aria-labelledby="navbarDropdown">
           <?php
             $idiomas = getIdiomaS();
             foreach ($idiomas as $idioma){

@@ -1,6 +1,9 @@
 var userId;
 var questionId;
 
+var selectedLangName;
+var selectedLangId;
+
 
 
 
@@ -15,7 +18,7 @@ $(document).ready(function () {
     });
 
     if (parseInt(sessionStorage.getItem('userType')) == 1) {
-        $('#usersLi').css('display', 'none');
+        $('.onlyAdmin').css('display', 'none');
     }
 
 
@@ -99,13 +102,339 @@ $(document).ready(function () {
         ;
 
 
+
+    $('#langSelector').change(function () {
+        selectedLangName = $("#langSelector option:selected").text();
+        if (selectedLangName != 'Elige un idioma...') {
+            selectedLangId = $("#langSelector option:selected").attr('lang');
+
+            $('#selectedLang').text(selectedLangName);
+            $('#btnEliminarIdioma').css('visibility', 'visible');
+            // $('#langGraphs').css('display', 'block');
+            $('#langGraphs').slideToggle();
+
+            preguntasIdiomaMes();
+            preguntasIdiomaAnio();
+            respuestasIdiomaMes();
+            respuestasIdiomaAnio();
+
+            if ($("#langSelector option:selected").attr('langDisabled') == true) {
+                $('#btnDisable').text('Habilitar Idioma');
+                $('#selectedLang').css('text-decoration', 'line-through');
+                $('#selectedLang').css('color', 'gray');
+            } else {
+                $('#btnDisable').text('Deshabilitar Idioma');
+                $('#selectedLang').css('text-decoration', 'none');
+                $('#selectedLang').css('color', 'black');
+            }
+        } else {
+            $('#btnEliminarIdioma').css('visibility', 'hidden');
+            $('#selectedLang').text('');
+            // $('#langGraphs').css('display', 'none');
+            // $('#langGraphs').hide();
+            $('#langGraphs').slideToggle();
+        }
+    });
+
+    $('#btnAddLang').click(function () {
+        var langName = $('#inputLangName').val().trim();
+
+        if (langName == '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Rellena el campo nombre',
+            })
+        } else {
+            $('#inputLangName').val('');
+            var opciones = { url: path + "server/gestion/insertaIdioma.php", data: { name: langName }, type: "POST", dataType: "json", };
+            $.ajax(opciones)
+            // .done(peticionEliminarPregCorrecta)
+            // .fail()
+            .always(peticionInsertarIdioma)
+            ;
+        }
+    });
+
+    $('#btnEliminarIdioma').click(function () {
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás recuperar el idioma después de borrarlo",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar'
+        }).then((result) => {
+            if (result.value) {
+                var opciones = { url: path + "server/gestion/borrarIdioma.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
+                $.ajax(opciones)
+                    // .done(peticionEliminarPregCorrecta)
+                    // .fail()
+                    .always(peticionBorrarIdioma)
+                    ;
+
+            }
+        })
+
+    });
+
+
 });
 
+function preguntasIdiomaMes() {
+    var opciones = { url: path + "server/gestion/obtenerPreguntasIdiomaMes.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerPreguntasLangMes)
+        ;
+
+}
+
+function preguntasIdiomaAnio() {
+    var opciones = { url: path + "server/gestion/obtenerPreguntasIdiomaAno.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerPreguntasLangAnio)
+        ;
+}
+
+function respuestasIdiomaMes() {
+    var opciones = { url: path + "server/gestion/obtenerRespuestasIdiomaMes.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerRespuestasLangMes)
+        ;
+}
+function respuestasIdiomaAnio() {
+    var opciones = { url: path + "server/gestion/obtenerRespuestasIdiomaAno.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerRespuestasLangAnio)
+        ;
+}
+
+function peticionObtenerRespuestasLangMes(respuestas){
+    console.log(respuestas)
+
+    var fecha = new Date();
+
+    var labelsMonth = [];
+    var dias = getDaysInMonth(fecha.getMonth(), fecha.getFullYear());
+    var dataMonth = [];
+    for (respuesta of respuestas) {
+        dataMonth[respuesta['dia'] - 1] = respuesta['respuestas'];
+    }
+    for (let i = 0; i < dias; i++) {
+        if (dataMonth[i] == null) {
+            dataMonth[i] = 0;
+        }
+        labelsMonth[i] = i + 1;
+    }
+
+
+    new Chart(document.getElementById("line-chart-answersLang-month"), {
+        type: 'line',
+        responsive: true,
+        data: {
+            labels: labelsMonth,
+            datasets: [
+                {
+                    borderColor: '#1A5F83',
+                    backgroundColor: 'transparent',
+                    label: "Número de respuestas",
+                    data: dataMonth
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Respuestas por día en el mes actual'
+            }
+        }
+    });
+}
+
+function peticionObtenerRespuestasLangAnio(respuestas){
+    console.log(respuestas)
+    var fecha = new Date();
+
+    var labelsYear = [];
+    var dataYear = [];
+    for (respuesta of respuestas) {
+        dataYear[respuesta['mes'] - 1] = respuesta['respuestas'];
+    }
+    for (let i = 0; i < 12; i++) {
+        if (dataYear[i] == null) {
+            dataYear[i] = 0;
+        }
+        labelsYear[i] = i + 1;
+    }
+
+
+    new Chart(document.getElementById("line-chart-answersLang-year"), {
+        type: 'line',
+        responsive: true,
+        data: {
+            labels: labelsYear,
+            datasets: [
+                {
+                    borderColor: '#1A5F83',
+                    backgroundColor: 'transparent',
+                    label: "Número de respuestas",
+                    data: dataYear
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Respuestas por mes en el año actual'
+            }
+        }
+    });
+}
+
+function peticionObtenerPreguntasLangAnio(preguntas) {
+    console.log(preguntas)
+    var fecha = new Date();
+
+    var labelsYear = [];
+    var dataYear = [];
+    for (pregunta of preguntas) {
+        dataYear[pregunta['mes'] - 1] = pregunta['preguntas'];
+    }
+    for (let i = 0; i < 12; i++) {
+        if (dataYear[i] == null) {
+            dataYear[i] = 0;
+        }
+        labelsYear[i] = i + 1;
+    }
+
+
+    new Chart(document.getElementById("line-chart-questionsLang-year"), {
+        type: 'line',
+        responsive: true,
+        data: {
+            labels: labelsYear,
+            datasets: [
+                {
+                    borderColor: '#1A5F83',
+                    backgroundColor: 'transparent',
+                    label: "Número de preguntas",
+                    data: dataYear
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Preguntas por mes en el año actual'
+            }
+        }
+    });
+}
+
+
+function peticionObtenerPreguntasLangMes(preguntas) {
+    console.log(preguntas)
+
+    var fecha = new Date();
+
+    var labelsMonth = [];
+    var dias = getDaysInMonth(fecha.getMonth(), fecha.getFullYear());
+    var dataMonth = [];
+    for (pregunta of preguntas) {
+        dataMonth[pregunta['dia'] - 1] = pregunta['preguntas'];
+    }
+    for (let i = 0; i < dias; i++) {
+        if (dataMonth[i] == null) {
+            dataMonth[i] = 0;
+        }
+        labelsMonth[i] = i + 1;
+    }
+
+    new Chart(document.getElementById("line-chart-questionsLang-month"), {
+        type: 'line',
+        responsive: true,
+        data: {
+            labels: labelsMonth,
+            datasets: [
+                {
+                    borderColor: '#1A5F83',
+                    backgroundColor: 'transparent',
+                    label: "Número de preguntas",
+                    data: dataMonth
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Preguntas por día en el mes actual'
+            }
+        }
+    });
+}
+
+
+function peticionBorrarIdioma() {
+    Swal.fire(
+        'Eliminado!',
+        'El idioma ha sido eliminado',
+        'success'
+    )
+    cargarSelect();
+
+    $('#langSelector').val(1);
+    $('#btnEliminarIdioma').css('visibility', 'hidden');
+    $('#selectedLang').text('');
+    // $('#langGraphs').css('display', 'none');
+    // $('#langGraphs').hide();
+    $('#langGraphs').slideToggle();
+
+
+}
+
+function peticionInsertarIdioma() {
+    Swal.fire(
+        '¡Insertado!',
+        'El idioma ha sido añadido',
+        'success'
+    )
+    cargarSelect();
+
+
+}
+
+function cargarSelect() {
+    var opciones = { url: path + "server/home/obtenerIdiomas.php", data: {}, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerIdiomas)
+        ;
+        actualizarIdiomas();
+}
+
+function peticionObtenerIdiomas(idiomas) {
+    var html = '<option value="1" id="default" selected>Elige un idioma...</option>';
+    for (idioma of idiomas) {
+        html += '<option lang="' + idioma['languageId'] + '" langDisabled="' + idioma['disabled'] + '">' + idioma['name'] + '</option>'
+    }
+    $('#langSelector').html(html);
+}
 
 function peticionEliminarUsuarioCorrecta() {
     $('#tr' + userId).remove();
     Swal.fire(
-        'Eliminado!',
+        '¡Eliminado!',
         'El usuario ha sido eliminado',
         'success'
     )
@@ -113,7 +442,7 @@ function peticionEliminarUsuarioCorrecta() {
 function peticionEliminarPreguntaCorrecta() {
     $('#tr' + questionId).remove();
     Swal.fire(
-        'Eliminado!',
+        '¡Eliminado!',
         'La pregunta ha sido eliminada',
         'success'
     )
@@ -291,9 +620,5 @@ $(document).on('sesionCerrada', function () {
 
 
 function getDaysInMonth(month, year) {
-    // Here January is 1 based
-    //Day 0 is the last day in the previous month
     return new Date(year, month, 0).getDate();
-    // Here January is 0 based
-    // return new Date(year, month+1, 0).getDate();
 };

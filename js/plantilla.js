@@ -199,11 +199,28 @@ function inicioSesionCorrecto(respuesta) {
 }
 
 
+function actualizarIdiomas() {
+    var opciones = { url: path + "server/home/obtenerIdiomas.php", data: {  }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerIdiomasNav)
+        ;
+}
+
+function peticionObtenerIdiomasNav(idiomas){
+    html = '';
+    for (idioma of idiomas){
+        html += '<a class="dropdown-item" href="index.php?option=language&lang='+idioma['languageId']+'&name='+idioma['name']+'">'+idioma['name']+'</a>';
+    }
+    $('#dropLangs').html(html);
+
+}
+
 $(document).on("keypress", "input", function (e) {
     if (e.which == 13) {
         //Se ejecutará click en el botón correspondiente al input en el que esté situado el foco
         var btn = e.target.getAttribute('btn');
-        console.log(btn)
         $('#' + btn).click();
     }
 });
