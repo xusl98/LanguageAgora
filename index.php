@@ -170,6 +170,18 @@
                           </div>
                         </div>
                       </form>
+<!-- TEMPORAL -->
+          <div>
+          USUARIOS -> CONTRASEÑAS
+          <br>
+          "usuario" -> "a"
+          <br>
+          "mod"  -> "a"
+          <br>
+          "admin"  -> "a"
+          </div>
+<!-- TEMPORAL -->
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
