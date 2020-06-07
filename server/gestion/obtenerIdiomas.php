@@ -2,8 +2,7 @@
 // Conectando, seleccionando la base de datos
 $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
-$user = $_POST['user'];
-$cons="SELECT COUNT(DISTINCT(question.questionId)) as count, language.name from language, question, user where question.languageId = language.languageId and question.userId = $user and language.disabled = 0 GROUP BY question.languageId";
+$cons="SELECT * FROM language order by name";
 
 
 

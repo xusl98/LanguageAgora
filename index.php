@@ -43,7 +43,7 @@
 
     function getIdiomas(){
         $db = new database();
-        $sql = "SELECT * FROM language order by name";
+        $sql = "SELECT * FROM language where disabled = 0 order by name";
         $db->query($sql);
         return $db->cargaMatriz();
     }

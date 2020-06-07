@@ -22,6 +22,35 @@ $(document).ready(function () {
     }
 
 
+    var opciones = { url: path + "server/gestion/obtenerVisitasMes.php", data: {}, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerVisitasMes)
+        ;
+
+    var opciones = { url: path + "server/gestion/obtenerVisitasAno.php", data: {}, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerVisitasAno)
+        ;
+
+    var opciones = { url: path + "server/gestion/obtenerPreguntasAno.php", data: {}, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerPreguntasAno)
+        ;
+
+    var opciones = { url: path + "server/gestion/obtenerPreguntasMes.php", data: {}, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerPreguntasMes)
+        ;
+
+
     $('.elimUser').click(function (e) {
 
         userId = e.target.id
@@ -73,33 +102,7 @@ $(document).ready(function () {
         })
     });
 
-    var opciones = { url: path + "server/gestion/obtenerVisitasMes.php", data: {}, type: "POST", dataType: "json", };
-    $.ajax(opciones)
-        // .done(peticionEliminarPregCorrecta)
-        // .fail()
-        .always(peticionObtenerVisitasMes)
-        ;
 
-    var opciones = { url: path + "server/gestion/obtenerVisitasAno.php", data: {}, type: "POST", dataType: "json", };
-    $.ajax(opciones)
-        // .done(peticionEliminarPregCorrecta)
-        // .fail()
-        .always(peticionObtenerVisitasAno)
-        ;
-
-    var opciones = { url: path + "server/gestion/obtenerPreguntasAno.php", data: {}, type: "POST", dataType: "json", };
-    $.ajax(opciones)
-        // .done(peticionEliminarPregCorrecta)
-        // .fail()
-        .always(peticionObtenerPreguntasAno)
-        ;
-
-    var opciones = { url: path + "server/gestion/obtenerPreguntasMes.php", data: {}, type: "POST", dataType: "json", };
-    $.ajax(opciones)
-        // .done(peticionEliminarPregCorrecta)
-        // .fail()
-        .always(peticionObtenerPreguntasMes)
-        ;
 
 
 
@@ -149,10 +152,10 @@ $(document).ready(function () {
             $('#inputLangName').val('');
             var opciones = { url: path + "server/gestion/insertaIdioma.php", data: { name: langName }, type: "POST", dataType: "json", };
             $.ajax(opciones)
-            // .done(peticionEliminarPregCorrecta)
-            // .fail()
-            .always(peticionInsertarIdioma)
-            ;
+                // .done(peticionEliminarPregCorrecta)
+                // .fail()
+                .always(peticionInsertarIdioma)
+                ;
         }
     });
 
@@ -181,7 +184,51 @@ $(document).ready(function () {
     });
 
 
+    $('#btnDisable').click(function () {
+        var opciones = { url: path + "server/gestion/cambiarDisable.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
+        $.ajax(opciones)
+            // .done(peticionEliminarPregCorrecta)
+            // .fail()
+            .always(peticionCambiarDisable)
+            ;
+    });
+
+
 });
+
+function cargarSelect() {
+    var opciones = { url: path + "server/gestion/obtenerIdiomas.php", data: {}, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionObtenerIdiomas)
+        ;
+    actualizarIdiomas();
+}
+
+
+function peticionCambiarDisable() {
+    if ($('#btnDisable').text() == 'Deshabilitar Idioma') {
+        Swal.fire(
+            '¡Deshabilitado!',
+            'El idioma ha sido deshabilitado',
+            'success'
+        )
+        $('#selectedLang').css('text-decoration', 'line-through');
+        $('#selectedLang').css('color', 'gray');
+        $('#btnDisable').text('Habilitar Idioma');
+    } else {
+        Swal.fire(
+            '¡Habilitado!',
+            'El idioma ha sido habilitado',
+            'success'
+        )
+        $('#selectedLang').css('text-decoration', 'none');
+        $('#selectedLang').css('color', 'black');
+        $('#btnDisable').text('Deshabilitar Idioma');
+    }
+    cargarSelect();
+}
 
 function preguntasIdiomaMes() {
     var opciones = { url: path + "server/gestion/obtenerPreguntasIdiomaMes.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
@@ -219,7 +266,7 @@ function respuestasIdiomaAnio() {
         ;
 }
 
-function peticionObtenerRespuestasLangMes(respuestas){
+function peticionObtenerRespuestasLangMes(respuestas) {
     console.log(respuestas)
 
     var fecha = new Date();
@@ -261,11 +308,11 @@ function peticionObtenerRespuestasLangMes(respuestas){
     });
 }
 
-function peticionObtenerRespuestasLangAnio(respuestas){
+function peticionObtenerRespuestasLangAnio(respuestas) {
     console.log(respuestas)
     var fecha = new Date();
 
-    var labelsYear = [];
+    var labelsYear = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     var dataYear = [];
     for (respuesta of respuestas) {
         dataYear[respuesta['mes'] - 1] = respuesta['respuestas'];
@@ -274,7 +321,6 @@ function peticionObtenerRespuestasLangAnio(respuestas){
         if (dataYear[i] == null) {
             dataYear[i] = 0;
         }
-        labelsYear[i] = i + 1;
     }
 
 
@@ -305,7 +351,7 @@ function peticionObtenerPreguntasLangAnio(preguntas) {
     console.log(preguntas)
     var fecha = new Date();
 
-    var labelsYear = [];
+    var labelsYear = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     var dataYear = [];
     for (pregunta of preguntas) {
         dataYear[pregunta['mes'] - 1] = pregunta['preguntas'];
@@ -314,7 +360,6 @@ function peticionObtenerPreguntasLangAnio(preguntas) {
         if (dataYear[i] == null) {
             dataYear[i] = 0;
         }
-        labelsYear[i] = i + 1;
     }
 
 
@@ -413,15 +458,7 @@ function peticionInsertarIdioma() {
 
 }
 
-function cargarSelect() {
-    var opciones = { url: path + "server/home/obtenerIdiomas.php", data: {}, type: "POST", dataType: "json", };
-    $.ajax(opciones)
-        // .done(peticionEliminarPregCorrecta)
-        // .fail()
-        .always(peticionObtenerIdiomas)
-        ;
-        actualizarIdiomas();
-}
+
 
 function peticionObtenerIdiomas(idiomas) {
     var html = '<option value="1" id="default" selected>Elige un idioma...</option>';
@@ -536,7 +573,7 @@ function peticionObtenerVisitasAno(visitas) {
     console.log(visitas)
     var fecha = new Date();
 
-    var labelsYear = [];
+    var labelsYear = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     var dataYear = [];
     for (visita of visitas) {
         dataYear[visita['mes'] - 1] = visita['visitas'];
@@ -545,7 +582,6 @@ function peticionObtenerVisitasAno(visitas) {
         if (dataYear[i] == null) {
             dataYear[i] = 0;
         }
-        labelsYear[i] = i + 1;
     }
 
 
@@ -576,7 +612,7 @@ function peticionObtenerPreguntasAno(preguntas) {
     console.log(preguntas)
     var fecha = new Date();
 
-    var labelsYear = [];
+    var labelsYear = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     var dataYear = [];
     for (pregunta of preguntas) {
         dataYear[pregunta['mes'] - 1] = pregunta['preguntas'];
@@ -585,7 +621,6 @@ function peticionObtenerPreguntasAno(preguntas) {
         if (dataYear[i] == null) {
             dataYear[i] = 0;
         }
-        labelsYear[i] = i + 1;
     }
 
 

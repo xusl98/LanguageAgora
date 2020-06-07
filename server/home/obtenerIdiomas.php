@@ -2,7 +2,7 @@
 // Conectando, seleccionando la base de datos
 $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
-$cons="SELECT * FROM language order by name";
+$cons="SELECT * FROM language where disabled = 0 order by name";
 
 
 

@@ -3,7 +3,7 @@
 $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
 $user = $_POST['user'];
-$cons="SELECT answerId, language.languageId, answer.text, score, question.questionId, answer.date, language.name, answer.date, answer.userId, user.userId from answer, user, question, language where user.userId = $user and user.userId = answer.userId and language.languageId = question.languageId and question.questionId = answer.questionId order by answer.date desc LIMIT 5";
+$cons="SELECT answerId, language.languageId, answer.text, score, question.questionId, answer.date, language.name, answer.date, answer.userId, user.userId from answer, user, question, language where user.userId = $user and user.userId = answer.userId and language.languageId = question.languageId and question.questionId = answer.questionId and language.disabled = 0 order by answer.date desc LIMIT 5";
 
 
 

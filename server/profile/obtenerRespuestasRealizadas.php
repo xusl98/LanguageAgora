@@ -3,7 +3,7 @@
 $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
 $user = $_POST['user'];
-$cons="SELECT COUNT(DISTINCT(answer.answerId)) as count, language.name from language, answer, question, user where answer.questionId = question.questionId and question.languageId = language.languageId and answer.userId = $user GROUP BY question.languageId";
+$cons="SELECT COUNT(DISTINCT(answer.answerId)) as count, language.name from language, answer, question, user where answer.questionId = question.questionId and question.languageId = language.languageId and answer.userId = $user and language.disabled = 0 GROUP BY question.languageId";
 
 
 
