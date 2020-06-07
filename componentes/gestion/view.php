@@ -114,7 +114,22 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                    <!-- echo "<tr id=\"tr".$usuario['userId']."\">
+                                <td id=\"name".$usuario['userId']."\"><a class=\"enlace\" href=\"index.php?option=profile&user=" . $usuario['userId'] . "\">".$usuario['name']."</a></td>
+                                <td>".$usuario['email']."</td>
+                                <td>".$usuario['fechaRegistro']."</td>
+                                <td>".$userType."</td>
+                                <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
+                                </tr>";
+                                break; -->
+                                <!-- echo "<tr>
+                                <td id=\"name".$usuario['userId']."\"><a class=\"enlace\" href=\"index.php?option=profile&user=" . $usuario['userId'] . "\">".$usuario['name']."</a></td>
+                                <td>".$usuario['email']."</td>
+                                <td>".$usuario['fechaRegistro']."</td>
+                                <td>".$userType."</td>
+                                <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
+                                </tr>";
+                                break; -->
                         <?php 
                         $usuarios = modelHome::getUsuarios();
                         foreach ($usuarios as $usuario){
@@ -126,7 +141,10 @@
                                 <td id=\"name".$usuario['userId']."\"><a class=\"enlace\" href=\"index.php?option=profile&user=" . $usuario['userId'] . "\">".$usuario['name']."</a></td>
                                 <td>".$usuario['email']."</td>
                                 <td>".$usuario['fechaRegistro']."</td>
-                                <td>".$userType."</td>
+                                <td><select class=\"custom-select userTypeSelect\" id=\"tipo-" . $usuario['userId'] . "\">
+                                <option value=\"0\" selected>Usuario</option>
+                                <option value=\"1\">Moderador</option>
+                                </select></td>
                                 <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
                                 </tr>";
                                 break;
@@ -136,7 +154,10 @@
                                 <td id=\"name".$usuario['userId']."\"><a class=\"enlace\" href=\"index.php?option=profile&user=" . $usuario['userId'] . "\">".$usuario['name']."</a></td>
                                 <td>".$usuario['email']."</td>
                                 <td>".$usuario['fechaRegistro']."</td>
-                                <td>".$userType."</td>
+                                <td><select class=\"custom-select userTypeSelect\" id=\"tipo-" . $usuario['userId'] . "\">
+                                <option value=\"0\">Usuario</option>
+                                <option value=\"1\" selected>Moderador</option>
+                                </select></td>
                                 <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
                                 </tr>";
                                 break;

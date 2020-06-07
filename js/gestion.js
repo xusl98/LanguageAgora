@@ -193,6 +193,20 @@ $(document).ready(function () {
             ;
     });
 
+    $('.userTypeSelect').change(function () {
+        var userId = $(this).attr('id').split('-')[1];
+        var userType = $(this).val();
+        console.log(userId)
+        console.log(userType)
+        var opciones = { url: path + "server/gestion/cambiarTipoUsuario.php", data: { userId: userId, userType: userType }, type: "POST", dataType: "json", };
+        $.ajax(opciones)
+            // .done(peticionEliminarPregCorrecta)
+            // .fail()
+            .always(peticionCambiarTipoUsuario)
+            ;
+
+    });
+
 
 });
 
@@ -204,6 +218,10 @@ function cargarSelect() {
         .always(peticionObtenerIdiomas)
         ;
     actualizarIdiomas();
+}
+
+function peticionCambiarTipoUsuario () {
+    console.log('Rol cambiado')
 }
 
 
