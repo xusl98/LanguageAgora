@@ -185,6 +185,13 @@ function inicioSesionCorrecto(respuesta) {
             showConfirmButton: false,
             timer: 1500
         })
+
+        var opciones = { url: path + "server/home/cambiarUltimoInicio.php", data: { userId: sessionStorage.getItem('user'), date: (new Date().toLocaleDateString('fr-CA')) }, type: "POST", dataType: "json", };
+        $.ajax(opciones)
+            // .done(peticionEmailCorrecta)
+            // .fail()
+            .always(peticionCambiarInicio)
+            ;
     } else {
         Swal.fire({
             position: 'top-end',
@@ -200,7 +207,7 @@ function inicioSesionCorrecto(respuesta) {
 
 
 function actualizarIdiomas() {
-    var opciones = { url: path + "server/home/obtenerIdiomas.php", data: {  }, type: "POST", dataType: "json", };
+    var opciones = { url: path + "server/home/obtenerIdiomas.php", data: {}, type: "POST", dataType: "json", };
     $.ajax(opciones)
         // .done(peticionEliminarPregCorrecta)
         // .fail()
@@ -208,10 +215,14 @@ function actualizarIdiomas() {
         ;
 }
 
-function peticionObtenerIdiomasNav(idiomas){
+function peticionCambiarInicio(){
+    console.log('Login cambiado')
+}
+
+function peticionObtenerIdiomasNav(idiomas) {
     html = '';
-    for (idioma of idiomas){
-        html += '<a class="dropdown-item" href="index.php?option=language&lang='+idioma['languageId']+'&name='+idioma['name']+'">'+idioma['name']+'</a>';
+    for (idioma of idiomas) {
+        html += '<a class="dropdown-item" href="index.php?option=language&lang=' + idioma['languageId'] + '&name=' + idioma['name'] + '">' + idioma['name'] + '</a>';
     }
     $('#dropLangs').html(html);
 

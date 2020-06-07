@@ -104,7 +104,7 @@ $(document).ready(function () {
         }
 
 
-        
+
 
 
 
@@ -358,12 +358,18 @@ function peticionPreguntasCorrecta(preguntas) {
         $('#pregUser').attr('href', 'index.php?option=profile&user=' + preguntas[0].userId);
 
 
-        if (sessionStorage.getItem('user') != preguntas[0].userId) {
-            $('#editQuestion').css('visibility', 'hidden');
-            $('#deleteQuestion').css('visibility', 'hidden');
-        } else {
+        if (sessionStorage.getItem('userType') == 1 || sessionStorage.getItem('userType') == 2) {
             $('#editQuestion').css('visibility', 'visible');
             $('#deleteQuestion').css('visibility', 'visible');
+        } else {
+
+            if (sessionStorage.getItem('user') != preguntas[0].userId) {
+                $('#editQuestion').css('visibility', 'hidden');
+                $('#deleteQuestion').css('visibility', 'hidden');
+            } else {
+                $('#editQuestion').css('visibility', 'visible');
+                $('#deleteQuestion').css('visibility', 'visible');
+            }
         }
 
     } else {
@@ -459,7 +465,7 @@ function peticionRespuestasCorrecta(respuestas) {
         });
 
         for (respuesta of respuestas) {
-            if (sessionStorage.getItem('user') != respuesta.userId) {
+            if (sessionStorage.getItem('user') != respuesta.userId && sessionStorage.getItem('userType') != 1 && sessionStorage.getItem('userType') != 2) {
                 console.log(respuesta.answerId)
                 $('#editAnswer-' + respuesta.answerId).css('visibility', 'hidden');
                 $('#deleteAnswer-' + respuesta.answerId).css('visibility', 'hidden');

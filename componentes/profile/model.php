@@ -7,6 +7,12 @@ class modelHome {
         $db->query($sql);
         return $db->cargaFila();
     }
+    public static function getUltimoLogin($userId){
+        $db = new database();
+        $sql = "SELECT lastLogin from user where userId = $userId";
+        $db->query($sql);
+        return $db->cargaFila();
+    }
   
 }
 ?>

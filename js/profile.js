@@ -8,13 +8,6 @@ $(document).ready(function () {
   userId = urlParams.get('user');
 
   //Datos del perfil
-  // url = path + "server/profile/obtenerPerfil.php"
-  // var miXHR = new XMLHttpRequest();
-  // var param = 'user=' + userId;
-  // miXHR.onreadystatechange = peticionPerfilCorrecta;
-  // miXHR.open("POST", url);
-  // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  // miXHR.send(param);
 
   var opciones = { url: path + "server/profile/obtenerPerfil.php", data: { user: userId }, type: "POST", dataType: "json", };
   $.ajax(opciones)
@@ -24,13 +17,6 @@ $(document).ready(function () {
     ;
 
   //Gráfico preguntas
-  // url = path + "server/profile/obtenerPreguntasRealizadas.php"
-  // var miXHR = new XMLHttpRequest();
-  // var param = 'user=' + userId;
-  // miXHR.onreadystatechange = peticionGraficoPreguntasCorrecta;
-  // miXHR.open("POST", url);
-  // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  // miXHR.send(param);
 
   var opciones = { url: path + "server/profile/obtenerPreguntasRealizadas.php", data: { user: userId }, type: "POST", dataType: "json", };
   $.ajax(opciones)
@@ -40,13 +26,6 @@ $(document).ready(function () {
     ;
 
   //Gráfico repuestas
-  // url = path + "server/profile/obtenerRespuestasRealizadas.php"
-  // var miXHR = new XMLHttpRequest();
-  // var param = 'user=' + userId;
-  // miXHR.onreadystatechange = peticionGraficoRespuestasCorrecta;
-  // miXHR.open("POST", url);
-  // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  // miXHR.send(param);
 
   var opciones = { url: path + "server/profile/obtenerRespuestasRealizadas.php", data: { user: userId }, type: "POST", dataType: "json", };
   $.ajax(opciones)
@@ -56,13 +35,6 @@ $(document).ready(function () {
     ;
 
   //Últimas preguntas
-  // url = path + "server/profile/obtenerUltimasPreguntas.php"
-  // var miXHR = new XMLHttpRequest();
-  // var param = 'user=' + userId;
-  // miXHR.onreadystatechange = peticionPreguntasCorrecta;
-  // miXHR.open("POST", url);
-  // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  // miXHR.send(param);
 
   var opciones = { url: path + "server/profile/obtenerUltimasPreguntas.php", data: { user: userId }, type: "POST", dataType: "json", };
   $.ajax(opciones)
@@ -72,13 +44,6 @@ $(document).ready(function () {
     ;
 
   //Últimas respuestas
-  // url = path + "server/profile/obtenerUltimasRespuestas.php"
-  // var miXHR = new XMLHttpRequest();
-  // var param = 'user=' + userId;
-  // miXHR.onreadystatechange = peticionRespuestasCorrecta;
-  // miXHR.open("POST", url);
-  // miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  // miXHR.send(param);
 
   var opciones = { url: path + "server/profile/obtenerUltimasRespuestas.php", data: { user: userId }, type: "POST", dataType: "json", };
   $.ajax(opciones)

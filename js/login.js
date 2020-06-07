@@ -126,16 +126,24 @@ function peticionCorreoCorrecta(respuesta) {
 }
 
 function peticionCambioPassCorrecta() {
-        console.log(this.responseText);
-        Swal.fire({
-            icon: 'success',
-            title: 'Contraseña cambiada satisfactoriamente'
-        })
+    console.log(this.responseText);
+    Swal.fire({
+        icon: 'success',
+        title: 'Contraseña cambiada satisfactoriamente'
+    })
 
 }
 function peticionLoginCorrecta(respuesta) {
     if (respuesta.length > 0) {
         sessionStorage.setItem('user', respuesta[0].userId);
+        sessionStorage.setItem('name', respuesta[0].name);
+        sessionStorage.setItem('userType', respuesta[0].userTypeId);
+        var opciones = { url: path + "server/home/cambiarUltimoInicio.php", data: { userId: sessionStorage.getItem('user'), date: (new Date().toLocaleDateString('fr-CA')) }, type: "POST", dataType: "json", };
+        $.ajax(opciones)
+            // .done(peticionEmailCorrecta)
+            // .fail()
+            .always(peticionCambiarUltimoInicio)
+            ;
         window.location.href = 'index.php';
     } else {
         Swal.fire({
@@ -148,4 +156,8 @@ function peticionLoginCorrecta(respuesta) {
         })
     }
 
+}
+
+function peticionCambiarUltimoInicio(){
+    console.log('Login cambiado')
 }
