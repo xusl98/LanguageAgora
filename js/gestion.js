@@ -114,7 +114,10 @@ $(document).ready(function () {
             $('#selectedLang').text(selectedLangName);
             $('#btnEliminarIdioma').css('visibility', 'visible');
             // $('#langGraphs').css('display', 'block');
-            $('#langGraphs').slideToggle();
+
+            if ($('#langGraphs').css('display') == 'none'){
+                $('#langGraphs').slideToggle();
+            }
 
             preguntasIdiomaMes();
             preguntasIdiomaAnio();
