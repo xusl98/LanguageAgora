@@ -1,72 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<script src="./js/home.js"></script>
-<link rel="stylesheet" href="./css/home.css">
-<div class="row">
-            <div class="col-md-12" style="margin-top: -2%;">
-                <div>
-                    <!-- CONTENIDO -->
-                    <!-- CAROUSSEL -->
-                    <div id="carouselExampleCaptions" class="carousel slide row" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="./resources/slider/foto1.jpg" class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <div class="fondoNegro menosOscuro">
-                                        <h5>Pregunta</h5>
-                                        <p>Haz preguntas sobre las dudas que te surjan.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="./resources/slider/foto2.jpg" class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <div class="fondoNegro">
-                                        <h5>Responde</h5>
-                                        <p>Ayuda a resolver las dudas de otros usuarios</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="./resources/slider/foto3.jpg" class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <div class="fondoNegro masOscuro">
-                                        <h5>Valora</h5>
-                                        <p>Valora las respuestas de otros usuarios.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button"
-                            data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button"
-                            data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                    <!-- LISTA IDIOMAS -->
-                    <div style="margin-bottom: 2%; text-align:center; padding: 0 20% 0 20%;" id="idiomas">
-                        <!-- <h1>Idiomas</h1> -->
-                        <a id="idiomasDesp" data-toggle="collapse" href="#lista" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <h1>Idiomas <i id="despleg" class="fas fa-chevron-right"></i></h1>
-                        </a>
-                        <div id="lista" class="list-group collapse">
-                        <?php 
-                        foreach ($idiomas as $idioma){
-                            echo '<a href="index.php?option=language&lang='.$idioma['languageId'].'&name='.$idioma['name'].'" class="list-group-item list-group-item-action">'.$idioma['name'].'</a>';
-                        }
-                        ?>
-                        </div>
-                    </div>
-                    <!-- CONTENIDO -->
-                </div>
-            </div>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+  <!-- Bootstrap Core CSS -->
+
+  <!-- Custom Fonts -->
+  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet"> -->
+
+  <!-- Custom CSS -->
+  <link href="./css/stylish-portfolio.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+
+  <!-- Header -->
+  <header class="masthead d-flex">
+    <div class="container text-center my-auto">
+      <h1 class="mb-1">LanguageAgora</h1>
+      <h3 class="mb-5">
+        <em>Un foro de aprendizaje de idiomas</em>
+      </h3>
+      <a class="btn btn-primary btn-xl js-scroll-trigger" href="#services">Servicios</a>
+    </div>
+    <div class="overlay"></div>
+  </header>
+
+  <!-- About -->
+  <section class="content-section bg-light" id="about">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h2>Enfoque</h2>
+          <p class="lead mb-5">LanguageAgora es una web desarrollada para ayudar a todos aquellos interesados en aprender un nuevo idioma.<br> En ella podrás ayudar a otros o preguntar tus propias dudas.
+            </p>
+          <a class="btn btn-dark btn-xl js-scroll-trigger" href="#contact">Dónde encontrarnos</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="content-section bg-primary text-white text-center" id="services">
+    <div class="container">
+      <div class="content-section-heading">
+        <h3 class="text-secondary mb-0">Servicios</h3>
+        <h2 class="mb-5">Lo que ofrece la web</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <span class="service-icon rounded-circle mx-auto mb-3 roundIcons">
+          <i class="fas fa-question"></i>
+          </span>
+          <h4>
+            <strong>Pregunta</strong>
+          </h4>
+          <p class="text-faded mb-0">Formula cualquier duda que te surja.</p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <span class="service-icon rounded-circle mx-auto mb-3 roundIcons">
+          <i class="fas fa-pencil-alt"></i>
+          </span>
+          <h4>
+            <strong>Responde</strong>
+          </h4>
+          <p class="text-faded mb-0">Soluciona las preguntas de otros usuarios.</p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+          <span class="service-icon rounded-circle mx-auto mb-3 roundIcons">
+          <i class="fas fa-comments"></i>
+          </span>
+          <h4>
+            <strong>Contacta</strong>
+          </h4>
+          <p class="text-faded mb-0">Contacta mediante mensaje directo con otros usuarios.</p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <span class="service-icon rounded-circle mx-auto mb-3 roundIcons">
+          <i class="fas fa-award"></i>
+          </span>
+          <h4>
+            <strong>Compara</strong>
+          </h4>
+          <p class="text-faded mb-0">Compara los usuarios mediante las estadísticas de su perfil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Portfolio -->
+  <section class="content-section" id="portfolio">
+    <div class="container">
+      <div class="content-section-heading text-center">
+        <h3 class="text-secondary mb-0">Populares</h3>
+        <h2 class="mb-5">Idiomas Destacados</h2>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-6">
+          <a class="portfolio-item" href="index.php?option=language&lang=1&name=Espa%C3%B1ol">
+            <span class="caption">
+              <span class="caption-content">
+                <h2>Español</h2>
+                <p class="mb-0">Haz preguntas sobre Español.</p>
+              </span>
+            </span>
+            <img class="img-fluid flag-image" src="./resources/esp.png" alt="">
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <a class="portfolio-item" href="index.php?option=language&lang=3&name=Francés">
+            <span class="caption">
+              <span class="caption-content">
+                <h2>Francés</h2>
+                <p class="mb-0">Posez des questions en français.</p>
+              </span>
+            </span>
+            <img class="img-fluid" src="./resources/fra.png" alt="">
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <a class="portfolio-item" href="index.php?option=language&lang=2&name=Inglés">
+            <span class="caption">
+              <span class="caption-content">
+                <h2>Inglés</h2>
+                <p class="mb-0">Ask questions about English.</p>
+              </span>
+            </span>
+            <img class="img-fluid" src="./resources/uk.png" alt="">
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <a class="portfolio-item" href="index.php?option=language&lang=5&name=Alemán">
+            <span class="caption">
+              <span class="caption-content">
+                <h2>Alemán</h2>
+                <p class="mb-0">Stellen Sie Fragen zu Deutsch.</p>
+              </span>
+            </span>
+            <img class="img-fluid" src="./resources/ger.png" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section bg-primary text-white">
+    <div class="container text-center">
+      <h2 class="mb-4">Dónde encontrarnos</h2>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section id="contact" class="map">
+    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%&height=600&hl=es&coord=43.4478334,-3.8509671415929203&q=Av.%20Primero%20de%20Mayo%2C%201%2C%2039011%20Santander%2C%20Cantabria+(IES%20Augusto%20Gonz%C3%A1lez%20de%20Linares)&ie=UTF8&t=&z=14&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/">Dibujar radio en el mapa</a></iframe></div><br />
+    <br />
+    <small>
+      <a href="https://www.google.es/maps/place/IES+Augusto+Gonz%C3%A1lez+de+Linares/@43.4476849,-3.8532829,17z/data=!3m1!4b1!4m5!3m4!1s0xd4949bb2a323c29:0xcbc1863c74913b6d!8m2!3d43.447681!4d-3.8510942"></a>
+    </small>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <ul class="list-inline mb-5">
+            <a id="github" href="https://github.com/xusl98/LanguageAgora" style="background-color: #1D809F; color: white;" class="service-icon rounded-circle mx-auto mb-3 roundIcons">
+                <i class="fab fa-github"></i>
+            </a>
+      </ul>
+      <p class="text-muted small mb-0">Copyright &copy; 2020 LanguageAgora</p>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript -->
+  <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+  <!-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+
+  <!-- Plugin JavaScript -->
+  <script src="./js/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="./js/stylish-portfolio.min.js"></script>
+
+</body>
+
+</html>

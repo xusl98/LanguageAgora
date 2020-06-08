@@ -9,6 +9,13 @@
     cursor: pointer;
 }
 
+  
+.btn-secondary {
+    background-color: #ecb807 !important;
+    border-color: #ecb807 !important;
+    color: #fff !important;
+  }
+
 
 .carousel-item {
     height: 700px;
@@ -44,6 +51,12 @@ nav{
 a{
     color: white;
 }
+.colorBlanco{
+    color: white !important;
+}
+.colorBlanco:hover{
+    color: black !important;
+}
 .dropdown-menu{
     background-color: #1A5F83;
 }
@@ -66,6 +79,8 @@ body{
 .list-group-item-action:hover {
     background-color: #1A5F83;
     color: white;
+    transition: background-color 0.4s !important;
+    transition: color 0.4s;
 }
 
 .textoIzquierda{

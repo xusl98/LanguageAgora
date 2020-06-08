@@ -109,10 +109,10 @@ function cambioSesion() {
     var perfilDropdown = '';
     if (!sesionIniciada) {
         $('#profileDrop').text('Perfil');
-        perfilDropdown = '<a id="inicioSesion" class="dropdown-item" href="#" data-toggle="modal" data-target="#inicioModal">Iniciar Sesión</a>';
+        perfilDropdown = '<a id="inicioSesion" class="dropdown-item colorBlanco" href="#" data-toggle="modal" data-target="#inicioModal">Iniciar Sesión</a>';
         $('#pestChats').html('');
         $('#pestGestion').html('');
-        perfilDropdown += '<a class="dropdown-item" href="index.php?option=signUp">Registrarse</a>';
+        perfilDropdown += '<a class="dropdown-item colorBlanco" href="index.php?option=signUp">Registrarse</a>';
 
         //Al pulsar incicio de sesión
         $('#btnInicio').click(function () {
@@ -132,12 +132,12 @@ function cambioSesion() {
         });
 
     } else {
-        perfilDropdown = '<a class="dropdown-item" href="index.php?option=profile&user=' + sessionStorage.getItem('user') + '">Ver Perfil</a>';
-        chatHtml = '<a id="toChats" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '" class="notification nav-link"><span>Chats</span><span style="display:none;" id="badgeChats" class="badge">3</span></a>';
+        perfilDropdown = '<a class="dropdown-item colorBlanco" href="index.php?option=profile&user=' + sessionStorage.getItem('user') + '">Ver Perfil</a>';
+        chatHtml = '<a id="toChats" href="index.php?option=chats&user=' + sessionStorage.getItem('user') + '" class="notification nav-link colorBlanco"><span>Chats</span><span style="display:none;" id="badgeChats" class="badge">3</span></a>';
         $('#pestChats').html(chatHtml);
         console.log(sessionStorage.getItem('userType'))
         if (parseInt(sessionStorage.getItem('userType')) != 0) {
-            $('#pestGestion').html('<a class="nav-link " href="index.php?option=gestion" tabindex="-1" aria-disabled="true">Gestión</a>');
+            $('#pestGestion').html('<a class="nav-link colorBlanco" href="index.php?option=gestion" tabindex="-1" aria-disabled="true">Gestión</a>');
         } else {
             $('#pestGestion').html('');
         }

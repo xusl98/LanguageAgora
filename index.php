@@ -25,9 +25,10 @@
     <link rel="stylesheet" href="./css/estilo.css">
     <link href="./librerias/fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet">
 
+
     <link rel="shortcut icon" type="image/x-icon" href="./resources/favicon.ico">
     <link rel="icon" href="./resources/favicon.ico" type="image/x-icon">
-
+    <title>LanguageAgora</title>
 
 
     <script src="./librerias/SweetAlerts/dist/sweetalert2.min.js"></script>
@@ -90,7 +91,7 @@
             ?>
 
 <nav class="navbar navbar-expand-lg ">
-  <a class="navbar-brand" href="index.php">LanguageAgora</a>
+  <a class="navbar-brand colorBlanco" href="index.php">LanguageAgora</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"><i style="color:white;" class="fas fa-bars"></i></span>
   </button>
@@ -98,20 +99,20 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle colorBlanco" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Idioma
         </a>
         <div id="dropLangs" class="dropdown-menu" aria-labelledby="navbarDropdown">
           <?php
             $idiomas = getIdiomaS();
             foreach ($idiomas as $idioma){
-                echo '<a class="dropdown-item" href="index.php?option=language&lang='.$idioma['languageId'].'&name='.$idioma['name'].'">'.$idioma['name'].'</a>';
+                echo '<a class="dropdown-item colorBlanco" href="index.php?option=language&lang='.$idioma['languageId'].'&name='.$idioma['name'].'">'.$idioma['name'].'</a>';
             }
         ?>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a id="profileDrop" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a id="profileDrop" class="nav-link dropdown-toggle colorBlanco" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Perfil
         </a>
         <div id="perfilDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
@@ -133,17 +134,28 @@
         </form>
   </div>
 </nav>
-<div style="height: 150px;">&nbsp;</div>
+<div id="contenidoPag" style="height: 150px;">&nbsp;</div>
 
 
             <?php echo loader($componente); 					// Cuerpo ?>
             
     </div>
-    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+
+    <?php 
+    $footer = '<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
     <div class="container text-center">
       <small>Copyright &copy; 2020 LanguageAgora</small>
     </div>
-  </footer>
+  </footer>';
+    if (isset($_GET['option'])){
+      if ($_GET['option'] != 'home'){
+        echo $footer;
+      }
+    } 
+
+
+    ?>
+    
     <!-- MODAL Iniciar sesión -->
     <div class="modal fade" id="inicioModal" tabindex="-1" role="dialog" 
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
