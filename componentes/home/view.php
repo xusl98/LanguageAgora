@@ -107,7 +107,8 @@
         <h2 class="mb-5">Idiomas Destacados</h2>
       </div>
       <div class="row no-gutters">
-        <div class="col-lg-6">
+        <div class="col-lg-2">&nbsp;</div>
+        <div class="col-lg-4">
           <a class="portfolio-item" href="index.php?option=language&lang=1&name=Espa%C3%B1ol">
             <span class="caption">
               <span class="caption-content">
@@ -115,10 +116,10 @@
                 <p class="mb-0">Haz preguntas sobre Español.</p>
               </span>
             </span>
-            <img class="img-fluid flag-image" src="./resources/esp.png" alt="">
+            <img class="img-fluid" src="./resources/esp.png" alt="">
           </a>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
           <a class="portfolio-item" href="index.php?option=language&lang=3&name=Francés">
             <span class="caption">
               <span class="caption-content">
@@ -129,7 +130,9 @@
             <img class="img-fluid" src="./resources/fra.png" alt="">
           </a>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-2">&nbsp;</div>
+        <div class="col-lg-2">&nbsp;</div>
+        <div class="col-lg-4">
           <a class="portfolio-item" href="index.php?option=language&lang=2&name=Inglés">
             <span class="caption">
               <span class="caption-content">
@@ -140,7 +143,7 @@
             <img class="img-fluid" src="./resources/uk.png" alt="">
           </a>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
           <a class="portfolio-item" href="index.php?option=language&lang=5&name=Alemán">
             <span class="caption">
               <span class="caption-content">
@@ -151,13 +154,15 @@
             <img class="img-fluid" src="./resources/ger.png" alt="">
           </a>
         </div>
+        <div class="col-lg-2">&nbsp;</div>
       </div>
     </div>
   </section>
 
   <section class="content-section bg-primary text-white">
     <div class="container text-center">
-      <h2 class="mb-4">Dónde encontrarnos</h2>
+      <h2 class="mb-4">Contacto</h2>
+      <div>Si quieres contactar con nosotros manda un mensaje al usuario "Admin".<br>(Podrás acceder al usuario en el buscador de la parte superior derecha)</div>
     </div>
   </section>
 

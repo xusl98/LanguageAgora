@@ -10,7 +10,9 @@
 .roundIcons:hover {
   text-decoration: none;
 }
-
+.countryFlag{
+  width: 60%;
+}
 #github:hover{
   background-color: #64728A !important;
   transition: background-color 0.6s;
@@ -24,10 +26,6 @@ html {
   height: 100%;
 }
 
-body {
-}
-.flag-image{
-}
 
 .btn-xl {
   padding: 1.25rem 2.5rem;
