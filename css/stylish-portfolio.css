@@ -15,7 +15,9 @@
   background-color: #64728A !important;
   transition: background-color 0.6s;
 }
-
+#contenedorWeb{
+  padding: 0 !important;
+}
 body,
 html {
   width: 100%;

@@ -38,7 +38,7 @@
 
 
     <body>
-    <div class="container-fluid" style="min-height: 80%;">
+    <div class="container-fluid" id="contenedorWeb" style="min-height: 80%;">
     <?php 
 
 
