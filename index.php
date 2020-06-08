@@ -104,9 +104,11 @@
         </a>
         <div id="dropLangs" class="dropdown-menu" aria-labelledby="navbarDropdown">
           <?php
+          require_once "./server/language.php";
             $idiomas = getIdiomaS();
             foreach ($idiomas as $idioma){
-                echo '<a class="dropdown-item colorBlanco" href="index.php?option=language&lang='.$idioma['languageId'].'&name='.$idioma['name'].'">'.$idioma['name'].'</a>';
+              $language = new Language($idioma);
+                echo '<a class="dropdown-item colorBlanco" href="index.php?option=language&lang='.$language->getLanguageId().'&name='.$language->getName().'">'.$language->getName().'</a>';
             }
         ?>
         </div>

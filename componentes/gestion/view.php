@@ -234,10 +234,12 @@
                             <select id="langSelector" class="custom-select">
                                 <option id="default" selected>Elige un idioma...</option>
                                     <?php
+                                    require_once "./server/language.php";
                                         $idiomas = modelHome::getIdiomas();
                                         foreach ($idiomas as $idioma){
+                                            $language = new Language($idioma);
                                             // print_r($pregunta);
-                                                echo "<option lang=\"" . $idioma['languageId'] . "\" langDisabled=\"" . $idioma['disabled'] . "\">" . $idioma['name'] . "</option>";
+                                                echo "<option lang=\"" . $language->getLanguageId() . "\" langDisabled=\"" . $language->getDisabled() . "\">" . $language->getName() . "</option>";
                                                 
                                         }
                                     ?>
