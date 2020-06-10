@@ -92,6 +92,9 @@
                             <th class="th-sm">Tipo de usuario
 
                             </th>
+                            <th class="th-sm">Deshabilitado
+
+                            </th>
                             <th class="th-sm">Eliminar
 
                             </th>
@@ -105,29 +108,44 @@
                           switch ($usuario['userTypeId']) {
                             case 0:
                                 $userType = 'Usuario';
-                                echo "<tr id=\"tr".$usuario['userId']."\">
+                                $html = "<tr id=\"tr".$usuario['userId']."\">
                                 <td id=\"name".$usuario['userId']."\"><a class=\"enlace\" href=\"index.php?option=profile&user=" . $usuario['userId'] . "\">".$usuario['name']."</a></td>
                                 <td>".$usuario['email']."</td>
                                 <td>".$usuario['fechaRegistro']."</td>
                                 <td><select class=\"custom-select userTypeSelect\" id=\"tipo-" . $usuario['userId'] . "\">
                                 <option value=\"0\" selected>Usuario</option>
                                 <option value=\"1\">Moderador</option>
-                                </select></td>
-                                <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
-                                </tr>";
+                                </select></td>";
+                                if ($usuario['disable'] == true){
+                                    $html .= "<td><div class=\"form-check\"><input checked type=\"checkbox\" id=\"" . $usuario['userId'] . "\" class=\"form-check-input disable\"></div></td>
+                                    <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
+                                    </tr>";
+                                } else {
+                                    $html .= "<td><div class=\"form-check\"><input type=\"checkbox\" id=\"" . $usuario['userId'] . "\" class=\"form-check-input disable\"></div></td>
+                                    <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
+                                    </tr>";
+                                }
+                                echo $html;
                                 break;
                             case 1:
                                 $userType = 'Moderador';
-                                echo "<tr>
+                                $html =  "<tr>
                                 <td id=\"name".$usuario['userId']."\"><a class=\"enlace\" href=\"index.php?option=profile&user=" . $usuario['userId'] . "\">".$usuario['name']."</a></td>
                                 <td>".$usuario['email']."</td>
                                 <td>".$usuario['fechaRegistro']."</td>
                                 <td><select class=\"custom-select userTypeSelect\" id=\"tipo-" . $usuario['userId'] . "\">
                                 <option value=\"0\">Usuario</option>
                                 <option value=\"1\" selected>Moderador</option>
-                                </select></td>
-                                <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
-                                </tr>";
+                                </select></td>";
+                                if ($usuario['disable'] == true){
+                                    $html .= "<td><div class=\"form-check\"><input checked type=\"checkbox\" id=\"" . $usuario['userId'] . "\" class=\"form-check-input disable\"></div></td>
+                                    <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
+                                    </tr>";
+                                } else {
+                                    $html .= "<td><div class=\"form-check\"><input type=\"checkbox\" id=\"" . $usuario['userId'] . "\" class=\"form-check-input disable\"></div></td>
+                                    <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
+                                    </tr>";
+                                }
                                 break;
                             case 2:
                               $userType = 'Admin';
@@ -136,6 +154,7 @@
                               <td>".$usuario['email']."</td>
                               <td>".$usuario['fechaRegistro']."</td>
                               <td>".$userType."</td>
+                              <td></td>
                               <td></td>
                               </tr>";
                                 break;

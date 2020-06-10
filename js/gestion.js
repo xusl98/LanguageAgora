@@ -213,11 +213,21 @@ $(document).ready(function () {
         console.log(userType)
         var opciones = { url: path + "server/gestion/cambiarTipoUsuario.php", data: { userId: userId, userType: userType }, type: "POST", dataType: "json", };
         $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionCambiarTipoUsuario)
+        ;
+        
+    });
+    
+    $('.disable').change(function () {
+        var userId = $(this)[0].id;
+        var opciones = { url: path + "server/gestion/cambiarDisableUser.php", data: { userId: userId }, type: "POST", dataType: "json", };
+        $.ajax(opciones)
             // .done(peticionEliminarPregCorrecta)
             // .fail()
-            .always(peticionCambiarTipoUsuario)
+            .always(peticionCambiarDisableUser)
             ;
-
     });
 
 
@@ -233,6 +243,9 @@ function cargarSelect() {
     actualizarIdiomas();
 }
 
+function peticionCambiarDisableUser () {
+    console.log('disable cambiado')
+}
 function peticionCambiarTipoUsuario () {
     console.log('Rol cambiado')
 }

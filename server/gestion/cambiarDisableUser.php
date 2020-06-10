@@ -4,11 +4,12 @@ $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
 $userId = $_POST['userId'];
 
-$cons="DELETE FROM user where userId = $userId;";
+
+$cons="UPDATE user SET disable = !disable where userId = $userId";
 
 
 
-$mysqli->query($cons);
+$res = $mysqli->query($cons);
 
 
 // header('Content-Type: application/json');
@@ -19,7 +20,7 @@ $mysqli->query($cons);
 //     }
 // } while ($mysqli->more_results() && $mysqli->next_result());
 
-echo $id . "-" . $vote;
+echo $res;
 
 
 ?>
