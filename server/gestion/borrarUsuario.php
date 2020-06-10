@@ -4,7 +4,7 @@ $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
 $userId = $_POST['userId'];
 
-$cons="DELETE FROM user where userId = $userId;";
+$cons="UPDATE user SET disable = true where userId = $userId";
 
 
 

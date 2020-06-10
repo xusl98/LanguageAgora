@@ -38,26 +38,34 @@ $(document).ready(function () {
     });
 
     $('#spanReport').click(function () {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "Se enviará un reporte de esta pregunta",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar'
-        }).then((result) => {
-            if (result.value) {
-
-                var opciones = { url: path + "server/question/enviaReporte.php", data: { questionId: questionId }, type: "POST", dataType: "json", };
-                $.ajax(opciones)
-                    // .done(peticionReporteCorrecta)
-                    // .fail()
-                    .always(peticionReporteCorrecta)
-                    ;
-
-            }
-        })
+        if (sesionIniciada){
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Se enviará un reporte de esta pregunta",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar'
+            }).then((result) => {
+                if (result.value) {
+    
+                    var opciones = { url: path + "server/question/enviaReporte.php", data: { questionId: questionId }, type: "POST", dataType: "json", };
+                    $.ajax(opciones)
+                        // .done(peticionReporteCorrecta)
+                        // .fail()
+                        .always(peticionReporteCorrecta)
+                        ;
+    
+                }
+            })
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Debes iniciar sesión',
+            })
+        }
 
     });
 

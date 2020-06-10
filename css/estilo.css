@@ -2,19 +2,20 @@
     clear: both;
     position: relative;
     height: 80px;
-    margin-top: 120px;
+    margin-top: 180px;
 }
 
 #spanReport:hover{
     cursor: pointer;
 }
 
+
   
-.btn-secondary {
+/* .btn-secondary {
     background-color: #ecb807 !important;
     border-color: #ecb807 !important;
     color: #fff !important;
-  }
+  } */
 
 
 .carousel-item {
@@ -29,12 +30,16 @@
   }
 
   #inputBUsuario{
-    background-color: #5D75A1;
-     color: white;
+    background-color: lightgray;
+     /* color: white; */
+  }
+  #inputBUsuario:hover{
+    background-color: lightgray !important;
+     /* color: white; */
   }
 
   #inputBUsuario::placeholder{
-     color: white;
+     color: gray;
   }
 
 

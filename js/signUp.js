@@ -75,7 +75,7 @@ $(document).on('inputChange', function () {
     console.log(passwordValid);
     console.log(nameValid);
     console.log(emailValid);
-    $('#submit')[0].disabled = isValid && passwordValid && nameValid && emailValid ? false : true;
+    $('#submit')[0].disabled = isValid && passwordValid && nameValid && emailValid && $('#termsCheck').prop('checked') ? false : true;
 });
 
 

@@ -2,7 +2,7 @@
 
 
 <link rel="stylesheet" href="./css/language.css">
-<div class="row">
+<div class="row" style="margin-top: 6%;">
             <div class="col-md-3" style="margin-top: 4%;">
                 <div style="margin: 0 0% 0 10%;">
                     <h5>Usuarios con más preguntas de <span class="idioma"></span></h5>

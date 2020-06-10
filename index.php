@@ -49,45 +49,6 @@
         return $db->cargaMatriz();
     }
 
-    
-    // $nav = '
-    // <nav style="z-index:100" class="navbar navbar-expand-lg row nav">
-    //     <div class="col-md-5">
-    //         <a class="navbar-brand" href="index.php">LanguageAgora</a>
-    //     </div>
-    //     <div class=" dropdown col-md-4">
-    //         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-    //             aria-haspopup="true" aria-expanded="false">
-    //             Idioma
-    //         </a>
-    //         <div id="dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">';
-    // $idiomas = getIdiomaS();
-    // foreach ($idiomas as $idioma){
-    //     $nav .= '<a class="dropdown-item" href="index.php?option=language&lang='.$idioma['languageId'].'&name='.$idioma['name'].'">'.$idioma['name'].'</a>';
-    // }
-
-    //         $nav .= '</div>
-    //     </div>
-    //     <div class="col-md-3 row">
-    //         <div class="dropdown col-md-6">
-    //             <a class="nav-link dropdown-toggle" href="#" id="profileDrop" role="button"
-    //                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    //                 Perfil
-    //             </a>
-    //             <div id="perfilDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
-    //         </div>
-    //         <div class="dropdown col-md-6">
-    //             <div class="input-group mb-3">
-    //                 <input id="inputBUsuario" btn="btnBUsuario" type="text" class="form-control x" placeholder="Usuario..." >
-    //                 <div class="input-group-append">
-    //                     <button id="btnBUsuario" class="input-group-text btn btn-light"><i class="fas fa-search"></i></button>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-    // </nav>
-    // ';
-    // echo $nav;
             ?>
 
 <nav class="navbar navbar-expand-lg ">
@@ -136,7 +97,7 @@
         </form>
   </div>
 </nav>
-<div id="contenidoPag" style="height: 150px;">&nbsp;</div>
+<div id="contenidoPag" >&nbsp;</div>
 
 
             <?php echo loader($componente); 					// Cuerpo ?>

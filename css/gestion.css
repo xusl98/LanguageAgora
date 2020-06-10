@@ -29,3 +29,13 @@ ul{
 .enlace:hover{
     text-decoration: none;
 }
+
+
+#contenidoGestion{
+    margin-top: 5%;
+}
+@media (max-width: 992px) {
+    #contenidoGestion{
+        margin-top: 10%;
+    }
+  }

@@ -49,6 +49,14 @@
                 </div>
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="termsCheck">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Acepto las condiciones de uso
+                            </label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center links">
                         ¿Ya tienes una cuenta? <a href="index.php?option=login" class="ml-2">Iniciar Sesión</a>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ $mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
 $mysqli->set_charset("utf8");
 $name = $_POST['name'];
 $pass = $_POST['pass'];
-$cons="SELECT * FROM user where name = '$name' and pass = SHA1('$pass')";
+$cons="SELECT * FROM user where name = '$name' and pass = SHA1('$pass') and disable = false";
 
 
 // if(isset($_POST['name']))

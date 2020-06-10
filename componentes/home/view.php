@@ -36,19 +36,6 @@
     <div class="overlay"></div>
   </header>
 
-  <!-- About -->
-  <section class="content-section bg-light" id="about">
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-lg-10 mx-auto">
-          <h2>Enfoque</h2>
-          <p class="lead mb-5">LanguageAgora es una web desarrollada para ayudar a todos aquellos interesados en aprender un nuevo idioma.<br> En ella podrás ayudar a otros o preguntar tus propias dudas.
-            </p>
-          <a class="btn btn-dark btn-xl js-scroll-trigger" href="#contact">Dónde encontrarnos</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Services -->
   <section class="content-section bg-primary text-white text-center" id="services">

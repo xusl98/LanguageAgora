@@ -7,7 +7,7 @@
 <?php 
 ?>
 
-<div class="row">
+<div class="row" id="contenidoGestion">
     <div class="col-md-12">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -30,7 +30,7 @@
         <div class="tab-content" id="myTabContent">
             
             <div class="tab-pane fade show active" id="reports" role="tabpanel" aria-labelledby="reports-tab">
-            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+            <table id="dtBasicExample" class="table table-striped table-bordered table-sm table-responsive-md" cellspacing="0"
                     width="100%">
                     <thead>
                         <tr>
@@ -72,27 +72,11 @@
                         ?>
                         
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Pregunta
-                            </th>
-                            <th>Texto
-                            </th>
-                            <th>Usuario
-                            </th>
-                            <th>Fecha
-                            </th>
-                            <th>Idioma
-                            </th>
-                            <th>Eliminar
-                            </th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
 
             <div class="tab-pane fade " id="users" role="tabpanel" aria-labelledby="user-tab">
-                <table id="tablaUsuarios" class="table table-striped table-bordered table-sm" cellspacing="0"
+                <table id="tablaUsuarios" class="table table-striped table-bordered table-sm table-responsive-md" cellspacing="0"
                     width="100%">
                     <thead>
                         <tr>
@@ -114,22 +98,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <!-- echo "<tr id=\"tr".$usuario['userId']."\">
-                                <td id=\"name".$usuario['userId']."\"><a class=\"enlace\" href=\"index.php?option=profile&user=" . $usuario['userId'] . "\">".$usuario['name']."</a></td>
-                                <td>".$usuario['email']."</td>
-                                <td>".$usuario['fechaRegistro']."</td>
-                                <td>".$userType."</td>
-                                <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
-                                </tr>";
-                                break; -->
-                                <!-- echo "<tr>
-                                <td id=\"name".$usuario['userId']."\"><a class=\"enlace\" href=\"index.php?option=profile&user=" . $usuario['userId'] . "\">".$usuario['name']."</a></td>
-                                <td>".$usuario['email']."</td>
-                                <td>".$usuario['fechaRegistro']."</td>
-                                <td>".$userType."</td>
-                                <td><i id=\"".$usuario['userId']."\" class=\"fas fa-trash-alt elimUser\"></i></td>
-                                </tr>";
-                                break; -->
                         <?php 
                         $usuarios = modelHome::getUsuarios();
                         foreach ($usuarios as $usuario){
@@ -177,20 +145,6 @@
                         ?>
                         
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Nombre
-                            </th>
-                            <th>Email
-                            </th>
-                            <th>Fecha de registro
-                            </th>
-                            <th>Tipo de usuario
-                            </th>
-                            <th>Eliminar
-                            </th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- DATOS -->

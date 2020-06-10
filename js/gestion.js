@@ -9,12 +9,22 @@ var selectedLangId;
 
 
 $(document).ready(function () {
-    $('#dtBasicExample').DataTable({
-        "paging": true // false to disable pagination (or any other option)
-    });
     $('.dataTables_length').addClass('bs-select');
-    $('#tablaUsuarios').DataTable({
-        "paging": true // false to disable pagination (or any other option)
+
+    $('.table').DataTable({
+        "language": {
+            "sSearch":         "Buscar&nbsp;:",
+            "sLengthMenu":     "Mostrar _MENU_ elementos",
+            "sInfo":           "Mostrando de  _START_ a _END_ de _TOTAL_ elementos",
+            "sInfoEmpty":      "Mostrando de 0 a 0 de 0 elementos",
+            "sInfoPostFix":    "",
+            "oPaginate": {
+                "sFirst":      "Primero",
+                "sPrevious":   "Anterior",
+                "sNext":       "Siguiente",
+                "sLast":       "Último"
+            },
+        }
     });
 
     if (parseInt(sessionStorage.getItem('userType')) == 1) {
@@ -57,7 +67,7 @@ $(document).ready(function () {
 
         Swal.fire({
             title: '¿Estás seguro?',
-            text: "El usuario \"" + $('#name' + userId).text() + "\" se borrará definitivamente",
+            text: "El usuario \"" + $('#name' + userId).text() + "\" será dado de baja pero las preguntas seguirán estando disponibles",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -490,10 +500,10 @@ function peticionObtenerIdiomas(idiomas) {
 }
 
 function peticionEliminarUsuarioCorrecta() {
-    $('#tr' + userId).remove();
+    // $('#tr' + userId).remove();
     Swal.fire(
         '¡Eliminado!',
-        'El usuario ha sido eliminado',
+        'El usuario ha sido dado de baja',
         'success'
     )
 }
