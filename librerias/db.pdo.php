@@ -22,9 +22,10 @@ class database {
 
     private $driver = 'mysql';
     private $dbhost = 'localhost';
-    private $dbuser = 'jsainz';
-    private $dbpass = 'js_348';
-    private $dbname = '2020p_jsainz';
+    private $dbuser = 'u935523561_xusl98';
+    private $dbpass = 'Polientes98';
+    private $dbname = 'u935523561_2020p_jsainz';
+    // private $dbname = '2020p_jsainz';
     
     //constructor que realiza la conexion a la bbdd
     public function __construct() {
