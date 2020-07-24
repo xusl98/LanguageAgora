@@ -21,6 +21,10 @@ ul{
     cursor: pointer;
     color: gray;
 }
+.quitarReporte:hover{
+    cursor: pointer;
+    color: gray;
+}
 
 .enlace{
     text-decoration: none;

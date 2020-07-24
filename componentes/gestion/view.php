@@ -49,6 +49,9 @@
                             <th class="th-sm">Idioma
 
                             </th>
+                            <th class="th-sm">Quitar Reporte
+
+                            </th>
                             <th class="th-sm">Eliminar
 
                             </th>
@@ -66,6 +69,7 @@
                                 <td id=\"name".$pregunta['userId']."\"><a class=\"enlace\" href=\"index.php?option=profile&user=" . $pregunta['userId'] . "\">".$pregunta['user']."</a></td>
                                 <td>".$pregunta['date']."</td>
                                 <td>".$pregunta['language']."</td>
+                                <td><i id=\"rep-".$pregunta['questionId']."\" class=\"far fa-flag quitarReporte\"></i></td>
                                 <td><i id=\"".$pregunta['questionId']."\" class=\"fas fa-trash-alt elimPreg\"></i></td>
                                 </tr>";
                         }

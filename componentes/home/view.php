@@ -27,7 +27,7 @@
   <!-- Header -->
   <header class="masthead d-flex">
     <div class="container text-center my-auto">
-      <h1 class="mb-1">LanguageAgora</h1>
+      <h1 class="mb-1">LanguagesAgora</h1>
       <h3 class="mb-5">
         <em>Un foro de aprendizaje de idiomas</em>
       </h3>
@@ -166,11 +166,14 @@
   <footer class="footer text-center">
     <div class="container">
       <ul class="list-inline mb-5">
-            <a id="github" href="https://github.com/xusl98/LanguageAgora" style="background-color: #1D809F; color: white;" class="service-icon rounded-circle mx-auto mb-3 roundIcons">
-                <i class="fab fa-github"></i>
+            <a id="github" href="mailto:languageagora@gmail.com" style="background-color: #1D809F; color: white;" class="service-icon rounded-circle mx-auto mb-3 roundIcons">
+              <i class="far fa-envelope"></i>
             </a>
+            <!-- <a id="github" href="https://github.com/xusl98/LanguageAgora" style="background-color: #1D809F; color: white;" class="service-icon rounded-circle mx-auto mb-3 roundIcons">
+                <i class="fab fa-github"></i>
+            </a> -->
       </ul>
-      <p class="text-muted small mb-0">Copyright &copy; 2020 LanguageAgora</p>
+      <p class="text-muted small mb-0">Copyright &copy; 2020 LanguagesAgora</p>
     </div>
   </footer>
 

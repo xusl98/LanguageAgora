@@ -8,8 +8,13 @@ $(document).ready(function () {
     userName = urlParams.get('userName');
     $('#userTitle').text(userName);
     $('#userTitle').click(function () {
-        window.history.back();
+        window.location.href = document.referrer;
     });
+
+
+    if (sessionStorage.getItem('user') != userId){
+        window.history.back();
+    }
 
 
     $('#btnCambiarNombre').click(function () {
@@ -86,7 +91,10 @@ function peticionUsuarioCorrecta(respuesta) {
         miXHR.open("POST", url);
         miXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         miXHR.send(param);
+        $('#userTitle').text($('#userName').val());
+        $('#profileDrop').text($('#userName').val());
         $('#nombreModal').modal('hide');
+        
     }
 
 }

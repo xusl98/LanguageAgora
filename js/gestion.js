@@ -13,16 +13,16 @@ $(document).ready(function () {
 
     $('.table').DataTable({
         "language": {
-            "sSearch":         "Buscar&nbsp;:",
-            "sLengthMenu":     "Mostrar _MENU_ elementos",
-            "sInfo":           "Mostrando de  _START_ a _END_ de _TOTAL_ elementos",
-            "sInfoEmpty":      "Mostrando de 0 a 0 de 0 elementos",
-            "sInfoPostFix":    "",
+            "sSearch": "Buscar&nbsp;:",
+            "sLengthMenu": "Mostrar _MENU_ elementos",
+            "sInfo": "Mostrando de  _START_ a _END_ de _TOTAL_ elementos",
+            "sInfoEmpty": "Mostrando de 0 a 0 de 0 elementos",
+            "sInfoPostFix": "",
             "oPaginate": {
-                "sFirst":      "Primero",
-                "sPrevious":   "Anterior",
-                "sNext":       "Siguiente",
-                "sLast":       "Último"
+                "sFirst": "Primero",
+                "sPrevious": "Anterior",
+                "sNext": "Siguiente",
+                "sLast": "Último"
             },
         }
     });
@@ -112,123 +112,137 @@ $(document).ready(function () {
         })
     });
 
+    $('.quitarReporte').click(function (e) {
 
+        questionId = e.target.id.split('-')[1];
 
-
-
-    $('#langSelector').change(function () {
-        selectedLangName = $("#langSelector option:selected").text();
-        if (selectedLangName != 'Elige un idioma...') {
-            selectedLangId = $("#langSelector option:selected").attr('lang');
-
-            $('#selectedLang').text(selectedLangName);
-            $('#btnEliminarIdioma').css('visibility', 'visible');
-            // $('#langGraphs').css('display', 'block');
-
-            if ($('#langGraphs').css('display') == 'none'){
-                $('#langGraphs').slideToggle();
-            }
-
-            preguntasIdiomaMes();
-            preguntasIdiomaAnio();
-            respuestasIdiomaMes();
-            respuestasIdiomaAnio();
-
-            if ($("#langSelector option:selected").attr('langDisabled') == true) {
-                $('#btnDisable').text('Habilitar Idioma');
-                $('#selectedLang').css('text-decoration', 'line-through');
-                $('#selectedLang').css('color', 'gray');
-            } else {
-                $('#btnDisable').text('Deshabilitar Idioma');
-                $('#selectedLang').css('text-decoration', 'none');
-                $('#selectedLang').css('color', 'black');
-            }
-        } else {
-            $('#btnEliminarIdioma').css('visibility', 'hidden');
-            $('#selectedLang').text('');
-            // $('#langGraphs').css('display', 'none');
-            // $('#langGraphs').hide();
-            $('#langGraphs').slideToggle();
-        }
-    });
-
-    $('#btnAddLang').click(function () {
-        var langName = $('#inputLangName').val().trim();
-
-        if (langName == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Rellena el campo nombre',
-            })
-        } else {
-            $('#inputLangName').val('');
-            var opciones = { url: path + "server/gestion/insertaIdioma.php", data: { name: langName }, type: "POST", dataType: "json", };
-            $.ajax(opciones)
-                // .done(peticionEliminarPregCorrecta)
-                // .fail()
-                .always(peticionInsertarIdioma)
-                ;
-        }
-    });
-
-    $('#btnEliminarIdioma').click(function () {
-
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "No podrás recuperar el idioma después de borrarlo",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar'
-        }).then((result) => {
-            if (result.value) {
-                var opciones = { url: path + "server/gestion/borrarIdioma.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
-                $.ajax(opciones)
-                    // .done(peticionEliminarPregCorrecta)
-                    // .fail()
-                    .always(peticionBorrarIdioma)
-                    ;
-
-            }
-        })
-
-    });
-
-
-    $('#btnDisable').click(function () {
-        var opciones = { url: path + "server/gestion/cambiarDisable.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
+        var opciones = { url: path + "server/gestion/quitarReporte.php", data: { questionId: questionId }, type: "POST", dataType: "json", };
         $.ajax(opciones)
             // .done(peticionEliminarPregCorrecta)
             // .fail()
-            .always(peticionCambiarDisable)
+            .always(peticionQuitarReporteCorrecta)
             ;
+
+    
     });
 
-    $('.userTypeSelect').change(function () {
-        var userId = $(this).attr('id').split('-')[1];
-        var userType = $(this).val();
-        console.log(userId)
-        console.log(userType)
-        var opciones = { url: path + "server/gestion/cambiarTipoUsuario.php", data: { userId: userId, userType: userType }, type: "POST", dataType: "json", };
+
+
+
+
+$('#langSelector').change(function () {
+    selectedLangName = $("#langSelector option:selected").text();
+    if (selectedLangName != 'Elige un idioma...') {
+        selectedLangId = $("#langSelector option:selected").attr('lang');
+
+        $('#selectedLang').text(selectedLangName);
+        $('#btnEliminarIdioma').css('visibility', 'visible');
+        // $('#langGraphs').css('display', 'block');
+
+        if ($('#langGraphs').css('display') == 'none') {
+            $('#langGraphs').slideToggle();
+        }
+
+        preguntasIdiomaMes();
+        preguntasIdiomaAnio();
+        respuestasIdiomaMes();
+        respuestasIdiomaAnio();
+
+        if ($("#langSelector option:selected").attr('langDisabled') == true) {
+            $('#btnDisable').text('Habilitar Idioma');
+            $('#selectedLang').css('text-decoration', 'line-through');
+            $('#selectedLang').css('color', 'gray');
+        } else {
+            $('#btnDisable').text('Deshabilitar Idioma');
+            $('#selectedLang').css('text-decoration', 'none');
+            $('#selectedLang').css('color', 'black');
+        }
+    } else {
+        $('#btnEliminarIdioma').css('visibility', 'hidden');
+        $('#selectedLang').text('');
+        // $('#langGraphs').css('display', 'none');
+        // $('#langGraphs').hide();
+        $('#langGraphs').slideToggle();
+    }
+});
+
+$('#btnAddLang').click(function () {
+    var langName = $('#inputLangName').val().trim();
+
+    if (langName == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Rellena el campo nombre',
+        })
+    } else {
+        $('#inputLangName').val('');
+        var opciones = { url: path + "server/gestion/insertaIdioma.php", data: { name: langName }, type: "POST", dataType: "json", };
         $.ajax(opciones)
+            // .done(peticionEliminarPregCorrecta)
+            // .fail()
+            .always(peticionInsertarIdioma)
+            ;
+    }
+});
+
+$('#btnEliminarIdioma').click(function () {
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "No podrás recuperar el idioma después de borrarlo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar'
+    }).then((result) => {
+        if (result.value) {
+            var opciones = { url: path + "server/gestion/borrarIdioma.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
+            $.ajax(opciones)
+                // .done(peticionEliminarPregCorrecta)
+                // .fail()
+                .always(peticionBorrarIdioma)
+                ;
+
+        }
+    })
+
+});
+
+
+$('#btnDisable').click(function () {
+    var opciones = { url: path + "server/gestion/cambiarDisable.php", data: { langId: selectedLangId }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionCambiarDisable)
+        ;
+});
+
+$('.userTypeSelect').change(function () {
+    var userId = $(this).attr('id').split('-')[1];
+    var userType = $(this).val();
+    console.log(userId)
+    console.log(userType)
+    var opciones = { url: path + "server/gestion/cambiarTipoUsuario.php", data: { userId: userId, userType: userType }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
         // .done(peticionEliminarPregCorrecta)
         // .fail()
         .always(peticionCambiarTipoUsuario)
         ;
-        
-    });
-    
-    $('.disable').change(function () {
-        var userId = $(this)[0].id;
-        var opciones = { url: path + "server/gestion/cambiarDisableUser.php", data: { userId: userId }, type: "POST", dataType: "json", };
-        $.ajax(opciones)
-            // .done(peticionEliminarPregCorrecta)
-            // .fail()
-            .always(peticionCambiarDisableUser)
-            ;
-    });
+
+});
+
+$('.disable').change(function () {
+    var userId = $(this)[0].id;
+    var opciones = { url: path + "server/gestion/cambiarDisableUser.php", data: { userId: userId }, type: "POST", dataType: "json", };
+    $.ajax(opciones)
+        // .done(peticionEliminarPregCorrecta)
+        // .fail()
+        .always(peticionCambiarDisableUser)
+        ;
+});
 
 
 });
@@ -243,10 +257,10 @@ function cargarSelect() {
     actualizarIdiomas();
 }
 
-function peticionCambiarDisableUser () {
+function peticionCambiarDisableUser() {
     console.log('disable cambiado')
 }
-function peticionCambiarTipoUsuario () {
+function peticionCambiarTipoUsuario() {
     console.log('Rol cambiado')
 }
 
@@ -525,6 +539,15 @@ function peticionEliminarPreguntaCorrecta() {
     Swal.fire(
         '¡Eliminado!',
         'La pregunta ha sido eliminada',
+        'success'
+    )
+}
+function peticionQuitarReporteCorrecta() {
+    $('#tr' + questionId).remove();
+    
+    Swal.fire(
+        '¡Éxito!',
+        'El reporte ha sido eliminado',
         'success'
     )
 }
