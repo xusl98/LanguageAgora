@@ -27,7 +27,7 @@
   <!-- Header -->
   <header class="masthead d-flex">
     <div class="container text-center my-auto">
-      <h1 class="mb-1">LanguagesAgora</h1>
+      <h1 class="mb-1">LanguageAgora</h1>
       <h3 class="mb-5">
         <em>Un foro de aprendizaje de idiomas</em>
       </h3>
@@ -173,7 +173,7 @@
                 <i class="fab fa-github"></i>
             </a> -->
       </ul>
-      <p class="text-muted small mb-0">Copyright &copy; 2020 LanguagesAgora</p>
+      <p class="text-muted small mb-0">Copyright &copy; 2020 LanguageAgora</p>
     </div>
   </footer>
 

@@ -28,7 +28,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="./resources/favicon.ico">
     <link rel="icon" href="./resources/favicon.ico" type="image/x-icon">
-    <title>LanguagesAgora</title>
+    <title>LanguageAgora</title>
 
 
     <script src="./librerias/SweetAlerts/dist/sweetalert2.min.js"></script>
@@ -52,7 +52,7 @@
             ?>
 
 <nav class="navbar navbar-expand-lg ">
-  <a class="navbar-brand colorBlanco" href="index.php">LanguagesAgora</a>
+  <a class="navbar-brand colorBlanco" href="index.php">LanguageAgora</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"><i style="color:white;" class="fas fa-bars"></i></span>
   </button>
@@ -107,7 +107,7 @@
     <?php 
     $footer = '<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
     <div class="container text-center">
-      <small>Copyright &copy; 2020 LanguagesAgora</small>
+      <small>Copyright &copy; 2020 LanguageAgora</small>
     </div>
   </footer>';
     if (isset($_GET['option'])){
