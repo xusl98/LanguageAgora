@@ -1,7 +1,7 @@
 
 <?php
 // Conectando, seleccionando la base de datos
-$mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
+$mysqli = new mysqli('127.0.0.1', 'u935523561_xusl98', 'Polientes98', 'u935523561_2020p_jsainz');
 $mysqli->set_charset("utf8");
 $langId = $_POST['langId'];
 $cons="SELECT COUNT(question.questionId) as preguntas, DAY(date) as dia FROM question WHERE MONTH(date) = MONTH(CURRENT_DATE()) AND YEAR(date) = YEAR(CURRENT_DATE()) AND $langId = question.languageId GROUP BY DAY(date)";

@@ -17,8 +17,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="./librerias/jquery/jQuery-3.4.1.js"></script>
     <script src="./librerias/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./js/plantilla.js"></script>
-    <script src="./js/common.js"></script>
+    <script src="./js/comun.js"></script>
+    <script src="./js/paths.js"></script>
     <script src="./js/smtp.js"></script>
     <script src="./librerias/Chart.js-2.9.3/dist/Chart.js"></script>
     <link rel="stylesheet" href="./librerias/bootstrap-4.4.1-dist/css/bootstrap.min.css">
@@ -34,6 +34,7 @@
     <script src="./librerias/SweetAlerts/dist/sweetalert2.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
     <link rel="stylesheet" href="./librerias/SweetAlerts/dist/sweetalert2.min.css">
+    
     </head>
 
 
@@ -168,3 +169,4 @@
 </body>
 
 </html>
+ 

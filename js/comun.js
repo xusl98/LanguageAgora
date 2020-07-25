@@ -3,6 +3,7 @@ var sesionIniciada = false;
 var eventoSesionCerrada = new Event("sesionCerrada", { bubbles: true });
 var eventoSesionIniciada = new Event("sesionIniciada", { bubbles: true });
 $(document).ready(function () {
+    var path = './';
 
 
 

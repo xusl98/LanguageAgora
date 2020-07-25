@@ -1,6 +1,6 @@
 <?php
 // Conectando, seleccionando la base de datos
-$mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
+$mysqli = new mysqli('127.0.0.1', 'u935523561_xusl98', 'Polientes98', 'u935523561_2020p_jsainz');
 $mysqli->set_charset("utf8");
 $name = $_POST['name'];
 $userId = $_POST['userId'];

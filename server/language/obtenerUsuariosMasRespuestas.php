@@ -1,6 +1,6 @@
 <?php
 // Conectando, seleccionando la base de datos
-$mysqli = new mysqli('127.0.0.1', 'jsainz', 'js_348', '2020p_jsainz');
+$mysqli = new mysqli('127.0.0.1', 'u935523561_xusl98', 'Polientes98', 'u935523561_2020p_jsainz');
 $mysqli->set_charset("utf8");
 $lang = $_POST['lang'];
 $cons="select count(answer.answerId) as answers, user.name, user.userId from user, answer, question where user.userId = answer.userId and answer.questionId = question.questionId and question.languageId = $lang GROUP BY user.userId LIMIT 6";
